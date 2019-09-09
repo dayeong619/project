@@ -63,7 +63,7 @@
 </style>
 <section>
 	<div id="divTitle">
-		<div id="left"><h3>생산일지</h3></div>
+		<div id="left"><h3>수입검사관리</h3></div>
 		<div id="right">
 			<button>조회</button>
 			<button>신규</button>
@@ -104,135 +104,105 @@
 	<div id="tableScroll">
 		<table>
 			<tr>
-				<td rowspan="2">라인</td>
-				<td rowspan="2">성 명</td>
-				<td rowspan="2">품 명</td>
-				<td rowspan="2">작업 시간</td>
-				<td rowspan="2">생산 수량</td>
-				<td colspan="5">불량 내역 <span id="tabletdtd">*불량이 있을 경우만 표기</span></td>
+				<td rowspan="2">No</td>
+				<td rowspan="2">입고 일자</td>
+				<td rowspan="2">품명</td>
+				<td rowspan="2">입고 수량</td>
+				<td colspan="2">검사 결과</td>
+				<td rowspan="2">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
 				<td rowspan="2">비고</td>
 			</tr>
 			<tr>
-				<td>가공</td>
-				<td>셋업</td>
-				<td>소재</td>
-				<td>기타</td>
-				<td>계</td>
+				<td>합격</td>
+				<td>불합격</td>
 			</tr>
 				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
 			<tr>
-				<td>A</td>
-				<td>김다영</td>
+				<td>5</td>
+				<td>2019-09-08</td>
 				<td>TLE GAMMA</td>
-				<td>08:00~20:00</td>
-				<td>520</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>B</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>C</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>D</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>4</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>E</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>F</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>3</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>G</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>H</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>2</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>합 계</td>
+				<td>1</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2019-09-08</td>
+				<td>TLE GAMMA</td>
+				<td>700</td>
+				<td>ㅇ</td>
 				<td></td>
 				<td></td>
 				<td></td>

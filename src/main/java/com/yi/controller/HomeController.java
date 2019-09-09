@@ -41,4 +41,9 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("income")
+	public void income() {
+		
+	}
+	
 }
