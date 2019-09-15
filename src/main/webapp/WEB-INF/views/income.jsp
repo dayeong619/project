@@ -14,6 +14,27 @@
 	table td{
 		border:1px solid black;
 	}
+	table td:nth-child(1){ /* No */
+		width: 40px;
+	}
+	table td:nth-child(2){ /* 입고 일자 */
+		width: 150px;
+	}
+	table td:nth-child(3){ /* 품명 */
+		width: 150px;
+	}
+	table td:nth-child(4){ /* 입고수량 */
+		width: 80px;
+	}
+	table #tdnth5{/* 합격 */
+		width: 160px;
+	}
+	table #ndnth51{
+		width:80px;
+	}
+	table #ndnth52{
+		width:80px;
+	}
 	table tr{
 		border:1px solid black;
 	}
@@ -108,13 +129,13 @@
 				<td rowspan="2">입고 일자</td>
 				<td rowspan="2">품명</td>
 				<td rowspan="2">입고 수량</td>
-				<td colspan="2">검사 결과</td>
+				<td colspan="2" id="tdnth5">검사 결과</td>
 				<td rowspan="2">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
 				<td rowspan="2">비고</td>
 			</tr>
 			<tr>
-				<td>합격</td>
-				<td>불합격</td>
+				<td id="ndnth51">합격</td>
+				<td id="ndnth52">불합격</td>
 			</tr>
 				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
 			<tr>
