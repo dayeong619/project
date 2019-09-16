@@ -46,4 +46,9 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("release")
+	public void release() {
+		
+	}
+	
 }
