@@ -1,6 +1,7 @@
 package com.yi.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class ManagementVO {
 	private int mNo;
@@ -14,8 +15,8 @@ public class ManagementVO {
 	private Date mEnterday;
 	private String mPhoto;
 	private Date mConfirm;
-	private DepartmentVO dNo;
-	private TitleVO tNo;
+	private List<DepartmentVO> dNo;
+	private List<TitleVO> tNo;
 	public int getmNo() {
 		return mNo;
 	}
@@ -82,16 +83,17 @@ public class ManagementVO {
 	public void setmConfirm(Date mConfirm) {
 		this.mConfirm = mConfirm;
 	}
-	public DepartmentVO getdNo() {
+	
+	public List<DepartmentVO> getdNo() {
 		return dNo;
 	}
-	public void setdNo(DepartmentVO dNo) {
+	public void setdNo(List<DepartmentVO> dNo) {
 		this.dNo = dNo;
 	}
-	public TitleVO gettNo() {
+	public List<TitleVO> gettNo() {
 		return tNo;
 	}
-	public void settNo(TitleVO tNo) {
+	public void settNo(List<TitleVO> tNo) {
 		this.tNo = tNo;
 	}
 	@Override

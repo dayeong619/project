@@ -51,7 +51,10 @@ public class LoginController {
 	
 	@RequestMapping(value="join", method=RequestMethod.POST)
 	public String joinPOST(ManagementVO vo) throws Exception { 
-		logger.info("----- joinPOST, vo가 담겨졌음?"+vo);
+		logger.info("----- joinPOST, vo가 ?"+vo);
+		
+		
+		
 		service.insertManagement(vo);
 		
 		

@@ -7,7 +7,7 @@ import com.yi.domain.ManagementVO;
 import com.yi.persistence.ManagementDao;
 
 @Service
-public class ManagementServiceImple implements ManagementService { 
+public class ManagementServiceImpl implements ManagementService { 
 
 	@Autowired
 	ManagementDao dao;
