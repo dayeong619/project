@@ -31,7 +31,6 @@
 	#loginmenu{
 		font-size: 12px;
 		padding-left: 100px;
-		
 	}
 	#loginmenu a{
 		color:#4d636f; 
@@ -43,17 +42,17 @@
 	<form action="loginPost" method="post">
 	
 		<div class="divinp">
-			<input type="text" name="userid" id="userid" placeholder=" 아이디">
+			<input type="text" name="mId" id="userid" placeholder=" 아이디">
 		</div>
 		<div class="divinp">
-			<input type="password" name="userpw" id="userpw"  placeholder=" 비밀번호">
+			<input type="password" name="mPw" id="userpw"  placeholder=" 비밀번호">
 		</div>
 		<div class="divinp">
 			<input type="submit" value="로그인" id="submitbutton">
 		</div>
 	</form>
 	<div id="loginmenu">
-		<a href="">회원가입</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="">아이디찾기</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="">비밀번호찾기</a>
+		<a href="${pageContext.request.contextPath}/auth/join">회원가입</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="">아이디찾기</a>&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="">비밀번호찾기</a>
 	</div>	
 	</div>
 	<c:if test="${error == 'notMatch'}">
@@ -66,12 +65,6 @@
 			session.removeAttribute("error");
 		%> 
 	</c:if>
-	
-	
-	
-	
-	
-	
 	
 	
 </section>

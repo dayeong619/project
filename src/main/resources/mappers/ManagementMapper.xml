@@ -3,13 +3,40 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.ManagementMapper">
-	<insert id="insertManagement">
+	<resultMap type="ManagementVO" id="ManagementStandard">
+		<result property="mNo" column="m_no" />
+		<result property="mId" column="m_id" />
+		<result property="mPw" column="m_pw" />
+		<result property="mName" column="m_name" />
+		<result property="mBirth" column="m_birth" />
+		<result property="mEmail" column="m_email" />
+		<result property="mTel" column="m_tel" />
+		<result property="mAddr" column="m_addr" />
+		<result property="mEnterday" column="m_enterday"/>
+		<result property="mPhoto" column="m_photo" />
+		<result property="mConfirm" column="m_confirm" />
+	</resultMap>
+	<resultMap  id="ManagementResultMap" type="ManagementVO" extends="ManagementStandard">
+		<association property="dNo" resultMap="com.yi.mapper.DepartmentMapper.DepartmentResultMap"/>
+		<association property="tNo" resultMap="com.yi.mapper.TitleMapper.TitleResultMap"></association>
+	</resultMap>
+
+	<select id="selectByJoinInformation" resultMap="ManagementResultMap">
+		select m.m_id, m.m_pw, m.m_name, m.m_birth, m.m_email, m.m_tel, m.m_enterday, m.m_photo, d.d_name, t.t_name
+		from department d left join management m on d.d_no = m.d_no
+						  left join title t on d.d_no = t.t_no
+	</select>
+
+
+	<insert id="insertManagement" parameterType="ManagementVO">
 		insert into management
-		(m_id, m_pw, m_name, m_birth, m_email, m_tel, m_enterday, m_photo, d_no, t_no) values
-		(#{m_id}, #{m_pw}, #{m_name}, #{m_birth}, #{m_email}, #{m_tel}, #{m_enterday}, #{m_photo}, #{d_no}, #{t_no})
+		(m_id, m_pw, m_name, m_birth, m_email, m_tel, m_enterday, d_no, t_no) values
+		(#{mId}, #{mPw}, #{mName}, #{mBirth}, #{mEmail}, #{mTel}, #{mEnterday}, #{dNo.dNo}, #{tNo.tNo})
 	</insert>
 	
-	
+	<select id="selectByIdAndPw" parameterType="map" resultMap="ManagementStandard">
+		select m_id, m_pw from management where m_id=#{mId} and m_pw=#{mPw}
+	</select>
 	
 	
 	

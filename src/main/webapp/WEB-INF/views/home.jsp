@@ -7,11 +7,13 @@
 
 
 
+<!-- <script>
+	location.href="product";
+</script>
 
+ -->
 
-
-
-
+------------->home이야 
 
 
 

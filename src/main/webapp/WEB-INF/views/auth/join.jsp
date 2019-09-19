@@ -66,7 +66,7 @@
 </style>
 <section>
 	<div id="container">
-	<form action="join" method="post" id="f1">
+	<form action="join" method="post" id="f1" >
 		<div id="divInput">
 			<label>아이디</label>
 			<input type="text" name="mId" id="userid"> <!-- <button type="button" id="idck">중복체크</button><br> -->
@@ -95,45 +95,29 @@
 		</div>
 		<div>
 			<label>입사일</label>
-			<input type="text" name="mEnterday"  placeholder=" 8자리 ex) 20190918">
-		</div>
-		<div>
-			<label>사진</label>
-			<input type="file" name="mPhoto">
+			<input type="date" name="mEnterday"  placeholder=" 8자리 ex) 20190918">
 		</div>
 		<div>
 			<label>담당부서</label>
 			<select name="dNo">
-				<option>선택하세요</option>
-				<option>품질관리팀</option>
-				<option>생산관리팀</option>
-				<option>자재관리팀</option>
+				<c:forEach var="list" items="${dlist}">
+					<option>${list.dName}</option>
+				</c:forEach>
 			</select>
 		</div>
 		<div>
 			<label>담당직책</label>
 			<select name="tNo">
-				<option>선택하세요</option>
-				<option>사원</option>
-				<option>대리</option>
-				<option>부장</option>
+				<c:forEach var="lists" items="${tlist}">
+					<option>${lists.tName}</option>
+				</c:forEach>
 			</select>
 		</div>
 		<div>
 			<input type="submit" value="회원가입" id="submitbutton">
 		</div>
 	</form>
-	
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </section>
 </body>

@@ -1,22 +1,20 @@
 package com.yi.domain;
 
-import java.util.Date;
-import java.util.List;
-
 public class ManagementVO {
 	private int mNo;
 	private String mId;
 	private String mPw;
 	private String mName;
-	private int mBirth;
+	private String mBirth;
 	private String mEmail;
 	private String mTel;
 	private String mAddr;
-	private Date mEnterday;
+	private String mEnterday;
 	private String mPhoto;
-	private Date mConfirm;
-	private List<DepartmentVO> dNo;
-	private List<TitleVO> tNo;
+	private String mConfirm;
+	private DepartmentVO dNo;
+	private TitleVO tNo;
+	
 	public int getmNo() {
 		return mNo;
 	}
@@ -41,10 +39,10 @@ public class ManagementVO {
 	public void setmName(String mName) {
 		this.mName = mName;
 	}
-	public int getmBirth() {
+	public String getmBirth() {
 		return mBirth;
 	}
-	public void setmBirth(int mBirth) {
+	public void setmBirth(String mBirth) {
 		this.mBirth = mBirth;
 	}
 	public String getmEmail() {
@@ -65,10 +63,10 @@ public class ManagementVO {
 	public void setmAddr(String mAddr) {
 		this.mAddr = mAddr;
 	}
-	public Date getmEnterday() {
+	public String getmEnterday() {
 		return mEnterday;
 	}
-	public void setmEnterday(Date mEnterday) {
+	public void setmEnterday(String mEnterday) {
 		this.mEnterday = mEnterday;
 	}
 	public String getmPhoto() {
@@ -77,23 +75,22 @@ public class ManagementVO {
 	public void setmPhoto(String mPhoto) {
 		this.mPhoto = mPhoto;
 	}
-	public Date getmConfirm() {
+	public String getmConfirm() {
 		return mConfirm;
 	}
-	public void setmConfirm(Date mConfirm) {
+	public void setmConfirm(String mConfirm) {
 		this.mConfirm = mConfirm;
 	}
-	
-	public List<DepartmentVO> getdNo() {
+	public DepartmentVO getdNo() {
 		return dNo;
 	}
-	public void setdNo(List<DepartmentVO> dNo) {
+	public void setdNo(DepartmentVO dNo) {
 		this.dNo = dNo;
 	}
-	public List<TitleVO> gettNo() {
+	public TitleVO gettNo() {
 		return tNo;
 	}
-	public void settNo(List<TitleVO> tNo) {
+	public void settNo(TitleVO tNo) {
 		this.tNo = tNo;
 	}
 	@Override
@@ -104,8 +101,5 @@ public class ManagementVO {
 	}
 	
 	
-	
-	
-	
-	
+
 }
