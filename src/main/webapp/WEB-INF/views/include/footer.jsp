@@ -15,7 +15,7 @@
 	<footer>
 		<div id="footerborder"></div>
 		<div>
-			COPYRIGHT©2019 SEOIL Systems ALL RIGHTS RESERVED.
+			COPYRIGHT©2019 SH Systems ALL RIGHTS RESERVED.
 		</div>
 	</footer>
 

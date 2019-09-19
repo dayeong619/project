@@ -101,7 +101,7 @@
 			<label>담당부서</label>
 			<select name="dNo">
 				<c:forEach var="list" items="${dlist}">
-					<option>${list.dName}</option>
+					<option>${list.dNo}</option>
 				</c:forEach>
 			</select>
 		</div>
@@ -109,7 +109,7 @@
 			<label>담당직책</label>
 			<select name="tNo">
 				<c:forEach var="lists" items="${tlist}">
-					<option>${lists.tName}</option>
+					<option>${lists.tNo}</option>
 				</c:forEach>
 			</select>
 		</div>

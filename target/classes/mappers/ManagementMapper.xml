@@ -18,7 +18,7 @@
 	</resultMap>
 	<resultMap  id="ManagementResultMap" type="ManagementVO" extends="ManagementStandard">
 		<association property="dNo" resultMap="com.yi.mapper.DepartmentMapper.DepartmentResultMap"/>
-		<association property="tNo" resultMap="com.yi.mapper.TitleMapper.TitleResultMap"></association>
+		<association property="tNo" resultMap="com.yi.mapper.TitleMapper.TitleResultMap"/>
 	</resultMap>
 
 	<select id="selectByJoinInformation" resultMap="ManagementResultMap">

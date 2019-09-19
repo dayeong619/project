@@ -18,14 +18,15 @@
 	}
 	#headerRelative{
 		width: 100%;
-		height: 50px;
+		height: 80px;
+		background-color: #3a4b53;
 	}
 	#logo img{
 		width: 150px;
 		height: 40px;
 		position: absolute;
-		top:10px;
-		left:10px;
+		top:15px;
+		left:30px;
 	}
 	.menu{
 		width: 100%;
@@ -33,7 +34,6 @@
 		position: absolute;
 		top:10px;
 		left:200px;
-		margin-top:8px;
 	}
 	ul{
 		list-style: none;
@@ -76,7 +76,7 @@
 	}
 	a{
 		text-decoration: none;
-		color:black;
+		color:White;
 		font-weight: bold;
 	}
 	#mypage img{
@@ -89,14 +89,10 @@
 	
 	#headerborder{
 		width:100%;
-		height:10px;
-		border-bottom: 2px solid #ccc;	
+		height:3px;
+		border-bottom: 3px solid #ccc;	
 	}
-	section{
-		width: 97%;
-		height: 800px;
-		margin:0 auto;
-	}
+	
 		
 	
 </style>
@@ -122,36 +118,37 @@ $(function(){
 					<li>
 						<a href="#">제품관리 </a>
 						<ul class="tip">
+							<li><a href="#">제품관리</a></li>
 							<li><a href="#">제품현황</a></li>
-							<li><a href="#">제품수정</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">입고관리 </a>
 						<ul class="tip">
-							<li><a href="#">수입검사등록</a></li>
-							<li><a href="#">재고확인</a></li>
+							<li><a href="${pageContext.request.contextPath}/warehousing">수입검사등록</a></li>
+							<li><a href="#">입고현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">생산관리 </a>
 						<ul class="tip">
-							<li><a href="#">생산일지</a></li>
+							<li><a href="${pageContext.request.contextPath}/product">생산일지</a></li>
 							<li><a href="#">생산현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">출고관리 </a>
 						<ul class="tip">
-							<li><a href="#">전표등록</a></li>
-							<li><a href="#">출고검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/release">출하전표등록</a></li>
+							<li><a href="#">출고현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">인사관리 </a>
 						<ul class="tip">
 							<li><a href="#">부서관리</a></li>
-							<li><a href="#">사원별생산현황</a></li>
+							<li><a href="#">사원관리</a></li>
+							<li><a href="#">기타관리</a></li>
 						</ul>
 					</li>
 				</ul>
