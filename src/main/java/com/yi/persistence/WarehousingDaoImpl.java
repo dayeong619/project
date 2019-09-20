@@ -1,5 +1,7 @@
 package com.yi.persistence;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	@Override
 	public void insertWarehousing(WarehousingVO vo) throws Exception {
 		sqlSession.insert(namespace+".insertWarehousing", vo);
+	}
+
+	@Override
+	public List<WarehousingVO> selectWarehousingByAll() throws Exception {
+		return sqlSession.selectList(namespace+".selectWarehousingByAll");
 	}
 	
 

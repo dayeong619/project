@@ -1,5 +1,7 @@
 package com.yi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class WarehousingServiceImpl implements WarehousingService {
 	@Override
 	public void insertWarehousing(WarehousingVO vo) throws Exception {
 		dao.insertWarehousing(vo);
+	}
+
+	@Override
+	public List<WarehousingVO> selectWarehousingByAll() throws Exception {
+		return dao.selectWarehousingByAll();
 	}
 
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="include/header.jsp" %>
 <style>
 	table{
@@ -49,10 +51,18 @@
 	#tableScroll{
 		/* overflow: scroll; */
 	}
-	
-	#divTitle{
+	section{
+		width: 100%;
+		height: 800px;
+	}
+	.divTitle{ /*배경색 깔아주는 div클래스*/
+		width:100%;
 		height: 30px;
-		background-color: #E6FFFF;
+		background-color: #4d636f;
+	}
+	.divTitle2{ /*중앙정렬하는 div클래스 */
+		width: 85%;
+		margin:0 auto;
 	}
 	#left{
 		overflow:hidden;
@@ -78,20 +88,26 @@
 	.imgLoupe{
 		width: 15px;
 		height: 15px;
-	
 	}
 	
 </style>
 <section>
-	<div id="divTitle">
+	<div class="divTitle">
+	<div class="divTitle2">
 		<div id="left"><h3>수입검사관리</h3></div>
 		<div id="right">
 			<button>조회</button>
 			<button>신규</button>
-			<button>수정</button>
+			<button id="modify">수정</button>
 		</div>
+		<script>
+			$("#modify").click(function(){
+				$(".dddd").removeAttr("disabled");
+			})
+		</script>
 	</div>
-		
+	</div>
+	<div class="divTitle2">
 	<div id="divDate">
 		생산일자<input type="text">~<input type="text">
 		구분		
@@ -125,6 +141,7 @@
 	<div id="tableScroll">
 		<table>
 			<tr>
+				<td rowspan="2">선택</td>
 				<td rowspan="2">No</td>
 				<td rowspan="2">입고 일자</td>
 				<td rowspan="2">품명</td>
@@ -138,7 +155,26 @@
 				<td id="ndnth52">불합격</td>
 			</tr>
 				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
-			<tr>
+				
+				<c:forEach var="wlists" items="${wlist}">
+					<tr>
+						<td><input type="radio" name="wno" value="${wlists.wNo}"></td>	
+						<td>${wlists.wNo }</td>
+						<td>
+							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
+							<input type="text" value="wDay" disabled="disabled">
+						</td>
+						<td><input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled"></td>
+						<td><input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled"></td>
+						<td>${wlists.wResult }</td><!-- 합격-->
+						<td></td><!-- 불합격 -->
+						<td>${wlists.wMemo }</td>
+						<td>${wlists.wNote }</td>
+					</tr>
+				</c:forEach>
+				
+			<!-- <tr>
+				<td><input type="checkbox"></td>	
 				<td>5</td>
 				<td>2019-09-08</td>
 				<td>TLE GAMMA</td>
@@ -149,6 +185,7 @@
 				<td></td>
 			</tr>
 			<tr>
+				<td><input type="checkbox"></td>	
 				<td>4</td>
 				<td>2019-09-08</td>
 				<td>TLE GAMMA</td>
@@ -157,96 +194,12 @@
 				<td></td>
 				<td></td>
 				<td></td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			</tr> -->
 			
 		</table>
+		</div>
 	</div>
 
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <%@ include file="include/footer.jsp" %>
