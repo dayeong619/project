@@ -1,5 +1,7 @@
 package com.yi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void insertProduct(ProductVO vo) throws Exception {
 		dao.insertProduct(vo);
+	}
+
+	@Override
+	public List<ProductVO> selectProductByAll() throws Exception {
+		return dao.selectProductByAll();
 	}
 
 	

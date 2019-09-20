@@ -16,26 +16,40 @@
 	table td{
 		border:1px solid black;
 	}
-	table td:nth-child(1){ /* No */
+	table td:nth-child(1){ /* 선택 */
 		width: 40px;
 	}
-	table td:nth-child(2){ /* 입고 일자 */
+	table td:nth-child(2){ /* No */
+		width: 40px;
+	}
+	table td:nth-child(3){ /* 입고일자 */
 		width: 150px;
 	}
-	table td:nth-child(3){ /* 품명 */
-		width: 150px;
+	table td:nth-child(4){ /* 품명 */
+		width: 40px;
 	}
-	table td:nth-child(4){ /* 입고수량 */
-		width: 80px;
+	table td:nth-child(5){ /* 입고수량 */
+		width: 40px;
 	}
-	table #tdnth5{/* 합격 */
-		width: 160px;
+	table td:nth-child(8){ /* 조치내용 */
+		width: 200px;
 	}
-	table #ndnth51{
-		width:80px;
+	table td:nth-child(9){ /* 비고 */
+		width: 200px;
 	}
-	table #ndnth52{
-		width:80px;
+	table #result1, table #result2{/* 합격,불합격 인풋태그  */
+		width: 60px;
+		text-align: center;
+	}
+	table #wmemo1css, table #wmemo2css{ /* 조치내용, 비고 */
+		width: 230px;
+	}
+	table #input1css{ /* 선택*/
+		width: 30px;
+	}
+	table #input2css{
+		width: 40px;
+		font-size: 14px;
 	}
 	table tr{
 		border:1px solid black;
@@ -89,7 +103,15 @@
 		width: 15px;
 		height: 15px;
 	}
-	
+	.dddd{
+		height: 30px;
+		border:none;
+	}	
+
+
+
+
+
 </style>
 <section>
 	<div class="divTitle">
@@ -138,11 +160,11 @@
 			</select>
 			작업자<input type="text"><img src="${pageContext.request.contextPath}/resources/images/Loupe.png" class="imgLoupe">
 	</div> 
-	<div id="tableScroll">
+	
 		<table>
 			<tr>
-				<td rowspan="2">선택</td>
-				<td rowspan="2">No</td>
+				<td rowspan="2"> </td>
+				<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
 				<td rowspan="2">입고 일자</td>
 				<td rowspan="2">품명</td>
 				<td rowspan="2">입고 수량</td>
@@ -151,54 +173,47 @@
 				<td rowspan="2">비고</td>
 			</tr>
 			<tr>
-				<td id="ndnth51">합격</td>
-				<td id="ndnth52">불합격</td>
+				<td>합격</td>
+				<td>불합격</td>
 			</tr>
+			
 				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
 				
 				<c:forEach var="wlists" items="${wlist}">
 					<tr>
-						<td><input type="radio" name="wno" value="${wlists.wNo}"></td>	
-						<td>${wlists.wNo }</td>
-						<td>
-							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
-							<input type="text" value="wDay" disabled="disabled">
+						<td><!-- wNo 입고번호순서-->
+							<p id="input2css">${wlists.wNo }</p>
 						</td>
-						<td><input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled"></td>
-						<td><input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled"></td>
-						<td>${wlists.wResult }</td><!-- 합격-->
-						<td></td><!-- 불합격 -->
-						<td>${wlists.wMemo }</td>
-						<td>${wlists.wNote }</td>
+						<td><!-- 체크박스 -->
+							<input type="checkbox" id="input1css" name="wno" value="${wlists.wNo}">
+						</td>
+						<td><!-- wDay 입고일자 -->
+							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
+							<input type="text" value="${wDay}" disabled="disabled" class="dddd">
+						</td>
+						<td><!-- 품명 -->
+							<input type="text" class="dddd" value="${wlists.gNo.gName }" disabled="disabled">
+						</td>
+						<td><!-- 입고수량 -->
+							<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
+						</td>
+						<td><!-- 합격-->
+							<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
+						</td>
+						<td><!-- 불합격-->
+							<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
+						</td>
+						<td><!-- 조치내용 -->
+							<input type="text" id="wmemo1css" class="dddd" value="${wlists.wMemo }" disabled="disabled">
+						</td>
+						<td><!-- 비고 -->
+							<input type="text" id="wmemo2css" class="dddd" value="${wlists.wNote }" disabled="disabled">
+						</td>
 					</tr>
 				</c:forEach>
-				
-			<!-- <tr>
-				<td><input type="checkbox"></td>	
-				<td>5</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox"></td>	
-				<td>4</td>
-				<td>2019-09-08</td>
-				<td>TLE GAMMA</td>
-				<td>700</td>
-				<td>ㅇ</td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr> -->
 			
 		</table>
 		</div>
-	</div>
 
 
 </section>

@@ -36,6 +36,11 @@ public class ManagementDaoImpl implements ManagementDao {
 		
 		return sqlSession.selectOne(namespace+".selectByIdAndPw", map);
 	}
+
+	@Override
+	public List<ManagementVO> selectMyInformationById(String mId) throws Exception {
+		return sqlSession.selectList(namespace+".selectMyInformationById", mId);
+	}
 	
 
 

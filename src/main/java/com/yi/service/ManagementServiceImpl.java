@@ -29,6 +29,11 @@ public class ManagementServiceImpl implements ManagementService {
 		return dao.selectByIdAndPw(mId, mPw);
 	}
 
+	@Override
+	public List<ManagementVO> selectMyInformationById(String mId) throws Exception {
+		return dao.selectMyInformationById(mId);
+	}
+
 	
 	
 }

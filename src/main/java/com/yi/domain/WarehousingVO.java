@@ -1,27 +1,26 @@
 package com.yi.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class WarehousingVO {
 	private int wNo;
-	private List<GoodsVO> gNo;
+	private GoodsVO gNo;
 	private Date wDay;
 	private int wQy;
 	private boolean wResult;
 	private String wMemo;
 	private String wNote;
+	
 	public int getwNo() {
 		return wNo;
 	}
 	public void setwNo(int wNo) {
 		this.wNo = wNo;
 	}
-	
-	public List<GoodsVO> getgNo() {
+	public GoodsVO getgNo() {
 		return gNo;
 	}
-	public void setgNo(List<GoodsVO> gNo) {
+	public void setgNo(GoodsVO gNo) {
 		this.gNo = gNo;
 	}
 	public Date getwDay() {
@@ -54,6 +53,7 @@ public class WarehousingVO {
 	public void setwNote(String wNote) {
 		this.wNote = wNote;
 	}
+	
 	@Override
 	public String toString() {
 		return "WarehousingVO [wNo=" + wNo + ", gNo=" + gNo + ", wDay=" + wDay + ", wQy=" + wQy + ", wResult=" + wResult
