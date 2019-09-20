@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yi.mapper.ShipmentMapper">
+
+	<resultMap type="ShipmentVO" id="basicShipment">
+		<result property="sNo" column="s_no" />
+		<result property="sQy" column="s_qy" />
+		<result property="sDay" column="s_day" />
+		<result property="sBadness" column="s_badness" />
+		<result property="sDel" column="s_del" />
+	</resultMap>
+	<resultMap type="ShipmentVO" id="ShipmentExtendsMap" extends="basicShipment">
+		<collection property="pNo" resultMap="com.yi.mapper.ProductMapper.ProductResultMap"/>
+	</resultMap>
+	
+	<select id="selectShipmentByAll" resultMap="ShipmentExtendsMap">
+		select s.s_day, s.s_no, g.g_name, s.s_qy from shipment s
+		left join product p on s.s_no = p.p_no
+		left join warehousing w on p.p_no = w.w_no
+		left join goods g on w.w_no = g.g_no
+	</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,8 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.WarehousingMapper">
-	<select id="selectWarehousingByAll" resultType="WarehousingVO">
-		select * from warehousing
+	<resultMap type="WarehousingVO" id="WarehousingStandard">
+		<result property="wNo" column="w_no" />
+		<result property="wDay" column="w_day" />
+		<result property="wQy" column="w_qy" />
+		<result property="wResult" column="w_result" />
+		<result property="wMemo" column="w_memo" />
+		<result property="wNote" column="w_note" />
+	</resultMap>
+	<resultMap type="WarehousingVO" id="WarehousingResultMap" extends="WarehousingStandard">
+		<collection property="gNo" resultMap="com.yi.mapper.GoodsMapper.GoodsResultMap"/>
+	</resultMap>	
+	<select id="selectWarehousingByAll" resultMap="WarehousingResultMap">
+		select w.w_no, w.w_day, g.g_no, g.g_name, w.w_qy, w.w_result, w.w_memo, w.w_note
+		from warehousing w 
+		left join goods g on w.g_no = g.g_no order by w.w_day desc
 	</select>
 	
 	

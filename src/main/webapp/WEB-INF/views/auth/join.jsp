@@ -99,17 +99,18 @@
 		</div>
 		<div>
 			<label>담당부서</label>
-			<select name="dNo">
+			<select name="dNo.dNo">
+				<option>선택하세요</option>
 				<c:forEach var="list" items="${dlist}">
-					<option>${list.dNo}</option>
+					<option value="${list.dNo}">${list.dName}</option>
 				</c:forEach>
 			</select>
 		</div>
 		<div>
 			<label>담당직책</label>
-			<select name="tNo">
+			<select name="tNo.tNo">
 				<c:forEach var="lists" items="${tlist}">
-					<option>${lists.tNo}</option>
+					<option value="${lists.tNo}">${lists.tName}</option>
 				</c:forEach>
 			</select>
 		</div>

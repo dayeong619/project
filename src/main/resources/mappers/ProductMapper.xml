@@ -3,6 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yi.mapper.ProductMapper">
+	<resultMap type="ProductVO" id="ProductStandard">
+		<result property="pNo" column="p_no" />
+		<result property="pWorkday" column="p_workday" />
+		<result property="pWorkname" column="p_workname" />
+		<result property="pWorktime" column="p_worktime" />
+		<result property="pQy" column="p_qy" />
+		<result property="pNote" column="p_note" />
+		<result property="pSection" column="p_section" />
+	</resultMap>
+	<resultMap type="ProductVO" id="ProductResultMap" extends="ProductStandard">
+		<association property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
+		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
+		<collection property="lNo" resultMap="com.yi.mapper.LineMapper.LineResultMap"/>
+	</resultMap>
 	
 	
 	
@@ -12,6 +26,18 @@
 	
 	
 	
+	
+	<select id="selectProductByAll" resultMap="ProductResultMap">
+		select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday
+		from product p 
+		left join line l on p.p_no = l.l_no
+		left join management m on p.p_no = m.m_no
+		left join warehousing w on p.p_no = w.w_no
+		left join goods g on w.w_no = g.g_no
+		left join badness b on p.p_no = b.b_no
+	</select>
+	
+	<!-- insertDao 있음..뭐지? -->
 	
 	
 	

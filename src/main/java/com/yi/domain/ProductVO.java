@@ -7,7 +7,7 @@ public class ProductVO {
 	private int pNo;
 	private WarehousingVO wNo;
 	private Date pWorkday;
-	private List<LineVO> lLine;
+	private List<LineVO> lNo;
 	private String pWorkname;
 	private List<ManagementVO> mNo;
 	private String pWorktime;
@@ -33,11 +33,11 @@ public class ProductVO {
 		this.pWorkday = pWorkday;
 	}
 	
-	public List<LineVO> getlLine() {
-		return lLine;
+	public List<LineVO> getlNo() {
+		return lNo;
 	}
-	public void setlLine(List<LineVO> lLine) {
-		this.lLine = lLine;
+	public void setlNo(List<LineVO> lNo) {
+		this.lNo = lNo;
 	}
 	public String getpWorkname() {
 		return pWorkname;
@@ -78,7 +78,7 @@ public class ProductVO {
 	}
 	@Override
 	public String toString() {
-		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lLine=" + lLine + ", pWorkname="
+		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo+ ", pWorkname="
 				+ pWorkname + ", mNo=" + mNo + ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote
 				+ ", pSection=" + pSection + "]";
 	}

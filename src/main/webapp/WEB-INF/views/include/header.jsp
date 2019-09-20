@@ -18,10 +18,10 @@
 	}
 	#headerRelative{
 		width: 100%;
-		height: 80px;
+		height: 60px;
 		background-color: #3a4b53;
 	}
-	#logo img{
+	#logo img{ /* 회사로고  */
 		width: 150px;
 		height: 40px;
 		position: absolute;
@@ -76,7 +76,7 @@
 	}
 	a{
 		text-decoration: none;
-		color:White;
+		color:#ccc !important;
 		font-weight: bold;
 	}
 	#mypage img{
@@ -112,43 +112,42 @@ $(function(){
 </head>
 	<header>
 		<div id="headerRelative">
-			<div id="logo"><img src="${pageContext.request.contextPath}/resources/images/shlogo.png"></div><!-- 맨 왼쪽에 위치. 회사로고-->
-		
+			<div id="logo"><a href="${pageContext.request.contextPath}">SH Company</a></div><!-- 맨 왼쪽에 위치. 회사로고-->
 				<ul class="menu">
 					<li>
 						<a href="#">제품관리 </a>
 						<ul class="tip">
-							<li><a href="#">제품관리</a></li>
-							<li><a href="#">제품현황</a></li>
+							<li><a href="#" class="aa">제품관리</a></li>
+							<li><a href="#"  class="aa">제품현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">입고관리 </a>
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/warehousing">수입검사등록</a></li>
-							<li><a href="#">입고현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/warehousing" class="aa">수입검사등록</a></li>
+							<li><a href="#" class="aa">입고현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">생산관리 </a>
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/product">생산일지</a></li>
-							<li><a href="#">생산현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/product" class="aa">생산일지</a></li>
+							<li><a href="#" class="aa">생산현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">출고관리 </a>
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/release">출하전표등록</a></li>
-							<li><a href="#">출고현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/release" class="aa">출하전표등록</a></li>
+							<li><a href="#" class="aa">출고현황</a></li>
 						</ul>
 					</li>
 					<li>
 						<a href="#">인사관리 </a>
 						<ul class="tip">
-							<li><a href="#">부서관리</a></li>
-							<li><a href="#">사원관리</a></li>
-							<li><a href="#">기타관리</a></li>
+							<li><a href="#" class="aa">부서관리</a></li>
+							<li><a href="#" class="aa">사원관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">기타관리</a></li>
 						</ul>
 					</li>
 				</ul>
