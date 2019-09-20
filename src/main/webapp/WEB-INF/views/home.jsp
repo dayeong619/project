@@ -9,13 +9,12 @@
 <style>
 html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
-	#warehousingTable{
+	#warehousingTable, #shipmentTable{
 		width:200px;
 		height:200px;
 		font-size: 10px;
 	}
-	#warehousingTable tr{
-	}
+	
 
 
 
@@ -193,8 +192,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p><strong>출고현황</strong></p>
-          <table id="warehousingTable" border="1">
-           <c:forEach var="slist" items="${slist }">
+          <table id="shipmentTable" border="1">
+           <c:forEach var="slists" items="${slist }">
 	          	<tr>
 	          		<td>
 	          			<fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/>

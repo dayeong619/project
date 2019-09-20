@@ -71,11 +71,12 @@
 	}
 	.divTitle{ /*배경색 깔아주는 div클래스*/
 		width:100%;
-		height: 30px;
-		background-color: #4d636f;
+		height: 100px;
+		background-color: #dfe5e8;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
+		height:50px;
 		margin:0 auto;
 	}
 	#left{
@@ -115,7 +116,7 @@
 </style>
 <section>
 	<div class="divTitle">
-	<div class="divTitle2">
+	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
 		<div id="right">
 			<button>조회</button>
@@ -128,7 +129,7 @@
 			})
 		</script>
 	</div>
-	</div>
+
 	<div class="divTitle2">
 	<div id="divDate">
 		생산일자<input type="text">~<input type="text">
@@ -160,7 +161,8 @@
 			</select>
 			작업자<input type="text"><img src="${pageContext.request.contextPath}/resources/images/Loupe.png" class="imgLoupe">
 	</div> 
-	
+	</div>
+		<div class="divTitle2">
 		<table>
 			<tr>
 				<td rowspan="2"> </td>
@@ -212,7 +214,8 @@
 					</tr>
 				</c:forEach>
 			
-		</table>
+			</table>
+		</div>
 		</div>
 
 
