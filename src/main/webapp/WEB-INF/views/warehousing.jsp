@@ -9,9 +9,11 @@
 		border:1px solid black;
 		border-collapse:collapse;
 		margin-top:10px;
-		width: 900px;
 		height: 500px;
 		text-align: center;
+	}
+	tbody{
+		background-color: white;
 	}
 	table td{
 		border:1px solid black;
@@ -31,14 +33,14 @@
 	table td:nth-child(5){ /* 입고수량 */
 		width: 40px;
 	}
-	table td:nth-child(8){ /* 조치내용 */
-		width: 200px;
+	#tdContent{
+		width: 400px;
 	}
-	table td:nth-child(9){ /* 비고 */
-		width: 200px;
+	#tdEtc{
+		width: 400px;
 	}
 	table #result1, table #result2{/* 합격,불합격 인풋태그  */
-		width: 60px;
+		width: 80px;
 		text-align: center;
 	}
 	table #wmemo1css, table #wmemo2css{ /* 조치내용, 비고 */
@@ -68,25 +70,40 @@
 	section{
 		width: 100%;
 		height: 800px;
+		background-color: #dfe5e8; /* 전체 배경색  */
 	}
-	.divTitle{ /*배경색 깔아주는 div클래스*/
+	.divTitle{ 
+		width:85%;
+		height: 50px;
+		margin:0 auto;
+		background-color: white;
+	}
+	#sectionOne{
 		width:100%;
-		height: 30px;
-		background-color: #4d636f;
+		border-top:2px solid #ccc;
+		border-bottom:2px solid #ccc;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
+		height:50px;
 		margin:0 auto;
+		
 	}
 	#left{
 		overflow:hidden;
 		float: left;
-		width: 800px;
+		width: 900px;
 	}
 	#right{
 	
 	
 	}
+	#divDate2{
+		width: 100%;
+		height: 50px;
+		padding-left:20px;
+		line-height:50px;
+	} 
 	#divDate ul, #divDate2 ul{
 		list-style: none;
 		float: left;
@@ -106,16 +123,22 @@
 	.dddd{
 		height: 30px;
 		border:none;
+		background-color: white;
 	}	
 
-
+	.tableTrs{
+		background-color: #7d97a5;
+		color:white;
+	}
+	#workname{
+		width: 120px;
+	}
 
 
 
 </style>
 <section>
-	<div class="divTitle">
-	<div class="divTitle2">
+	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
 		<div id="right">
 			<button>조회</button>
@@ -128,25 +151,24 @@
 			})
 		</script>
 	</div>
-	</div>
-	<div class="divTitle2">
-	<div id="divDate">
-		생산일자<input type="text">~<input type="text">
-		구분		
+	<div class="divTitle">
+	<div id="sectionOne">
+	<div id="divDate2">
+		생산일자 <input type="date"> ~ <input type="date">
+		&nbsp;&nbsp;&nbsp;&nbsp;구분		
 		<select>
 			<option>주/야</option>
 			<option>주간</option>
 			<option>야간</option>
 		</select>
-	</div>
-	<div id="divDate2">
-			거래처
+
+			&nbsp;&nbsp;&nbsp;&nbsp;거래처
 			<select>
 				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
 				<option>Y&T</option>
 				<option>신라공업</option>
 			</select>
-			품명
+			&nbsp;&nbsp;&nbsp;&nbsp;품명 
 			<select>
 				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
 				<option>PULLEY (RS15)A</option>
@@ -158,21 +180,25 @@
 				<option>TLE 48V</option>
 				<option>CIVIC RS-13</option>
 			</select>
-			작업자<input type="text"><img src="${pageContext.request.contextPath}/resources/images/Loupe.png" class="imgLoupe">
+			&nbsp;&nbsp;&nbsp;&nbsp;작업자 
+			<input type="text" id="workname"><%-- <img src="${pageContext.request.contextPath}/resources/images/Loupe.png" class="imgLoupe"> --%>
 	</div> 
-	
+	</div>
+	</div>
+		<div class="divTitle2" id="tableBackGround">
+		
 		<table>
-			<tr>
+			<tr class="tableTrs">
 				<td rowspan="2"> </td>
 				<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
 				<td rowspan="2">입고 일자</td>
 				<td rowspan="2">품명</td>
 				<td rowspan="2">입고 수량</td>
 				<td colspan="2" id="tdnth5">검사 결과</td>
-				<td rowspan="2">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
-				<td rowspan="2">비고</td>
+				<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
+				<td rowspan="2" id="tdEtc">비고</td>
 			</tr>
-			<tr>
+			<tr class="tableTrs">
 				<td>합격</td>
 				<td>불합격</td>
 			</tr>
@@ -212,8 +238,9 @@
 					</tr>
 				</c:forEach>
 			
-		</table>
+			</table>
 		</div>
+		
 
 
 </section>

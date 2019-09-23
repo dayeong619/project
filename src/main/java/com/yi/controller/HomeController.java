@@ -70,7 +70,7 @@ public class HomeController {
 		
 		List<ShipmentVO> slist = sservice.selectShipmentByAll();
 		logger.info("출고리스트 나가신다 길을 비켜랏"+slist.toString());
-		
+		System.out.println(slist.toString());
 		model.addAttribute("slist", slist);
 		
 		

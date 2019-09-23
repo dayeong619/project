@@ -14,11 +14,11 @@
 	}
 	header{
 		width: 100%;
-		height:50px;
+		height:80px;
 	}
 	#headerRelative{
 		width: 100%;
-		height: 60px;
+		height: 80px;
 		background-color: #3a4b53;
 	}
 	#logo img{ /* 회사로고  */
@@ -50,6 +50,8 @@
   		height:50px;
   		text-align:center;
   		line-height:50px;
+  		color:#ccc;
+  		font-weight: bold;
 	}
 	.tip{
   		position:absolute;
@@ -69,6 +71,7 @@
   		margin:5px 0;
   		padding-bottom:10px;
   		text-align:center;
+  		color:#3a4b53;
 	}
 	.tip a:last-child{
   		border-bottom:none;
@@ -76,7 +79,7 @@
 	}
 	a{
 		text-decoration: none;
-		color:#ccc !important;
+		color:#ccc ;
 		font-weight: bold;
 	}
 	#mypage img{
@@ -115,35 +118,35 @@ $(function(){
 			<div id="logo"><a href="${pageContext.request.contextPath}">SH Company</a></div><!-- 맨 왼쪽에 위치. 회사로고-->
 				<ul class="menu">
 					<li>
-						<a href="#">제품관리 </a>
+						제품관리
 						<ul class="tip">
 							<li><a href="#" class="aa">제품관리</a></li>
 							<li><a href="#"  class="aa">제품현황</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="#">입고관리 </a>
+						입고관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/warehousing" class="aa">수입검사등록</a></li>
 							<li><a href="#" class="aa">입고현황</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="#">생산관리 </a>
+						생산관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/product" class="aa">생산일지</a></li>
 							<li><a href="#" class="aa">생산현황</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="#">출고관리 </a>
+						출고관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/release" class="aa">출하전표등록</a></li>
 							<li><a href="#" class="aa">출고현황</a></li>
 						</ul>
 					</li>
 					<li>
-						<a href="#">인사관리 </a>
+						인사관리 
 						<ul class="tip">
 							<li><a href="#" class="aa">부서관리</a></li>
 							<li><a href="#" class="aa">사원관리</a></li>
