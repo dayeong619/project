@@ -8,6 +8,7 @@ public class ShipmentVO {
 	private int sQy;
 	private Date sDay;
 	private List<ProductVO> pNo;
+	
 	private boolean sBadness;
 	private boolean sDel;
 	
@@ -48,11 +49,12 @@ public class ShipmentVO {
 	public void setsDel(boolean sDel) {
 		this.sDel = sDel;
 	}
+
 	
 	@Override
 	public String toString() {
 		return "ShipmentVO [sNo=" + sNo + ", sQy=" + sQy + ", sDay=" + sDay + ", pNo=" + pNo + ", sBadness="
-				+ sBadness + ", sDel=" + sDel + "]";
+				+ sBadness + ", sDel=" + sDel +"]";
 	}
 	
 	

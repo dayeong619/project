@@ -93,10 +93,7 @@
 		overflow:hidden;
 		float: left;
 		width: 900px;
-	}
-	#right{
-	
-	
+		padding-top:15px;
 	}
 	#divDate2{
 		width: 100%;
@@ -133,23 +130,156 @@
 	#workname{
 		width: 120px;
 	}
-
-
-
+	#insertView{
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:80px;
+		width:100%;
+		height: 100%;
+		background: rgba(0,0,0,0.7);
+		padding:20px 20%;
+		/* display: none; */
+		color:#D5D5D5;
+	}
+	#insertViewBackground{
+		width: 600px;
+		height: 500px;
+		background-color: white;
+		color:black;
+	}
+	#spaninsert{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	#insertViewTitle{
+		height: 50px;
+		padding-left:10px;
+		padding-top:10px;
+	}
+	#insertView #insertViewinsert{
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
+	#insertView #insertViewReset{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:white;
+		border:1px solid #ccc;
+	}
+	#insertView label{
+		width: 200px;
+		height: 50px;
+		display:inline-block;
+		
+	}
+	#insertView .insertViewInput{
+		width:200px; 
+		height: 30px;
+	}
+	#insertViewcontent{
+		width: 570px;
+		margin-left:10px;
+		padding-left:10px;	
+		border-top:2px solid #ccc;	
+		border-bottom:2px solid #ccc;	
+	}
 </style>
 <section>
 	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
-		<div id="right">
-			<button>조회</button>
-			<button>신규</button>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button id="insert">신규</button>
 			<button id="modify">수정</button>
-		</div>
 		<script>
 			$("#modify").click(function(){
 				$(".dddd").removeAttr("disabled");
 			})
+			
+			$("#insert").click(function(){
+				$("#insertView").fadeIn(300);
+			})
+			$(document).on("click", "#insertViewReset", function(){
+				$(this).parents().find("#insertView").fadeOut(300);
+			})
+			
+			$(document).on("click", "#insertViewReset", function(){
+				$(this).parents().find("#insertView").fadeOut(300);
+			})
+			
+			
+			$(document).on("click", "#insertViewinsert", function(){ /* 입고창에서 등록버튼 */
+				var wDay = $('input[name=wDay]').val();
+				var gName = $('input[name=gName]').val();
+				var wQy = $('input[name=wQy]').val();
+				var wResult = $('input[name=wResult]').val(); //true, false
+				var wMemo = $('textarea[name=wMemo]').val();
+				var wNote = $('textarea[name=wNote]').val();
+				
+				$.ajax({
+					url:"warehousingInsert",
+					type:"post",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					data:data,
+					dataType:"text",
+					success:function(res){
+						console.log(res);
+						if(res == "success"){}
+					}
+				
+				})
+				
+			})
+			
 		</script>
+	</div>
+	<div id="insertView">
+		<div id="insertViewBackground">
+			<div id="insertViewTitle">
+				<span id="spaninsert">수입검사등록</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="reset" value="취소" id="insertViewReset">
+			</div>
+			<div id="insertViewcontent">
+				<p>
+					<label>입고일자</label>
+					<input type="Date" name="wDay" class="insertViewInput">
+				</p>
+				<p>
+					<label>제품명</label>
+					<input type="text" name="gName" class="insertViewInput">
+				</p>
+				<p>
+					<label>입고수량</label>
+					<input type="text" name="wQy" class="insertViewInput">
+				</p>
+				<p>
+					<label>검사결과</label>
+						<select name="wResult">
+							<option value="true">합격</option>
+							<option value="false">불합격</option>
+						</select>
+				</p>
+				<p>
+					<label>조치내용(불량발생시)</label>
+					<textarea rows="" cols="" name="wMemo" class="insertViewInput"></textarea>
+				</p>
+				<p>
+					<label>비고</label>
+					<textarea rows="" cols="" name="wNote" class="insertViewInput"></textarea>
+				</p>
+			</div>
+		</div>
 	</div>
 	<div class="divTitle">
 	<div id="sectionOne">
@@ -161,7 +291,6 @@
 			<option>주간</option>
 			<option>야간</option>
 		</select>
-
 			&nbsp;&nbsp;&nbsp;&nbsp;거래처
 			<select>
 				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
@@ -181,12 +310,12 @@
 				<option>CIVIC RS-13</option>
 			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;작업자 
-			<input type="text" id="workname"><%-- <img src="${pageContext.request.contextPath}/resources/images/Loupe.png" class="imgLoupe"> --%>
+			<input type="text" id="workname">
+			<button>조회</button>
 	</div> 
 	</div>
 	</div>
 		<div class="divTitle2" id="tableBackGround">
-		
 		<table>
 			<tr class="tableTrs">
 				<td rowspan="2"> </td>

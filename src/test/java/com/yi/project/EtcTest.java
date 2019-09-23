@@ -2,6 +2,7 @@ package com.yi.project;
 
 import java.util.List;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,10 +11,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.yi.domain.DepartmentVO;
 import com.yi.domain.GoodsVO;
 import com.yi.domain.ManagementVO;
+import com.yi.domain.ShipmentVO;
 import com.yi.domain.TitleVO;
 import com.yi.persistence.DepartmentDao;
 import com.yi.persistence.GoodsDao;
 import com.yi.persistence.ManagementDao;
+import com.yi.persistence.ShipmentDao;
 import com.yi.persistence.TitleDao;
 
 @RunWith(SpringJUnit4ClassRunner.class) //junit
@@ -31,6 +34,9 @@ public class EtcTest {
 	
 	@Autowired
 	GoodsDao gdao;
+	
+	@Autowired
+	ShipmentDao sdao;
 	
 ////	@Test
 //	public void createTest() throws Exception {
@@ -105,7 +111,14 @@ public class EtcTest {
 		}
 	}
 	
-	
+	@Test
+	public void selectShipmentByAllTest() throws Exception {
+		List<ShipmentVO> glist = sdao.selectShipmentByAll();
+		for(ShipmentVO dp : glist) {
+			System.out.println(dp);
+		}
+		
+	}
 	
 ////	@Test
 //	public void pageTest() throws Exception {

@@ -3,18 +3,23 @@
 <style>
 	footer{
 		width: 100%;
-		height: 20%;
+		height: 60px;
+		line-height:60px;
 		clear: both;
+		background-color: #3a4b53;
 	}
 	#footerborder{
 		width:100%;
 		height:10px;
 		border-top: 2px solid #ccc;	
 	}
+	#footercontent{
+		height: 100%;
+	}
 </style>
 	<footer>
 		<div id="footerborder"></div>
-		<div>
+		<div id="footercontent">
 			COPYRIGHT©2019 SH Systems ALL RIGHTS RESERVED.
 		</div>
 	</footer>

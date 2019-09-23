@@ -4,21 +4,16 @@
 <%@ include file="include/header.jsp" %>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 	#warehousingTable, #shipmentTable{
 		width:200px;
 		height:200px;
 		font-size: 10px;
 	}
 	
-
-
-
-
-
 
 </style>
 <body class="w3-theme-l5">
@@ -153,13 +148,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <span class="w3-right w3-opacity">32 min</span>
-        <h4>1.위에주간만 아래야간만 2.주야간같이보이는데 순서대로 좌라락</h4><br>
+        <h4>생산현황(주,야간 같이) 출고현황 연습중</h4><br>
         <hr class="w3-clear">
 			 <c:forEach var="slists" items="${slist }">
-	          	<p><fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/></p>
-				<p>${slists.pNo }</p>
-				<p>${slists.sNo }</p>
-				<p>${slists.sQy }</p>
+	          	<p>출고일<fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/></p>
+				<p>출고번호${slists.sNo }</p>
+				<p>출고품명${slists.pNo[0].wNo.gNo.gName}</p>
+				<p>출고수량${slists.sQy }</p>
           	</c:forEach>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
@@ -197,7 +192,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 	          		<td>
 	          			<fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/>
 					</td>
-	          		<td>${slists.gNo.gName }</td>
+					<td>${slists.sNo}</td>
+	          		<td>${slists.sNo }</td>
 	          		<td>${slists.sQy }</td>
 	          	</tr>
           	</c:forEach>

@@ -77,6 +77,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "warehousingInsert", method = RequestMethod.POST)
+	public void warehousingInsert() throws Exception {
+		
+	}
+	
 	@RequestMapping("product")
 	public void product() {
 		
