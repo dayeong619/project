@@ -13,11 +13,13 @@ import com.yi.domain.GoodsVO;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.ShipmentVO;
 import com.yi.domain.TitleVO;
+import com.yi.domain.WarehousingVO;
 import com.yi.persistence.DepartmentDao;
 import com.yi.persistence.GoodsDao;
 import com.yi.persistence.ManagementDao;
 import com.yi.persistence.ShipmentDao;
 import com.yi.persistence.TitleDao;
+import com.yi.persistence.WarehousingDao;
 
 @RunWith(SpringJUnit4ClassRunner.class) //junit
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml"}) //설정파일은 요거닷
@@ -37,6 +39,10 @@ public class EtcTest {
 	
 	@Autowired
 	ShipmentDao sdao;
+	
+	@Autowired
+	WarehousingDao wdao;
+	
 	
 ////	@Test
 //	public void createTest() throws Exception {
@@ -111,7 +117,7 @@ public class EtcTest {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void selectShipmentByAllTest() throws Exception {
 		List<ShipmentVO> glist = sdao.selectShipmentByAll();
 		for(ShipmentVO dp : glist) {
@@ -119,6 +125,22 @@ public class EtcTest {
 		}
 		
 	}
+	
+	@Test
+	public void insertWarehousing() throws Exception{
+		WarehousingVO wvo = new WarehousingVO();
+		GoodsVO gvo = new GoodsVO();
+		gvo.setgNo(2);
+		wvo.setgNo(gvo);
+		System.out.println(wvo);
+		wvo.setwQy(2000);
+		System.out.println(wvo);
+		wdao.insertWarehousing(wvo);
+		
+	}
+	
+	
+	
 	
 ////	@Test
 //	public void pageTest() throws Exception {

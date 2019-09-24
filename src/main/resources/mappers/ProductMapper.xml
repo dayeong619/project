@@ -28,7 +28,7 @@
 	
 	
 	<select id="selectProductByAll" resultMap="ProductResultMap">
-		select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday
+		select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday, p.p_no
 		from product p 
 		left join line l on p.p_no = l.l_no
 		left join management m on p.p_no = m.m_no

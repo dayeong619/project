@@ -10,13 +10,15 @@ public class WarehousingVO {
 	private boolean wResult;
 	private String wMemo;
 	private String wNote;
+	private boolean wDel;
 	
 	public int getwNo() {
 		return wNo;
 	}
 	public void setwNo(int wNo) {
 		this.wNo = wNo;
-	}
+	}	
+	
 	public GoodsVO getgNo() {
 		return gNo;
 	}
@@ -53,12 +55,20 @@ public class WarehousingVO {
 	public void setwNote(String wNote) {
 		this.wNote = wNote;
 	}
+	public boolean iswDel() {
+		return wDel;
+	}
+	public void setwDel(boolean wDel) {
+		this.wDel = wDel;
+	}
 	
 	@Override
 	public String toString() {
 		return "WarehousingVO [wNo=" + wNo + ", gNo=" + gNo + ", wDay=" + wDay + ", wQy=" + wQy + ", wResult=" + wResult
-				+ ", wMemo=" + wMemo + ", wNote=" + wNote + "]";
+				+ ", wMemo=" + wMemo + ", wNote=" + wNote + ", wDel=" + wDel + "]";
 	}
+	
+	
 	
 	
 }

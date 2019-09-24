@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yi.domain.GoodsVO;
 import com.yi.domain.LoginDto;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.ProductVO;
 import com.yi.domain.ShipmentVO;
 import com.yi.domain.WarehousingVO;
+import com.yi.service.GoodsService;
 import com.yi.service.ManagementService;
 import com.yi.service.ProductService;
 import com.yi.service.ShipmentService;
@@ -42,6 +44,9 @@ public class HomeController {
 	
 	@Autowired
 	ShipmentService sservice;
+	
+	@Autowired
+	GoodsService gservice;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) throws Exception {
@@ -77,14 +82,16 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "warehousingInsert", method = RequestMethod.POST)
-	public void warehousingInsert() throws Exception {
-		
-	}
 	
-	@RequestMapping("product")
-	public void product() {
+	@RequestMapping(value="product", method=RequestMethod.GET)
+	public void product(Model model) throws Exception {
+		List<ProductVO> plist = pservice.selectProductByAll();
+		logger.info("생산리스트다 자 봐라~~~~"+plist);
+		model.addAttribute("plist", plist);
 		
+		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
+		logger.info("제품리스트 야 -> "+glist);
+		model.addAttribute("glist", glist);
 	}
 	
 	@RequestMapping("release")
@@ -95,11 +102,13 @@ public class HomeController {
 	@RequestMapping(value="warehousing", method=RequestMethod.GET)
 	public void warehousing(Model model) throws Exception {
 		logger.info("warehousingGET---");
-		List<WarehousingVO> wlist = wservice.selectWarehousingByAll();
+		List<WarehousingVO> wlist = wservice.selectWarehousingByAll(); //입고리스트
 		logger.info(wlist.toString());
 		model.addAttribute("wlist", wlist);
 		
-		
+		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
+		logger.info("제품리스트 야 -> "+glist);
+		model.addAttribute("glist", glist);
 		
 	}
 	

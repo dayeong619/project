@@ -14,6 +14,22 @@ public class ProductVO {
 	private int pQy;
 	private String pNote;
 	private boolean pSection;
+	private ShipmentVO sNo;
+	private BadnessVO bNo;
+	
+	
+	public ShipmentVO getsNo() {
+		return sNo;
+	}
+	public void setsNo(ShipmentVO sNo) {
+		this.sNo = sNo;
+	}
+	public BadnessVO getbNo() {
+		return bNo;
+	}
+	public void setbNo(BadnessVO bNo) {
+		this.bNo = bNo;
+	}
 	public int getpNo() {
 		return pNo;
 	}
@@ -78,10 +94,11 @@ public class ProductVO {
 	}
 	@Override
 	public String toString() {
-		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo+ ", pWorkname="
+		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo + ", pWorkname="
 				+ pWorkname + ", mNo=" + mNo + ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote
-				+ ", pSection=" + pSection + "]";
+				+ ", pSection=" + pSection + ", sNo=" + sNo + ", bNo=" + bNo + "]";
 	}
+	
 	
 	
 }

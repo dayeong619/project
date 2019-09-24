@@ -25,6 +25,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	public List<WarehousingVO> selectWarehousingByAll() throws Exception {
 		return sqlSession.selectList(namespace+".selectWarehousingByAll");
 	}
+
+	@Override
+	public void deleteWarehousing(int wNo) throws Exception {
+		sqlSession.delete(namespace+".deleteWarehousing", wNo);
+	}
 	
 
 

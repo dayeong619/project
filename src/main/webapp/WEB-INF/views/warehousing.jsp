@@ -9,7 +9,7 @@
 		border:1px solid black;
 		border-collapse:collapse;
 		margin-top:10px;
-		height: 500px;
+		height: 40px;
 		text-align: center;
 	}
 	tbody{
@@ -18,20 +18,26 @@
 	table td{
 		border:1px solid black;
 	}
-	table td:nth-child(1){ /* 선택 */
-		width: 40px;
+	.tableTrs td:nth-child(1), #tableScroll table td:nth-child(1){ /* 선택 */
+		width: 37px;
 	}
-	table td:nth-child(2){ /* No */
-		width: 40px;
+	.tableTrs td:nth-child(2), #tableScroll table td:nth-child(2){ /* No */
+		width: 28px;
 	}
-	table td:nth-child(3){ /* 입고일자 */
+	.tableTrs td:nth-child(3), #tableScroll table td:nth-child(3){ /* 입고일자 */
+		width: 156px;
+	}
+	.tableTrs td:nth-child(4), #tableScroll table td:nth-child(4){ /* 품명 */
+		width: 156px;
+	}
+	.tableTrs td:nth-child(5), #tableScroll table td:nth-child(5){ /* 입고수량 */
 		width: 150px;
 	}
-	table td:nth-child(4){ /* 품명 */
+	.tableTrs #success, .tableTrs #success2{
 		width: 40px;
 	}
-	table td:nth-child(5){ /* 입고수량 */
-		width: 40px;
+	.tableTrs #tdnth5{
+		width: 160px;
 	}
 	#tdContent{
 		width: 400px;
@@ -44,7 +50,7 @@
 		text-align: center;
 	}
 	table #wmemo1css, table #wmemo2css{ /* 조치내용, 비고 */
-		width: 230px;
+		width: 430px;
 	}
 	table #input1css{ /* 선택*/
 		width: 30px;
@@ -53,20 +59,14 @@
 		width: 40px;
 		font-size: 14px;
 	}
-	table tr{
-		border:1px solid black;
-	}
-	table tr:nth-child(2){
-		height:20px;
-	}
+	
+	
 	#tabletdtd{
 		font-size: 10px;
 		color:red;
 		text-align: right; /* 안먹으면 지우기 */
 	}
-	#tableScroll{
-		/* overflow: scroll; */
-	}
+	
 	section{
 		width: 100%;
 		height: 800px;
@@ -87,7 +87,6 @@
 		width: 85%;
 		height:50px;
 		margin:0 auto;
-		
 	}
 	#left{
 		overflow:hidden;
@@ -130,7 +129,7 @@
 	#workname{
 		width: 120px;
 	}
-	#insertView{
+	#insertView{ /* 신규클릭시 나오는 입고등록 */
 		z-index:100;
 		position:fixed;
 		left:0;
@@ -138,8 +137,8 @@
 		width:100%;
 		height: 100%;
 		background: rgba(0,0,0,0.7);
-		padding:20px 20%;
-		/* display: none; */
+		padding:20px 20px;
+		display: none;
 		color:#D5D5D5;
 	}
 	#insertViewBackground{
@@ -188,13 +187,47 @@
 		border-top:2px solid #ccc;	
 		border-bottom:2px solid #ccc;	
 	}
+	#insertView textarea{
+		width: 340px !important;
+		height: 70px !important;
+	}
+	#insertViewcontent select{
+		width: 204px;
+		height: 34px;
+	}
+
+	#pagepage{
+		position:absolute;
+		bottom:150px;
+		left:700px;
+	}
+	#tableScroll{
+		width: 96%;
+		height:500px;
+		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
+		overflow-x:hidden;
+		margin-top: -10px;
+	}
+	.ClassButtonTop{ /* 크기조정 */
+		width: 60px;
+		height: 30px;
+		margin-top:10px;
+	}
+	.ClassButtonTop button#insert{
+		background-color:#0082a8;
+	}
+	.searchButton{
+		width: 60px;
+		height: 30px;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button id="insert">신규</button>
-			<button id="modify">수정</button>
+			<button class="ClassButtonTop" id="insert">신규</button>
+			<button class="ClassButtonTop" id="modify">수정</button>
+			<button class="ClassButtonTop" id="delete">삭제</button>
 		<script>
 			$("#modify").click(function(){
 				$(".dddd").removeAttr("disabled");
@@ -212,16 +245,20 @@
 			})
 			
 			
-			$(document).on("click", "#insertViewinsert", function(){ /* 입고창에서 등록버튼 */
-				var wDay = $('input[name=wDay]').val();
-				var gName = $('input[name=gName]').val();
-				var wQy = $('input[name=wQy]').val();
+			$(document).on("click", "#insertViewinsert", function(){ /* 입고창에서 등록*/
+				var wDay = $('input[name=wDay]').val(); //입고일자
+				var gNo = $('#gNo option:selected').val(); //제품번호
+				var wQy = $('input[name=wQy]').val(); //입고수량
 				var wResult = $('input[name=wResult]').val(); //true, false
-				var wMemo = $('textarea[name=wMemo]').val();
-				var wNote = $('textarea[name=wNote]').val();
+				var wMemo = $('textarea[name=wMemo]').val(); //조치내용
+				var wNote = $('textarea[name=wNote]').val(); //비고
+				console.log(gNo);				
+				var json = {gNo:{gNo:gNo}, wDay:wDay, wQy:wQy, wResult:wResult, wMemo:wMemo, wNote:wNote};
+				var data = JSON.stringify(json);
+				// gNo(객체이름):{"키":"값"}
 				
 				$.ajax({
-					url:"warehousingInsert",
+					url:"warehousing",
 					type:"post",
 					headers:{
 						"Content-Type":"application/json"
@@ -230,16 +267,50 @@
 					dataType:"text",
 					success:function(res){
 						console.log(res);
-						if(res == "success"){}
+						if(res == "success"){
+							alert("등록되었습니다.");
+						}
+						$("#insertView").hide();
 					}
-				
 				})
-				
 			})
+			
+			
+			 $(document).on("click", "button#delete", function(){ /* 입고정보삭제 */
+					
+					var wNo = $('input:radio[name=wNo]:checked').val();
+				 	var $this = $(this);
+				 	var json = {wNo:wNo};
+				 	var data = JSON.stringify(json);
+				 	
+				 	alert("삭제하시겠습니까");
+				 	
+					 $.ajax({
+						url:"warehousing/"+wNo,
+						type:"put",
+						headers:{
+							"Content-Type":"application/json"
+						},
+						data:data,
+						dataType:"text",
+						success:function(res){
+							console.log(res);
+							
+							if(res == "success"){ //그것만 지우거나 다시그리긩.
+								wNo.parent().remove(); 
+							//한번 비우고 다시 그리기?
+							}
+						}
+					})
+				}) 
+			
+		
+			
+			
 			
 		</script>
 	</div>
-	<div id="insertView">
+	<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
 			<div id="insertViewTitle">
 				<span id="spaninsert">수입검사등록</span>
@@ -257,7 +328,13 @@
 				</p>
 				<p>
 					<label>제품명</label>
-					<input type="text" name="gName" class="insertViewInput">
+					<!-- <input type="text" name="gName" class="insertViewInput"> -->
+					<select id="gNo">
+						<c:forEach var="glists" items="${glist }">
+							<option value="${glists.gNo}">${glists.gName}</option>
+						</c:forEach>
+					</select>
+					
 				</p>
 				<p>
 					<label>입고수량</label>
@@ -272,11 +349,11 @@
 				</p>
 				<p>
 					<label>조치내용(불량발생시)</label>
-					<textarea rows="" cols="" name="wMemo" class="insertViewInput"></textarea>
+					<textarea name="wMemo" class="insertViewInput"></textarea>
 				</p>
 				<p>
 					<label>비고</label>
-					<textarea rows="" cols="" name="wNote" class="insertViewInput"></textarea>
+					<textarea name="wNote" class="insertViewInput"></textarea>
 				</p>
 			</div>
 		</div>
@@ -311,11 +388,11 @@
 			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;작업자 
 			<input type="text" id="workname">
-			<button>조회</button>
+			<button class="searchButton">조회</button>
 	</div> 
 	</div>
 	</div>
-		<div class="divTitle2" id="tableBackGround">
+		<div class="divTitle2" id="tableBackGround"><!-- 테이블 메뉴 고정 -->
 		<table>
 			<tr class="tableTrs">
 				<td rowspan="2"> </td>
@@ -328,19 +405,20 @@
 				<td rowspan="2" id="tdEtc">비고</td>
 			</tr>
 			<tr class="tableTrs">
-				<td>합격</td>
-				<td>불합격</td>
+				<td id="success">합격</td>
+				<td id="success2">불합격</td>
 			</tr>
-			
+		</table>	
 				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
-				
+		<div id="tableScroll">	
+			<table >
 				<c:forEach var="wlists" items="${wlist}">
 					<tr>
 						<td><!-- wNo 입고번호순서-->
 							<p id="input2css">${wlists.wNo }</p>
 						</td>
 						<td><!-- 체크박스 -->
-							<input type="checkbox" id="input1css" name="wno" value="${wlists.wNo}">
+							<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
 						</td>
 						<td><!-- wDay 입고일자 -->
 							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
@@ -366,11 +444,9 @@
 						</td>
 					</tr>
 				</c:forEach>
-			
-			</table>
-		</div>
+		</table>
+	</div>		
+</div>
 		
-
-
 </section>
 <%@ include file="include/footer.jsp" %>
