@@ -13,6 +13,10 @@
 	
 	<select id="selectByGoods" resultMap="GoodsResultMap">
 		select * from goods
+	</select>
+	
+	<select id="selectAll" parameterType="GoodsVO" resultMap="GoodsResultMap">
+		select * from goods where g_no=#{gNo}
 	</select>	
 	
 	

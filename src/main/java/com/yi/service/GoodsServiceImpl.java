@@ -19,6 +19,11 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.selectByGoods();
 	}
 
+	@Override
+	public GoodsVO selectAll(GoodsVO vo) throws Exception {
+		return dao.selectAll(vo);
+	}
+
 	
 
 	

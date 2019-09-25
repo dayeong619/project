@@ -29,6 +29,11 @@ public class WarehousingServiceImpl implements WarehousingService {
 		dao.deleteWarehousing(wNo);
 	}
 
+	@Override
+	public void modifyWarehousing(WarehousingVO vo) throws Exception {
+		dao.modifyWarehousing(vo);
+	}
+
 	
 	
 }
