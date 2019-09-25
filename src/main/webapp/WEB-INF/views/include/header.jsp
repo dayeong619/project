@@ -7,7 +7,10 @@
 <meta charset="UTF-8">
 <title>서흥정밀</title>
 <style>
-
+	body{
+		overflow: hidden;
+		overflow-y: auto; 
+	}
 	*{
 		margin:0;
 		padding:0;

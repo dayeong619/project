@@ -3,19 +3,21 @@
 <style>
 	footer{
 		width: 100%;
-		height: 60px;
+		height: 80px;
 		line-height:60px;
 		clear: both;
 		background-color: #3a4b53;
+		color:#ccc;
+		font-weight: bold;
 	}
 	#footerborder{
 		width:100%;
 		height:10px;
 		border-top: 2px solid #ccc;	
 	}
-	#footercontent{
+	/* #footercontent{
 		height: 100%;
-	}
+	} */
 </style>
 	<footer>
 		<div id="footerborder"></div>
