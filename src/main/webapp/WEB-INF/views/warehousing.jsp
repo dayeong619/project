@@ -4,52 +4,82 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="include/header.jsp" %>
 <style>
+	section{
+		width: 100%;
+		height: 800px;
+		background-color: #dfe5e8; /* 전체 배경색  */
+	}
 	table{
 		clear:both;
-		border:1px solid black;
 		border-collapse:collapse;
 		margin-top:10px;
-		height: 40px;
+		width:95%;
+		height: 650px;
 		text-align: center;
+		display: block;
 	}
 	tbody{
 		background-color: white;
+		display: block;
+		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
+		overflow-x:hidden;
+		height: 605px;
 	}
+	
 	table td{
 		border:1px solid black;
 	}
-	.tableTrs td:nth-child(1){ /* 선택 */
+	thead td:nth-child(1){ /* 선택 */
 		width: 41px;
 	}
-	.tableTrs td:nth-child(2){ /* No */
+	thead td:nth-child(2){ /* No */
 		width: 31px;
 	}
-	.tableTrs td:nth-child(3){ /* 입고일자 */
+	thead td:nth-child(3){ /* 입고일자 */
 		width: 169px;
 	}
-	.tableTrs td:nth-child(4){ /* 품명 */
+	thead td:nth-child(4){ /* 품명 */
 		width: 169px;
 	}
-	.tableTrs td:nth-child(5){ /* 입고수량 */
+	thead td:nth-child(5){ /* 입고수량 */
 		width: 169px;
 	}
-	.tableTrs td:nth-child(6){ /* 검사결과 */
+	thead td:nth-child(6){ /* 검사결과 */
 		width: 160px;
 	}
-	.tableTrs #success, .tableTrs #success2{
+	thead #success, .tableTrs #success2{
 		width: 80px;
 	}
-	/* 테이블 경계 지우는거 */
-	/* #tableMenu tr:nth-last-child(){ 
-		border-bottom:none;
-	} */
-	/* #tableScroll table tr:first-child{
-		border-top:none;
-	} */
-	
-	/* .tableTrs #tdnth5{
-		width: 160px;
-	} */
+	tbody td:nth-child(1){ /*                 여기서부터 tbody */
+		width: 40px;
+	}
+	tbody td:nth-child(2){ /* No */
+		width: 31px;
+	}
+	tbody td:nth-child(3){ /* 입고일자 */
+		width: 169px;
+	}
+	tbody td:nth-child(4){ /* 품명 */
+		width: 169px;
+	}
+	tbody td:nth-child(5){ /* 입고수량 */
+		width: 169px;
+	}
+	tbody td:nth-child(6){ /* 검사결과:합격 */
+		width: 80px;
+	}
+	tbody td:nth-child(7){ /* 검사결과:불합격 */
+		width: 80px;
+	}
+	tbody td:nth-child(8){ /* 조치내용*/
+		width: 401px;
+	}
+	tbody td:nth-child(9){ /* 비고 */
+		width: 382px;
+	}
+	tbody #success, .tableTrs #success2{
+		width: 80px;
+	}
 	#tdContent{
 		width: 401px;
 	}
@@ -60,29 +90,7 @@
 		width: 80px;
 		text-align: center;
 	}
-	table #wmemo1css, table #wmemo2css{ /* 조치내용, 비고 */
-		width: 401px;
-	}
-	table #input1css{ /* 선택*/
-		width: 30px;
-	}
-	table #input2css{
-		width: 40px;
-		font-size: 14px;
-	}
-	#tabletdtd{
-		font-size: 10px;
-		color:red;
-		text-align: right; /* 안먹으면 지우기 */
-	}
-	#tableMenu{
-		width: 95%;
-	}
-	section{
-		width: 100%;
-		height: 800px;
-		background-color: #dfe5e8; /* 전체 배경색  */
-	}
+	
 	.divTitle{ 
 		width:85%;
 		height: 50px;
@@ -131,11 +139,16 @@
 		height: 30px;
 		border:none;
 		background-color: white;
+		text-align: center;
 	}	
-
+	#tdContent #tabletdtd{ /* 불량발생시 조치 */
+		color:red;
+		font-size: 13px;
+	}
 	.tableTrs{
 		background-color: #7d97a5;
 		color:white;
+		height: 30px;
 	}
 	#workname{
 		width: 120px;
@@ -146,9 +159,9 @@
 		left:0;
 		top:80px;
 		width:100%;
-		height: 100%;
+		height: 71%;
 		background: rgba(0,0,0,0.7);
-		padding:20px 400px;
+		padding:60px 500px;
 		display: none;
 		color:#D5D5D5;
 	}
@@ -212,13 +225,7 @@
 		bottom:150px;
 		left:700px;
 	}
-	#tableScroll{
-		width: 96%;
-		height:500px;
-		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
-		overflow-x:hidden;
-		margin-top: -10px;
-	}
+	
 	.ClassButtonTop{ /* 크기조정 */
 		width: 60px;
 		height: 30px;
@@ -239,11 +246,17 @@
 			<button class="ClassButtonTop" id="insert">신규</button>
 			<button class="ClassButtonTop" id="modify">수정</button>
 			<button class="ClassButtonTop" id="delete">삭제</button>
+			
+				<button class="ClassButtonTop" id="delete">수정확인</button>
+				<button class="ClassButtonTop" id="delete">수정취소</button>
+		
 		<script>
 		
 			$(document).on("click", "button#modify", function(){ /* 수정 클릭시 인풋창 활성화 */
-				var $input = $('input:radio[name=wNo]:checked');
-				$input.parent().find(".dddd").removeAttr("disabled");
+				var radioBtn = $('input:radio[name=wNo]:checked');
+				radioBtn.parent().parent().find(".dddd").attr("disabled", false);
+				//수정확인 버튼 생기게?
+				
 				var $input = $('input:radio[name=wNo]:checked').val();
 			
 			
@@ -252,6 +265,7 @@
 	
 			
 			$("#insert").click(function(){ /* 신규 클릭시 입력창 나옴  */
+				document.getElementById("nowDate").valueAsDate = new Date();
 				$("#insertView").fadeIn(300);
 			})
 
@@ -260,14 +274,22 @@
 				$(this).parents().find("#insertView").fadeOut(300);
 			})
 			
-			$(document).on("click", "#insertViewReset", function(){
-				$(this).parents().find("#insertView").fadeOut(300);
-			})
+			function rere(obj){
+	
+				$(obj.glist).each(function(i, res){
+					str+= "<td><select id='gNo'><c:forEach var='glists' items='"+res+"'><option value='"+res.gNo+"'>'"+res.gName+"</option></c:forEach></select>";
+				})
+					
+				}
+			
+			
+			
+			
 			
 			function repaint(obj){
-				$("#tableScroll table").empty();
+				$("#tableBackGround table tbody").empty();
 				
-				$(obj).each(function(i,res){
+				$(obj.list).each(function(i,res){
 					
 					var str="";
 					var date = new Date(res.wDay);
@@ -275,12 +297,16 @@
 					
 					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
 					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
-					str+= "<td>";
-					str+= "<input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
-					str+= "<td><input type='text' class='dddd' value='"+res.gNo.gName+"'disabled='disabled'></td>"; //품명
-					str+= "<td><inpyt type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
-					str+= "<td><inpyt type='text' id='result1' class='dddd' value='"+res.wResult+" == true ? o:a'disabled='disabled'></td>"; //합격
-					str+= "<td><inpyt type='text' id='result2' class='dddd' value='"+res.wResult+" == false ? a:o'disabled='disabled'></td>"; //불합격
+					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
+					
+					str+= $(obj.glist).each(function(i, res){
+						"<td><select id='gNo'><c:forEach var='glists' items='"+res+"'><option value='"+res.gNo+"'>'"+res.gName+"</option></c:forEach></select>";
+					})					
+					
+					str+= "<td><input type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
+					/* 삼항연산자 사용 사요요ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ */
+					str+= "<td><input type='text' id='result1' class='dddd' value='("+res.wResult+" == true) ? o:'disabled='disabled'></td>"; //합격
+					str+= "<td><input type='text' id='result2' class='dddd' value='"+res.wResult+" == false) ? :o'disabled='disabled'></td>"; //불합격
 					if(res.wMemo == null){
 						res.wMemo = "";
 					}
@@ -290,13 +316,13 @@
 					str+= "<td><input type='text' id='wmemo1css' class='dddd' value='"+res.wMemo+"'disabled='disabled'></td>";
 					str+= "<td><input type='text' id='wmemo2css' class='dddd' value='"+res.wNote+"'disabled='disabled'></td></tr>";
 						
-					$("#tableScroll table").append(str);
+					$("#tableBackGround table tbody").append(str);
 				})
 				
 			}
 			
 			
-			 function ListAll(){
+			 function ListAll(){ /* 리스트만 불러오는 녀석 */
 				$.ajax({
 					url:"warehousing/do",
 					type:"get",
@@ -331,13 +357,11 @@
 					dataType:"json",
 					success:function(res){
 						console.log(res); //////////////////////////////////////////////
-						
+						$("#insertView").find(".insertViewInput").val("");
 						$("#insertView").hide();
 						
 						 repaint(res);
-						
-						
-						
+						// rere(res);
 					}
 				})
 			})
@@ -413,7 +437,7 @@
 			<div id="insertViewcontent">
 				<p>
 					<label>입고일자</label>
-					<input type="Date" name="wDay" class="insertViewInput">
+					<input type="Date" name="wDay" id="nowDate" class="insertViewInput">
 				</p>
 				<p>
 					<label>제품명</label>
@@ -474,26 +498,25 @@
 	</div> 
 	</div>
 	</div>
-		<div class="divTitle2" id="tableBackGround"><!-- 테이블 메뉴 고정 -->
-		<table id="tableMenu">
-			<tr class="tableTrs">
-				<td rowspan="2"> </td>
-				<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
-				<td rowspan="2">입고 일자</td>
-				<td rowspan="2">품명</td>
-				<td rowspan="2">입고 수량</td>
-				<td colspan="2" id="tdnth5">검사 결과</td>
-				<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
-				<td rowspan="2" id="tdEtc">비고</td>
-			</tr>
-			<tr class="tableTrs">
-				<td id="success">합격</td>
-				<td id="success2">불합격</td>
-			</tr>
-		</table>	
-				<!-- foreach 돌려서 데이터 있는만큼 보이게 해야됨.. -->
-		<div id="tableScroll">	
-			<table>
+		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
+		<table>
+			<thead>
+				<tr class="tableTrs">
+					<td rowspan="2"> </td>
+					<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
+					<td rowspan="2">입고 일자</td>
+					<td rowspan="2">품명</td>
+					<td rowspan="2">입고 수량</td>
+					<td colspan="2" id="tdnth5">검사 결과</td>
+					<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
+					<td rowspan="2" id="tdEtc">비고</td>
+				</tr>
+				<tr class="tableTrs">
+					<td id="success">합격</td>
+					<td id="success2">불합격</td>
+				</tr>
+			</thead>
+			<tbody id="tableScroll">
 				<c:forEach var="wlists" items="${wlist}">
 					<tr>
 						<td><!-- wNo 입고번호순서-->
@@ -507,7 +530,11 @@
 							<input type="text" value="${wDay}" disabled="disabled" class="dddd">
 						</td>
 						<td><!-- 품명 -->
-							<input type="text" class="dddd" value="${wlists.gNo.gName }" disabled="disabled">
+							<select id="gNo" class="dddd" disabled>
+								<c:forEach var="glists" items="${glist }">
+									<option value="${glists.gNo}">${glists.gName}</option>
+								</c:forEach>
+							</select>
 						</td>
 						<td><!-- 입고수량 -->
 							<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
@@ -519,15 +546,15 @@
 							<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
 						</td>
 						<td><!-- 조치내용 -->
-							<input type="text" id="wmemo1css" class="dddd" value="${wlists.wMemo }" disabled="disabled">
+							<input type="text" class="dddd" value="${wlists.wMemo }" disabled="disabled">
 						</td>
 						<td><!-- 비고 -->
-							<input type="text" id="wmemo2css" class="dddd" value="${wlists.wNote }" disabled="disabled">
+							<input type="text" class="dddd" value="${wlists.wNote }" disabled="disabled">
 						</td>
 					</tr>
-				</c:forEach>
+				</c:forEach>	
+			</tbody>
 		</table>
-	</div>		
 </div>
 		
 </section>
