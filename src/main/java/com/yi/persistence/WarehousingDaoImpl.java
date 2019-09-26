@@ -30,6 +30,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	public void deleteWarehousing(int wNo) throws Exception {
 		sqlSession.delete(namespace+".deleteWarehousing", wNo);
 	}
+
+	@Override
+	public void modifyWarehousing(WarehousingVO vo) throws Exception {
+		sqlSession.update(namespace+".modifyWarehousing", vo);
+	}
 	
 
 

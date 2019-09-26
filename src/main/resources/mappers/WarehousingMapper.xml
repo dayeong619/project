@@ -18,7 +18,7 @@
 	<select id="selectWarehousingByAll" resultMap="WarehousingResultMap">
 		select w.w_no, w.w_day, g.g_no, g.g_name, w.w_qy, w.w_result, w.w_memo, w.w_note, w.w_del
 		from warehousing w 
-		left join goods g on w.g_no = g.g_no where w.w_del=1 order by w.w_day desc
+		left join goods g on w.g_no = g.g_no where w.w_del=1 order by w.w_no desc
 	</select>
 	
 	<insert id="insertWarehousing" parameterType="WarehousingVO">

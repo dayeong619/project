@@ -20,6 +20,11 @@ public class GoodsDaoImpl implements GoodsDao {
 	public List<GoodsVO> selectByGoods() throws Exception {
 		return sqlSession.selectList(namespace+".selectByGoods");
 	}
+
+	@Override
+	public GoodsVO selectAll(GoodsVO vo) throws Exception {
+		return sqlSession.selectOne(namespace+".selectAll", vo);
+	}
 	
 	
 	
