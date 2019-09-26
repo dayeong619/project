@@ -74,9 +74,11 @@
 	tbody td:nth-child(8){ /* 조치내용*/
 		width: 401px;
 	}
+	
 	tbody td:nth-child(9){ /* 비고 */
 		width: 382px;
 	}
+	
 	tbody #success, .tableTrs #success2{
 		width: 80px;
 	}
@@ -238,6 +240,12 @@
 		width: 60px;
 		height: 30px;
 	}
+	
+	#tableScroll select{
+		-webkit-appearance: none;  /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="">
@@ -298,11 +306,12 @@
 					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
 					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
 					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
-					
-					str+= $(obj.glist).each(function(i, res){
-						"<td><select id='gNo'><c:forEach var='glists' items='"+res+"'><option value='"+res.gNo+"'>'"+res.gName+"</option></c:forEach></select>";
+					str+= "<td><select id='gNo'>"; 
+					$(obj.glist).each(function(i, res){
+						
+						"<option value='"+res.gNo+"'>'"+res.gName+"</option>";
 					})					
-					
+					str+= "</select>";
 					str+= "<td><input type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
 					/* 삼항연산자 사용 사요요ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ */
 					str+= "<td><input type='text' id='result1' class='dddd' value='("+res.wResult+" == true) ? o:'disabled='disabled'></td>"; //합격
