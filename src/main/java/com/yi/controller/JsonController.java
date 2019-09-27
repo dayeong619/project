@@ -34,9 +34,9 @@ public class JsonController {
 	
 	
 	@RequestMapping(value="warehousing", method=RequestMethod.POST) 
-	public ResponseEntity<List<WarehousingVO>> warehousingInsertPOST(@RequestBody WarehousingVO wvo) throws Exception { 
+	public ResponseEntity<Map<String, Object>> warehousingInsertPOST(@RequestBody WarehousingVO wvo) throws Exception { 
 		
-		ResponseEntity<List<WarehousingVO>> entity = null;
+		ResponseEntity<Map<String, Object>> entity = null;
 		logger.info("----- warehousingInsertPOST");
 		logger.info("--- wvo, "+wvo );
 		
@@ -47,7 +47,13 @@ public class JsonController {
 		try {
 			wservice.insertWarehousing(wvo);
 			List<WarehousingVO> list = wservice.selectWarehousingByAll();
-			entity = new ResponseEntity<>(list, HttpStatus.OK);
+			List<GoodsVO> glist = gservice.selectByGoods();
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("list", list);
+			map.put("glist", glist);
+			
+			entity = new ResponseEntity<>(map, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
