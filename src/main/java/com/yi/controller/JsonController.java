@@ -38,7 +38,7 @@ public class JsonController {
 		
 		ResponseEntity<Map<String, Object>> entity = null;
 		logger.info("----- warehousingInsertPOST");
-		logger.info("--- wvo, "+wvo );
+		logger.info("--- wvo, "+wvo.toString() );
 		
 		GoodsVO vo = gservice.selectAll(wvo.getgNo());
 		wvo.setgNo(vo); //
