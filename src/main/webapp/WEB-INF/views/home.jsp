@@ -205,16 +205,26 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
         <div class="w3-container">
           <p id="wareFont2">출고현황</p>
           <table id="shipmentTable" border="1">
+          <thead>
+          	<tr>
+          		<td>일자</td>
+          		<td>번호</td>
+          		<td>품명</td>
+          		<td>수량</td>
+          	</tr>
+          </thead>
+          <tbody>
            <c:forEach var="slists" items="${slist }">
 	          	<tr>
 	          		<td>
 	          			<fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/>
 					</td>
 					<td>${slists.sNo}</td>
-	          		<td>${slists.sNo }</td>
+	          		<td>${slists.pNo[0].wNo.gNo.gName }</td>
 	          		<td>${slists.sQy }</td>
 	          	</tr>
           	</c:forEach>
+          	</tbody>
           </table>
          <!--  <p><button class="w3-button w3-block w3-theme-l4">Info</button></p> -->
         </div>
