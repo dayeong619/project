@@ -25,6 +25,16 @@ public class ProductDaoImpl implements ProductDao {
 	public List<ProductVO> selectProductByAll() throws Exception {
 		return sqlSession.selectList(namespace+".selectProductByAll");
 	}
+
+	@Override
+	public List<ProductVO> selectByManagementName() throws Exception {
+		return sqlSession.selectList(namespace+".selectByManagementName");
+	}
+
+	@Override
+	public List<ProductVO> selectByGoodsName() throws Exception {
+		return sqlSession.selectList(namespace+".selectByGoodsName");
+	}
 	
 
 

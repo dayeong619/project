@@ -24,6 +24,16 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectProductByAll();
 	}
 
+	@Override
+	public List<ProductVO> selectByManagementName() throws Exception {
+		return dao.selectByManagementName();
+	}
+
+	@Override
+	public List<ProductVO> selectByGoodsName() throws Exception {
+		return dao.selectByGoodsName();
+	}
+
 	
 	
 }

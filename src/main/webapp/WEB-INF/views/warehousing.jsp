@@ -97,12 +97,13 @@
 		width:85%;
 		height: 50px;
 		margin:0 auto;
-		background-color: white;
+		
 	}
 	#sectionOne{
-		width:100%;
+		width:95%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
+		background-color: white;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
@@ -259,8 +260,8 @@
 			<button class="ClassButtonTop" id="insert">신규</button>
 			<button class="ClassButtonTop" id="delete">삭제</button>
 			<button class="ClassButtonTop" id="modify">수정</button>
-				<button class="ClassButtonTop" id="delete">수정확인</button>
-				<button class="ClassButtonTop" id="delete">수정취소</button>
+				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
+				<button class="ClassButtonTop" id="delete">수정취소</button> -->
 		<script>
 			
 			/* $(document).ready(function(){
@@ -507,91 +508,84 @@
 		</div>
 	</div>
 	<div class="divTitle">
-	<div id="sectionOne">
-	<div id="divDate2">
-		생산일자 <input type="date"> ~ <input type="date">
-		
-			&nbsp;&nbsp;&nbsp;&nbsp;거래처
-			<select>
-				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
-				<option>Y&T</option>
-				<option>신라공업</option>
-			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;품명 
-			<select>
-				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
-				<option>PULLEY (RS15)A</option>
-				<option>PUILLEY (TA)</option>
-				<option>IA6PK</option>
-				<option>A2</option>
-				<option>YG LAMDA</option>
-				<option>TLE GAMMA</option>
-				<option>TLE 48V</option>
-				<option>CIVIC RS-13</option>
-			</select>
-			<button class="searchButton">조회</button>
-	</div> 
-	</div>
+		<div id="sectionOne">
+			<div id="divDate2">
+				생산일자 <input type="date"> ~ <input type="date">
+				
+					&nbsp;&nbsp;&nbsp;&nbsp;거래처
+					<select>
+						<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
+						<option>Y&T</option>
+						<option>신라공업</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;품명 
+					<select id="gNo">
+						<c:forEach var="glists" items="${glist }">
+							<option value="${glists.gNo}">${glists.gName}</option>
+						</c:forEach>
+					</select>
+					<button class="searchButton">조회</button>
+			</div> 
+		</div>
 	</div>
 		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
-		<table>
-			<thead>
-				<tr class="tableTrs">
-					<td rowspan="2"> </td>
-					<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
-					<td rowspan="2">입고 일자</td>
-					<td rowspan="2">품명</td>
-					<td rowspan="2">입고 수량</td>
-					<td colspan="2" id="tdnth5">검사 결과</td>
-					<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
-					<td rowspan="2" id="tdEtc">비고</td>
-				</tr>
-				<tr class="tableTrs">
-					<td id="success">합격</td>
-					<td id="success2">불합격</td>
-				</tr>
-			</thead>
-			<tbody id="tableScroll">
-				<c:forEach var="wlists" items="${wlist}">
-					<tr>
-						<td><!-- wNo 입고번호순서-->
-							<p id="input2css">${wlists.wNo }</p>
-						</td>
-						<td><!-- 체크박스 -->
-							<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
-						</td>
-						<td><!-- wDay 입고일자 -->
-							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
-							<input type="text" value="${wDay}" disabled="disabled" class="dddd">
-						</td>
-						<td><!-- 품명 -->
-							<select id="gNo" class="dddd" disabled>
-								<c:forEach var="glists" items="${glist }">
-									<option value="${glists.gNo}">${glists.gName}</option>
-								</c:forEach>
-							</select>
-						</td>
-						<td><!-- 입고수량 -->
-							<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
-						</td>
-						<td><!-- 합격-->
-							
-							<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
-						</td>
-						<td><!-- 불합격-->
-							<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
-						</td>
-						<td><!-- 조치내용 -->
-							<input type="text" class="dddd" value="${wlists.wMemo }" disabled="disabled">
-						</td>
-						<td><!-- 비고 -->
-							<input type="text" class="dddd" value="${wlists.wNote }" disabled="disabled">
-						</td>
+			<table>
+				<thead>
+					<tr class="tableTrs">
+						<td rowspan="2"> </td>
+						<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
+						<td rowspan="2">입고 일자</td>
+						<td rowspan="2">품명</td>
+						<td rowspan="2">입고 수량</td>
+						<td colspan="2" id="tdnth5">검사 결과</td>
+						<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
+						<td rowspan="2" id="tdEtc">비고</td>
 					</tr>
-				</c:forEach>	
-			</tbody>
-		</table>
-</div>
-		
+					<tr class="tableTrs">
+						<td id="success">합격</td>
+						<td id="success2">불합격</td>
+					</tr>
+				</thead>
+				<tbody id="tableScroll">
+					<c:forEach var="wlists" items="${wlist}">
+						<tr>
+							<td><!-- wNo 입고번호순서-->
+								<p id="input2css">${wlists.wNo }</p>
+							</td>
+							<td><!-- 체크박스 -->
+								<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
+							</td>
+							<td><!-- wDay 입고일자 -->
+								<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
+								<input type="text" value="${wDay}" disabled="disabled" class="dddd">
+							</td>
+							<td><!-- 품명 -->
+								<select id="gNo" class="dddd" disabled>
+									<c:forEach var="glists" items="${glist }">
+										<option value="${glists.gNo}">${glists.gName}</option>
+									</c:forEach>
+								</select>
+							</td>
+							<td><!-- 입고수량 -->
+								<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
+							</td>
+							<td><!-- 합격-->
+								
+								<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
+							</td>
+							<td><!-- 불합격-->
+								<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
+							</td>
+							<td><!-- 조치내용 -->
+								<input type="text" class="dddd" value="${wlists.wMemo }" disabled="disabled">
+							</td>
+							<td><!-- 비고 -->
+								<input type="text" class="dddd" value="${wlists.wNote }" disabled="disabled">
+							</td>
+						</tr>
+					</c:forEach>	
+				</tbody>
+			</table>
+		</div>
 </section>
 <%@ include file="include/footer.jsp" %>
