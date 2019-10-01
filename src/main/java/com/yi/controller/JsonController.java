@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yi.domain.GoodsVO;
+import com.yi.domain.ProductVO;
 import com.yi.domain.WarehousingVO;
 import com.yi.service.GoodsService;
+import com.yi.service.ProductService;
 import com.yi.service.WarehousingService;
 
 @RestController
@@ -31,6 +33,11 @@ public class JsonController {
 	@Autowired
 	GoodsService gservice;
 	
+	@Autowired
+	ProductService pservice;
+	
+	
+	
 	
 	
 	@RequestMapping(value="warehousing", method=RequestMethod.POST) 
@@ -38,7 +45,7 @@ public class JsonController {
 		
 		ResponseEntity<Map<String, Object>> entity = null;
 		logger.info("----- warehousingInsertPOST");
-		logger.info("--- wvo, "+wvo );
+		logger.info("--- wvo, "+wvo.toString() );
 		
 		GoodsVO vo = gservice.selectAll(wvo.getgNo());
 		wvo.setgNo(vo); //
@@ -96,6 +103,48 @@ public class JsonController {
 		
 		return entity;
 	}
+	
+	
+	@RequestMapping(value="productInsert", method=RequestMethod.POST) 
+	public ResponseEntity<List<ProductVO>> productInsertPOST(@RequestBody ProductVO vo) throws Exception { 
+		
+		ResponseEntity<List<ProductVO>> entity = null;
+		logger.info("----- productInsertPOST");
+		
+//		GoodsVO vo = gservice.selectAll(wvo.getgNo());
+//		wvo.setgNo(vo); 
+		
+		
+		try {
+			pservice.insertProduct(vo);
+			List<ProductVO> splist = pservice.selectProductByAll();
+			
+			entity = new ResponseEntity<>(splist, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

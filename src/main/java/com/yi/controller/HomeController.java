@@ -87,11 +87,44 @@ public class HomeController {
 	public void product(Model model) throws Exception {
 		List<ProductVO> plist = pservice.selectProductByAll();
 		logger.info("생산리스트다 자 봐라~~~~"+plist);
-		model.addAttribute("plist", plist);
+		
+		/*for (ProductVO productVO : plist) { badness에 bno가 안왕.
+			System.out.println(productVO.getbNo());
+		}*/
+		
+		model.addAttribute("plist", plist);                  //생산리스트
 		
 		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
 		logger.info("제품리스트 야 -> "+glist);
 		model.addAttribute("glist", glist);
+		
+		List<ProductVO> pmlist = pservice.selectByManagementName();
+		logger.info("pmlist를 봅시다"+pmlist);
+		model.addAttribute("pmlist", pmlist);
+		
+		
+		
+	}
+	
+	@RequestMapping(value="productSearch", method=RequestMethod.GET)
+	public void productSearch(Model model) throws Exception {
+		List<ProductVO> plist = pservice.selectProductByAll();
+		logger.info("생산리스트다 자 봐라~~~~"+plist);
+		
+		/*for (ProductVO productVO : plist) { badness에 bno가 안왕.
+			System.out.println(productVO.getbNo());
+		}*/
+		
+		model.addAttribute("plist", plist);                  //생산리스트
+		
+		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
+		logger.info("제품리스트 야 -> "+glist);
+		model.addAttribute("glist", glist);
+		
+		
+		
+		
+		
 	}
 	
 	@RequestMapping("release")

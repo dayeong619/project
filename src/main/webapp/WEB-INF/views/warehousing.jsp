@@ -97,12 +97,13 @@
 		width:85%;
 		height: 50px;
 		margin:0 auto;
-		background-color: white;
+		
 	}
 	#sectionOne{
-		width:100%;
+		width:95%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
+		background-color: white;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
@@ -243,22 +244,37 @@
 	
 	#tableScroll select{
 		-webkit-appearance: none;  /* 네이티브 외형 감추기 */
-    -moz-appearance: none;
-    appearance: none;
+    	-moz-appearance: none;
+    	appearance: none;
 	}
+	#input2css{
+		font-size: 11px;
+	}
+	
+	
 </style>
 <section>
 	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="ClassButtonTop" id="insert">신규</button>
-			<button class="ClassButtonTop" id="modify">수정</button>
 			<button class="ClassButtonTop" id="delete">삭제</button>
-			
-				<button class="ClassButtonTop" id="delete">수정확인</button>
-				<button class="ClassButtonTop" id="delete">수정취소</button>
-		
+			<button class="ClassButtonTop" id="modify">수정</button>
+				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
+				<button class="ClassButtonTop" id="delete">수정취소</button> -->
 		<script>
+			
+			/* $(document).ready(function(){
+				var radio = $("input:radio[name=wResult]").val(); //값이 true 
+				
+				if( radio == false ){
+					$(".result22").attr("checked", true);
+				}
+					
+					
+				
+			})
+		 */
 		
 			$(document).on("click", "button#modify", function(){ /* 수정 클릭시 인풋창 활성화 */
 				var radioBtn = $('input:radio[name=wNo]:checked');
@@ -269,9 +285,28 @@
 			
 			
 			})	
-		
-	
 			
+			/* 라뒤오버튼 눌렀을때 배경색 잡는거 */
+			 $(document).on("click", "input:radio[name=wNo]:checked", function(){ 
+				var radioBtn = $('input:radio[name=wNo]:checked');
+				radioBtn.parent().parent().css("background-color","#EAEAEA");
+				radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
+				$("input:radio[name=wNo]").css("background-color","white");
+			})
+			
+			/* $(document).on("click", "input:radio[name=wNo]", function(){ 
+				
+				if($("input:radio[name=wNo]:checked")){
+					var radioBtn = $('input:radio[name=wNo]:checked');
+					radioBtn.parent().parent().css("background-color","#EAEAEA");
+					radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
+				}else{
+					
+				}
+				
+			})  */
+			 
+			 
 			$("#insert").click(function(){ /* 신규 클릭시 입력창 나옴  */
 				document.getElementById("nowDate").valueAsDate = new Date();
 				$("#insertView").fadeIn(300);
@@ -281,17 +316,6 @@
 			$(document).on("click", "#insertViewReset", function(){
 				$(this).parents().find("#insertView").fadeOut(300);
 			})
-			
-			function rere(obj){
-	
-				$(obj.glist).each(function(i, res){
-					str+= "<td><select id='gNo'><c:forEach var='glists' items='"+res+"'><option value='"+res.gNo+"'>'"+res.gName+"</option></c:forEach></select>";
-				})
-					
-				}
-			
-			
-			
 			
 			
 			function repaint(obj){
@@ -306,16 +330,18 @@
 					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
 					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
 					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
-					str+= "<td><select id='gNo'>"; 
+					str+= "<td><select id='gNo' class='dddd' disabled>"; 
 					$(obj.glist).each(function(i, res){
 						
-						"<option value='"+res.gNo+"'>'"+res.gName+"</option>";
+						str+= "<option value='"+res.gNo+"'>"+res.gName+"</option>";
 					})					
 					str+= "</select>";
 					str+= "<td><input type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
 					/* 삼항연산자 사용 사요요ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ */
-					str+= "<td><input type='text' id='result1' class='dddd' value='("+res.wResult+" == true) ? o:'disabled='disabled'></td>"; //합격
-					str+= "<td><input type='text' id='result2' class='dddd' value='"+res.wResult+" == false) ? :o'disabled='disabled'></td>"; //불합격
+					var r1 = (res.wResult == 1) ? 'o':''; 
+					str+= "<td><input type='text' id='result1' class='dddd' value='"+r1+"'disabled='disabled'></td>"; //합격
+					var r2 = (res.wResult == 0) ? 'o':''; 
+					str+= "<td><input type='text' id='result2' class='dddd' value='"+r2+"'disabled='disabled'></td>"; //불합격
 					if(res.wMemo == null){
 						res.wMemo = "";
 					}
@@ -325,6 +351,7 @@
 					str+= "<td><input type='text' id='wmemo1css' class='dddd' value='"+res.wMemo+"'disabled='disabled'></td>";
 					str+= "<td><input type='text' id='wmemo2css' class='dddd' value='"+res.wNote+"'disabled='disabled'></td></tr>";
 						
+					
 					$("#tableBackGround table tbody").append(str);
 				})
 				
@@ -370,7 +397,6 @@
 						$("#insertView").hide();
 						
 						 repaint(res);
-						// rere(res);
 					}
 				})
 			})
@@ -405,6 +431,7 @@
 					})
 				}) 
 			
+				
 				$(document).on("click", "button#modify", function(){ /* 입고클릭해서 수정 */ 
 				
 					var wNo = $('input:radio[name=wNo]:checked').val(); //68
@@ -425,7 +452,7 @@
 					
 					
 					
-					// repaint(res); //다시그림
+					// repaint(res); 다시그림
 				})
 			
 			
@@ -481,90 +508,84 @@
 		</div>
 	</div>
 	<div class="divTitle">
-	<div id="sectionOne">
-	<div id="divDate2">
-		생산일자 <input type="date"> ~ <input type="date">
-		
-			&nbsp;&nbsp;&nbsp;&nbsp;거래처
-			<select>
-				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
-				<option>Y&T</option>
-				<option>신라공업</option>
-			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;품명 
-			<select>
-				<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
-				<option>PULLEY (RS15)A</option>
-				<option>PUILLEY (TA)</option>
-				<option>IA6PK</option>
-				<option>A2</option>
-				<option>YG LAMDA</option>
-				<option>TLE GAMMA</option>
-				<option>TLE 48V</option>
-				<option>CIVIC RS-13</option>
-			</select>
-			<button class="searchButton">조회</button>
-	</div> 
-	</div>
+		<div id="sectionOne">
+			<div id="divDate2">
+				생산일자 <input type="date"> ~ <input type="date">
+				
+					&nbsp;&nbsp;&nbsp;&nbsp;거래처
+					<select>
+						<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
+						<option>Y&T</option>
+						<option>신라공업</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;품명 
+					<select id="gNo">
+						<c:forEach var="glists" items="${glist }">
+							<option value="${glists.gNo}">${glists.gName}</option>
+						</c:forEach>
+					</select>
+					<button class="searchButton">조회</button>
+			</div> 
+		</div>
 	</div>
 		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
-		<table>
-			<thead>
-				<tr class="tableTrs">
-					<td rowspan="2"> </td>
-					<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
-					<td rowspan="2">입고 일자</td>
-					<td rowspan="2">품명</td>
-					<td rowspan="2">입고 수량</td>
-					<td colspan="2" id="tdnth5">검사 결과</td>
-					<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
-					<td rowspan="2" id="tdEtc">비고</td>
-				</tr>
-				<tr class="tableTrs">
-					<td id="success">합격</td>
-					<td id="success2">불합격</td>
-				</tr>
-			</thead>
-			<tbody id="tableScroll">
-				<c:forEach var="wlists" items="${wlist}">
-					<tr>
-						<td><!-- wNo 입고번호순서-->
-							<p id="input2css">${wlists.wNo }</p>
-						</td>
-						<td><!-- 체크박스 -->
-							<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
-						</td>
-						<td><!-- wDay 입고일자 -->
-							<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
-							<input type="text" value="${wDay}" disabled="disabled" class="dddd">
-						</td>
-						<td><!-- 품명 -->
-							<select id="gNo" class="dddd" disabled>
-								<c:forEach var="glists" items="${glist }">
-									<option value="${glists.gNo}">${glists.gName}</option>
-								</c:forEach>
-							</select>
-						</td>
-						<td><!-- 입고수량 -->
-							<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
-						</td>
-						<td><!-- 합격-->
-							<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
-						</td>
-						<td><!-- 불합격-->
-							<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
-						</td>
-						<td><!-- 조치내용 -->
-							<input type="text" class="dddd" value="${wlists.wMemo }" disabled="disabled">
-						</td>
-						<td><!-- 비고 -->
-							<input type="text" class="dddd" value="${wlists.wNote }" disabled="disabled">
-						</td>
+			<table>
+				<thead>
+					<tr class="tableTrs">
+						<td rowspan="2"> </td>
+						<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
+						<td rowspan="2">입고 일자</td>
+						<td rowspan="2">품명</td>
+						<td rowspan="2">입고 수량</td>
+						<td colspan="2" id="tdnth5">검사 결과</td>
+						<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
+						<td rowspan="2" id="tdEtc">비고</td>
 					</tr>
-				</c:forEach>	
-			</tbody>
-		</table>
-</div>
-		
+					<tr class="tableTrs">
+						<td id="success">합격</td>
+						<td id="success2">불합격</td>
+					</tr>
+				</thead>
+				<tbody id="tableScroll">
+					<c:forEach var="wlists" items="${wlist}">
+						<tr>
+							<td><!-- wNo 입고번호순서-->
+								<p id="input2css">${wlists.wNo }</p>
+							</td>
+							<td><!-- 체크박스 -->
+								<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
+							</td>
+							<td><!-- wDay 입고일자 -->
+								<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
+								<input type="text" value="${wDay}" disabled="disabled" class="dddd">
+							</td>
+							<td><!-- 품명 -->
+								<select id="gNo" class="dddd" disabled>
+									<c:forEach var="glists" items="${glist }">
+										<option value="${glists.gNo}">${glists.gName}</option>
+									</c:forEach>
+								</select>
+							</td>
+							<td><!-- 입고수량 -->
+								<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
+							</td>
+							<td><!-- 합격-->
+								
+								<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
+							</td>
+							<td><!-- 불합격-->
+								<input type="text" id="result2" class="dddd" value="${wlists.wResult == false ? 'ㅇ':''}" disabled="disabled">
+							</td>
+							<td><!-- 조치내용 -->
+								<input type="text" class="dddd" value="${wlists.wMemo }" disabled="disabled">
+							</td>
+							<td><!-- 비고 -->
+								<input type="text" class="dddd" value="${wlists.wNote }" disabled="disabled">
+							</td>
+						</tr>
+					</c:forEach>	
+				</tbody>
+			</table>
+		</div>
 </section>
 <%@ include file="include/footer.jsp" %>

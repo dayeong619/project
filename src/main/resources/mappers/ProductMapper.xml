@@ -17,16 +17,9 @@
 		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
 		<collection property="lNo" resultMap="com.yi.mapper.LineMapper.LineResultMap"/>
 	</resultMap>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<resultMap type="ProductVO" id="ProductByManagement" extends="ProductStandard">
+		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
+	</resultMap>
 	<select id="selectProductByAll" resultMap="ProductResultMap">
 		select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday, p.p_no
 		from product p 
@@ -37,9 +30,20 @@
 		left join badness b on p.p_no = b.b_no
 	</select>
 	
+	<select id="selectByGoodsName" resultMap="ProductResultMap">
+		select g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no
+	</select>
+	
+	<select id="selectByManagementName" resultMap="ProductByManagement">
+		select m.m_name from management m left join product p on m.m_no = p.p_no
+	</select>
+	
 	<!-- insertDao 있음..뭐지? -->
 	
-	
+	<insert id="insertProduct" parameterType="ProductVO">
+		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
+		(#{wNo.wNo}, #{pWorkday}, #{lNo}, #{mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
+	</insert>
 	
 	
 	
