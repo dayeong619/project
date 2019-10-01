@@ -149,10 +149,9 @@ $(function(){
 						</ul>
 					</li>
 					<li>
-						인사관리 
+						작업자관리 
 						<ul class="tip">
-							<li><a href="#" class="aa">부서관리</a></li>
-							<li><a href="#" class="aa">사원관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자현황</a></li>
 							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">기타관리</a></li>
 						</ul>
 					</li>
