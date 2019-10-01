@@ -82,10 +82,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	/*
-	 * @RequestMapping(value="worker", method=RequestMethod.GET) public void
-	 * workerGET(Model model) throws Exception { logger.info("worker야"); }
-	 */
+	
+	  @RequestMapping(value="worker", method=RequestMethod.GET) public void
+	  workerGET(Model model) throws Exception { logger.info("worker야"); }
+	 
 	
 	
 	@RequestMapping(value="product", method=RequestMethod.GET)
