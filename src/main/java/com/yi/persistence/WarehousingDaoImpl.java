@@ -35,6 +35,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	public void modifyWarehousing(WarehousingVO vo) throws Exception {
 		sqlSession.update(namespace+".modifyWarehousing", vo);
 	}
+
+	@Override
+	public List<WarehousingVO> selectWarehousing() throws Exception {
+		return sqlSession.selectList(namespace+".selectWarehousing");
+	}
 	
 
 

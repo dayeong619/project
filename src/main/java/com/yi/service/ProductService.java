@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yi.domain.GoodsVO;
 import com.yi.domain.ProductVO;
+import com.yi.domain.WarehousingVO;
 
 public interface ProductService {
 	
@@ -14,5 +15,5 @@ public interface ProductService {
 	public List<GoodsVO> selectByGoods () throws Exception;
 
 	public List<ProductVO> selectProductByLine() throws Exception;
-
+	public List<WarehousingVO> selectWarehousing() throws Exception;
 }

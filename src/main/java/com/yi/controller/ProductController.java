@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yi.domain.GoodsVO;
 import com.yi.domain.ProductVO;
+import com.yi.domain.WarehousingVO;
 import com.yi.service.ProductService;
 
 /**
@@ -41,6 +42,9 @@ public class ProductController {
 		}*/
 		
 		model.addAttribute("plist", plist);                  //생산리스트
+		
+		List<WarehousingVO> wlist = pservice.selectWarehousing();
+		model.addAttribute("wlist", wlist);
 		
 		List<GoodsVO> glist = pservice.selectByGoods();      //제품리스트
 		logger.info("제품리스트 야 -> "+glist);

@@ -36,7 +36,9 @@
 		WHERE w_no=#{wNo}
 	</update>
 	
-	
+	<select id="selectWarehousing" resultMap="WarehousingResultMap">
+		select * from warehousing
+	</select>
 	
 	
 	

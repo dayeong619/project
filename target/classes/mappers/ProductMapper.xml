@@ -38,8 +38,6 @@
 		select m.m_name from management m left join product p on m.m_no = p.p_no
 	</select>
 	
-	<!-- insertDao 있음..뭐지? -->
-	
 	<insert id="insertProduct" parameterType="ProductVO">
 		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
 		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})

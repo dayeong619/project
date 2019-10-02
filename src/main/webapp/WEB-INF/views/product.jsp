@@ -47,12 +47,15 @@
 		width: 140px;
 	}
 	thead td:nth-child(6){ /* 불량내역 */
-		width: 400px;
+		width: 140px;
 	}
 	thead td:nth-child(7){ /* 비고 */
-		width: 300px;
+		width: 400px;
 	}
 	thead td:nth-child(8){ 
+		width: 300px;
+	}
+	thead td:nth-child(9){ 
 		width: 200px;
 	}
 	thead tr:nth-child(2) td:nth-child(1){
@@ -81,6 +84,10 @@
 		width: 163px;
 		visibility: hidden
 	}
+	tbody td:nth-child(4) select{ 
+		width: 163px;
+		visibility: hidden
+	}
 	tbody td:nth-child(4) input{ /* 품명 */
 		width: 163px;
 	}
@@ -88,7 +95,7 @@
 		width: 163px;
 	}
 	tbody td:nth-child(6) input{ 
-		width: 56px;
+		width: 163px;
 	}
 	tbody td:nth-child(7) input{ /* 불량 */
 		width: 56px;
@@ -100,10 +107,13 @@
 		width: 56px;
 	}
 	tbody td:nth-child(10) input{ 
-		width: 350px;
+		width: 56px;
 	}
 	tbody td:nth-child(11){ 
-		width: 215px;
+		width: 130px;
+	}
+	tbody td:nth-child(12){ 
+		width: 200px;
 	}
 	tbody .badnessInput{
 		width:56px; 
@@ -115,9 +125,7 @@
 	tbody tr td:nth-child(2) select{
 		width: 93px;
 	}
-	tbody td:nth-child(10) input{
-		width: 350px;
-	}
+	
 	tbody .success{
 		width: 80px;
 	}
@@ -252,6 +260,7 @@
 					<tr class="tableTrs">
 						<td rowspan="2">라인</td>
 						<td rowspan="2">성명</td>
+						<td rowspan="2">입고번호</td>
 						<td rowspan="2">품명</td>
 						<td rowspan="2">작업 시간</td>
 						<td rowspan="2">생산 수량</td>
@@ -281,8 +290,17 @@
 									</c:forEach>
 								</select>
 							</td>
+							<td>
+								<!-- 입고번호랑 +품명 = set
+								수량은 내가 입력할수 있어야 함. -->
+								<select id="wNo" class="dddd" disabled> 
+									<c:forEach items="${wlist }" var="w">
+										<option value="${w.wNo }">W00${w.wNo }</option>
+									</c:forEach>
+								</select>
+							</td>
 							<td><!-- 품명 -->
-								<select id="gNo" class="dddd" disabled>
+								<select id="gNo" disabled class="dddd">
 									<option>선택하세요</option>
 									<c:forEach var="g" items="${glist}">
 										<option value="${g.gNo}">${g.gName}</option>
@@ -333,6 +351,8 @@
 		$(this).parent().parent().find("td:nth-child(1)").css("background-color", "#F0F8FF");
 		$(this).parent().parent().find("td:nth-child(2) select").css("visibility", "visible");
 		$(this).parent().parent().find("td:nth-child(3) select").css("visibility", "visible");
+		$(this).parent().parent().find("td:nth-child(4) select").css("visibility", "visible");
+		$(this).parent().parent().find("td:nth-child(5) input").attr("value", "08:00-20:00");
 		$(this).parent().parent().find("td:last-child").css("background-color", "#F0F8FF");
 		$(this).parent().parent().find("#mNo").focus();
 		$(this).hide(); //누른 등록버튼은 사라져랏
