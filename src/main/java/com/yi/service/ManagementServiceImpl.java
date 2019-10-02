@@ -24,10 +24,7 @@ public class ManagementServiceImpl implements ManagementService {
 		return dao.selectByJoinInformation();
 	}
 
-	@Override
-	public ManagementVO selectByIdAndPw(String mId, String mPw) throws Exception {
-		return dao.selectByIdAndPw(mId, mPw);
-	}
+	
 
 	@Override
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception {

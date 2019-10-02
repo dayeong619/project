@@ -2,6 +2,7 @@ package com.yi.service;
 
 import java.util.List;
 
+import com.yi.domain.GoodsVO;
 import com.yi.domain.ProductVO;
 
 public interface ProductService {
@@ -10,4 +11,6 @@ public interface ProductService {
 	public List<ProductVO> selectProductByAll() throws Exception;
 	public List<ProductVO> selectByManagementName() throws Exception;
 	public List<ProductVO> selectByGoodsName() throws Exception;
+	public List<GoodsVO> selectByGoods () throws Exception;
+
 }

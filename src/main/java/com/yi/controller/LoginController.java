@@ -14,9 +14,7 @@ import com.yi.domain.DepartmentVO;
 import com.yi.domain.LoginDto;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.TitleVO;
-import com.yi.service.DepartmentService;
-import com.yi.service.ManagementService;
-import com.yi.service.TitleService;
+import com.yi.service.LoginService;
 
 @RequestMapping("/auth")
 @Controller
@@ -25,13 +23,7 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@Autowired
-	ManagementService service;
-	
-	@Autowired
-	DepartmentService dservice;
-	
-	@Autowired
-	TitleService tservice;
+	LoginService loginservice;
 	
 	@RequestMapping(value="login", method=RequestMethod.GET) //로그인 GET
 	public void loginGET() { 
@@ -42,7 +34,7 @@ public class LoginController {
 	public void loginPOST(ManagementVO mvo, Model model) throws Exception { //로그인 POST
 		logger.info("----- loginPOST, mvo는 "+mvo);
 		
-		ManagementVO dbMember = service.selectByIdAndPw(mvo.getmId(), mvo.getmPw());
+		ManagementVO dbMember = loginservice.selectByIdAndPw(mvo.getmId(), mvo.getmPw());
 		
 		if(dbMember == null) {//회원이 없으면 dto 안 만든당.
 			logger.info("loginPost -> login fail, not member");
@@ -58,8 +50,8 @@ public class LoginController {
 	public void joinGET(Model model) throws Exception { 
 		logger.info("----- loginGET");
 		
-		List<DepartmentVO> dlist = dservice.selectAllDepartment();
-		List<TitleVO> tlist = tservice.selectAllTitle();
+		List<DepartmentVO> dlist = loginservice.selectAllDepartment();
+		List<TitleVO> tlist = loginservice.selectAllTitle();
 		model.addAttribute("dlist", dlist);
 		model.addAttribute("tlist", tlist);
 		
@@ -69,7 +61,7 @@ public class LoginController {
 	public String joinPOST(ManagementVO vo) throws Exception { // 회원가입 POST
 		logger.info("----- joinPOST, vo가 ?"+vo.toString());
 		
-		service.insertManagement(vo);
+		loginservice.insertManagement(vo);
 		
 		return "redirect:/";
 	}

@@ -11,4 +11,5 @@ public interface ProductDao {
 	public List<ProductVO> selectByManagementName() throws Exception;
 	public List<ProductVO> selectByGoodsName() throws Exception;
 	
+	
 }

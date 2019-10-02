@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yi.domain.GoodsVO;
 import com.yi.domain.ProductVO;
+import com.yi.persistence.GoodsDao;
 import com.yi.persistence.ProductDao;
 
 @Service
@@ -14,6 +16,9 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductDao dao;
 
+	@Autowired
+	GoodsDao gdao;
+	
 	@Override
 	public void insertProduct(ProductVO vo) throws Exception {
 		dao.insertProduct(vo);
@@ -34,6 +39,14 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectByGoodsName();
 	}
 
+	@Override
+	public List<GoodsVO> selectByGoods() throws Exception {
+		return gdao.selectByGoods();
+	}
+
 	
+
+	
+
 	
 }

@@ -190,17 +190,79 @@
 		width: 120px;
 	}
 	
+	#insertView{ /* 신규클릭시 나오는 입고등록 */
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:80px;
+		width:100%;
+		height: 71%;
+		background: rgba(0,0,0,0.7);
+		padding:60px 500px;
+		/* display: none; */
+		color:#D5D5D5;
+	}
+	#insertViewBackground{
+		width: 600px;
+		height: 500px;
+		background-color: white;
+		color:black;
+	}
+	#spaninsert{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	#insertViewTitle{
+		height: 50px;
+		padding-left:10px;
+		padding-top:10px;
+	}
+	#insertView #insertViewinsert{
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
+	#insertView #insertViewReset{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:white;
+		border:1px solid #ccc;
+	}
+	#insertView label{
+		width: 200px;
+		height: 50px;
+		display:inline-block;
+		
+	}
+	#insertView .insertViewInput{
+		width:200px; 
+		height: 30px;
+	}
+	#insertViewcontent{
+		width: 570px;
+		margin-left:10px;
+		padding-left:10px;	
+		border-top:2px solid #ccc;	
+		border-bottom:2px solid #ccc;	
+	}
+	#insertView textarea{
+		width: 340px !important;
+		height: 70px !important;
+	}
+	#insertViewcontent select{
+		width: 204px;
+		height: 34px;
+	}
+
 	#pagepage{
 		position:absolute;
 		bottom:150px;
 		left:700px;
 	}
 	
-	.ClassButtonTop{ /* 크기조정 */
-		width: 60px;
-		height: 30px;
-		margin-top:10px;
-	}
 	.ClassButtonTop button#insert{
 		background-color:#0082a8;
 	}
@@ -226,45 +288,65 @@
 	}
 </style>
 <section>
-	<div class="divTitle2" id="">
-		<div id="left"><h3>생산일지</h3></div>
+	<div class="divTitle2">
+		<div id="left"><h3>작업자현황</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<!-- <button class="ClassButtonTop" id="insert">신규</button>
-			<button class="ClassButtonTop" id="delete">삭제</button>
-			<button class="ClassButtonTop" id="modify">수정</button> -->
-				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
-				<button class="ClassButtonTop" id="delete">수정취소</button> -->
-			<div>
-				<c:forEach var="plists" items="${plist }">
-					${plists.mNo[0].mName }
-					${plists.bNo}
-					${plists.lNo[0].lLine}
-				</c:forEach>
-			</div>
-		
+			<button class="ClassButtonTop" id="insert">작업자등록</button>
 	</div>
-	<div class="divTitle">
-		<div id="sectionOne">
-			<div id="divDate2">
-				생산일자 <input type="date" id="nowDate" name="pWorkday">
-				<script>
-					document.getElementById("nowDate").valueAsDate = new Date();
-				</script>
-					&nbsp;&nbsp;&nbsp;&nbsp;구분
-					<select>
-						<option value="1">주간</option>
-						<option value="1">야간</option>
+	<div id="insertView"> <!-- 신규창 -->
+		<div id="insertViewBackground">
+			<div id="insertViewTitle">
+				<span id="spaninsert">작업자등록</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="reset" value="취소" id="insertViewReset">
+			</div>
+			<div id="insertViewcontent">
+				<p>
+					<label>성명</label>
+					<input type="text" name="wDay" id="nowDate" class="insertViewInput">
+				</p>
+				<p>
+					<label>생년월일</label>
+					<!-- <input type="text" name="gName" class="insertViewInput"> -->
+					<select id="gNo">
+						<c:forEach var="glists" items="${glist }">
+							<option value="${glists.gNo}">${glists.gName}</option>
+						</c:forEach>
 					</select>
 					
-			</div> 
+				</p>
+				<p>
+					<label>입고수량</label>
+					<input type="text" name="wQy" class="insertViewInput">
+				</p>
+				<p>
+					<label>검사결과</label>
+						<select name="wResult">
+							<option value="true">합격</option>
+							<option value="false">불합격</option>
+						</select>
+				</p>
+				<p>
+					<label>조치내용(불량발생시)</label>
+					<textarea name="wMemo" class="insertViewInput"></textarea>
+				</p>
+				<p>
+					<label>비고</label>
+					<textarea name="wNote" class="insertViewInput"></textarea>
+				</p>
+			</div>
 		</div>
 	</div>
 		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td rowspan="2">라인</td>
-						<td rowspan="2">성명</td>
+						<td rowspan="2">이름</td>
+						<td rowspan="2">생년월일</td>
 						<td rowspan="2">품명</td>
 						<td rowspan="2">작업 시간</td>
 						<td rowspan="2">생산 수량</td>

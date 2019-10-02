@@ -82,72 +82,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	/*
-	 * @RequestMapping(value="worker", method=RequestMethod.GET) public void
-	 * workerGET(Model model) throws Exception { logger.info("worker야"); }
-	 */
+
 	
 	
-	@RequestMapping(value="product", method=RequestMethod.GET)
-	public void product(Model model) throws Exception {
-		List<ProductVO> plist = pservice.selectProductByAll();
-		logger.info("생산리스트다 자 봐라~~~~"+plist);
-		
-		/*for (ProductVO productVO : plist) { badness에 bno가 안왕.
-			System.out.println(productVO.getbNo());
-		}*/
-		
-		model.addAttribute("plist", plist);                  //생산리스트
-		
-		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
-		logger.info("제품리스트 야 -> "+glist);
-		model.addAttribute("glist", glist);
-		
-		List<ProductVO> pmlist = pservice.selectByManagementName();
-		logger.info("pmlist를 봅시다"+pmlist);
-		model.addAttribute("pmlist", pmlist);
-		
-		
-		
-	}
 	
-	@RequestMapping(value="productSearch", method=RequestMethod.GET)
-	public void productSearch(Model model) throws Exception {
-		List<ProductVO> plist = pservice.selectProductByAll();
-		logger.info("생산리스트다 자 봐라~~~~"+plist);
-		
-		/*for (ProductVO productVO : plist) { badness에 bno가 안왕.
-			System.out.println(productVO.getbNo());
-		}*/
-		
-		model.addAttribute("plist", plist);                  //생산리스트
-		
-		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
-		logger.info("제품리스트 야 -> "+glist);
-		model.addAttribute("glist", glist);
-		
-		
-		
-		
-		
-	}
 	
-	@RequestMapping("release")
-	public void release() {
-		
-	}
-	
-	@RequestMapping(value="warehousing", method=RequestMethod.GET)
-	public void warehousing(Model model) throws Exception {
-		logger.info("warehousingGET---");
-		List<WarehousingVO> wlist = wservice.selectWarehousingByAll(); //입고리스트
-		logger.info(wlist.toString());
-		model.addAttribute("wlist", wlist);
-		
-		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
-		logger.info("제품리스트 야 -> "+glist);
-		model.addAttribute("glist", glist);
-		
-	}
 	
 }

@@ -68,8 +68,9 @@
 		width: 40px;
 	}
 	
-	tbody td:nth-child(1){                           /* 여기서부터 tbody */
+	tbody td:nth-child(1) input{                           /* 여기서부터 tbody */
 		width: 47px;
+		border:none;
 	}
 	
 	tbody td:nth-child(2) select{ 
