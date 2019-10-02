@@ -223,7 +223,7 @@
         width:60px;    
     }
 	#BtnInsertConfirm{
-		display: none;
+		
 	}
 </style>
 <section>
@@ -479,9 +479,9 @@
 							<td><!-- 라인-->
 								<input type="text" name="lNo" value="${plists.lNo[0].lLine}">
 							</td>
-							
 							<td><!-- 성명 -->
 								<select id="mNo" disabled class="dddd" >
+									<option>선택하세요</option>
 									<c:forEach var="p" items="${pmlist}">
 										<option value="${p.mNo[0].mNo }">${p.mNo[0].mName}</option>
 									</c:forEach>
@@ -489,6 +489,7 @@
 							</td>
 							<td><!-- 품명 -->
 								<select id="gNo" class="dddd" disabled>
+									<option>선택하세요</option>
 									<c:forEach var="g" items="${glist }">
 										<option value="${g.gNo}">${g.gName}</option>
 									</c:forEach>
@@ -498,7 +499,7 @@
 								<input type="text" name="pWorktime" class="dddd" disabled="disabled">
 							</td>
 							<td><!-- 생산수량 -->
-								<input type="text" id="result1" class="dddd" disabled="disabled">
+								<input type="text" id="result1" class="dddd" disabled="disabled" >
 							</td>
 							<td><!-- 가공 -->
 								<input type="text" id="result2" class="badnessInput" disabled="disabled">
@@ -529,7 +530,7 @@
 		
 </section>
 <script>
-	$(".BtnInsert").click(function(){
+	$(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때
 		$(this).parent().parent().find(".dddd").removeAttr("disabled");
 		$(this).parent().parent().find(".badnessInput").removeAttr("disabled");
 		$(this).parent().parent().find(".dddd").css("background-color", "#F0F8FF");
@@ -545,10 +546,20 @@
 		
 	})
 	
-	$(document).on("click", "#BtnInsertConfirm", function(){
+	$(document).on("click", "#BtnInsertConfirm", function(){ //등록확인 버튼 눌렀을 때 
 		var lNo = $("input:").val(); //해당라인
 		var mNo = $("#mNo option:selected").val(); //성명
 		var gNo = $("#gNo option:selected").val(); //픔명
+		var //작업시간
+		//생산수량
+		//가공
+		//셋업
+		//소재
+		//기타
+		//비고
+		
+		
+		
 		
 		
 		

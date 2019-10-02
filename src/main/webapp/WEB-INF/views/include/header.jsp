@@ -144,15 +144,15 @@ $(function(){
 					<li>
 						출고관리 
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/release" class="aa">출하전표등록</a></li>
+							<li><a href="${pageContext.request.contextPath}/shipment" class="aa">출하전표등록</a></li>
 							<li><a href="#" class="aa">출고현황</a></li>
 						</ul>
 					</li>
 					<li>
 						작업자관리 
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자현황</a></li>
-							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">기타관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">사원관리</a></li>
 						</ul>
 					</li>
 				</ul>

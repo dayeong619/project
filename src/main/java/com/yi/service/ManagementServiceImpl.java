@@ -31,6 +31,11 @@ public class ManagementServiceImpl implements ManagementService {
 		return dao.selectMyInformationById(mId);
 	}
 
+	@Override
+	public void insertWorker(ManagementVO vo) throws Exception {
+		dao.insertWorker(vo);
+	}
+
 	
 	
 }

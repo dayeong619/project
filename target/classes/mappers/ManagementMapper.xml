@@ -22,9 +22,13 @@
 	</resultMap>
 	<!--  -->
 	<select id="selectByJoinInformation" resultMap="ManagementResultMap">
-		select m.m_id, m.m_pw, m.m_name, m.m_birth, m.m_email, m.m_tel, m.m_enterday, m.m_photo, d.d_name, t.t_name
-		from department d left join management m on d.d_no = m.d_no
-						  left join title t on d.d_no = t.t_no
+		select *
+		from management 
+	</select>
+	<select id="selectByJoinInformationTwo" resultMap="ManagementResultMap">
+		select m.m_id, m.m_pw, m.m_name, m.m_birth, m.m_email, m.m_tel, m.m_enterday, m.m_photo, d.d_name, t.t_name from department d
+		left join management m on d.d_no = m.d_no
+		left join title t on d.d_no = t.t_no
 	</select>
 	<!-- 나의정보 -->
 	<select id="selectMyInformationById" resultMap="ManagementResultMap" parameterType="String">
@@ -44,7 +48,12 @@
 		select m_id, m_pw from management where m_id=#{mId} and m_pw=#{mPw}
 	</select>
 	
-	
+	<!-- 작업자관리 에서 작업자등록 -->
+	<insert id="insertWorker" parameterType="ManagementVO">
+		INSERT INTO management
+		(m_name, m_birth, m_tel, m_enterday, m_confirm, d_no, t_no) values
+		(#{mName}, #{mBirth}, #{mTel}, #{mEnterday}, #{mConfirm}, 2, 1)
+	</insert>
 	
 	
 	

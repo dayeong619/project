@@ -41,6 +41,11 @@ public class ManagementDaoImpl implements ManagementDao {
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception {
 		return sqlSession.selectList(namespace+".selectMyInformationById", mId);
 	}
+
+	@Override
+	public void insertWorker(ManagementVO vo) throws Exception {
+		sqlSession.insert(namespace+".insertWorker", vo);
+	}
 	
 
 

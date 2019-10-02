@@ -11,8 +11,7 @@ public interface ManagementDao {
 	public ManagementVO selectByIdAndPw(String mId, String mPw) throws Exception;
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception;
 	
-	
-	
+	public void insertWorker(ManagementVO vo) throws Exception;
 	
 	
 	

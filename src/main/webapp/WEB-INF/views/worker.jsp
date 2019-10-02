@@ -27,6 +27,7 @@
 	}
 	tbody tr{
 		background-color: white;
+		height: 30px;
 	}
 	table td{
 		border:1px solid black;
@@ -133,7 +134,7 @@
 		
 	}
 	#sectionOne{
-		width:95%;
+		width:85%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -184,7 +185,7 @@
 	.tableTrs{
 		background-color: #7d97a5;
 		color:white;
-		height: 30px;
+		height: 60px;
 	}
 	#workname{
 		width: 120px;
@@ -199,7 +200,7 @@
 		height: 71%;
 		background: rgba(0,0,0,0.7);
 		padding:60px 500px;
-		/* display: none; */
+		display: none; 
 		color:#D5D5D5;
 	}
 	#insertViewBackground{
@@ -289,9 +290,17 @@
 </style>
 <section>
 	<div class="divTitle2">
-		<div id="left"><h3>작업자현황</h3></div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ClassButtonTop" id="insert">작업자등록</button>
+		<div><h3>작업자현황</h3></div>
+	</div>
+	<div class="divTitle">
+		<div id="sectionOne">
+			<div id="divDate2">
+				<div id="left">
+					이름으로 검색 <input type="text" name="pName"><button>검색</button>
+				</div> 
+				<button id="insert">작업자등록</button>	
+			</div> 
+		</div>
 	</div>
 	<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
@@ -305,39 +314,26 @@
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
 			<div id="insertViewcontent">
-				<p>
-					<label>성명</label>
-					<input type="text" name="wDay" id="nowDate" class="insertViewInput">
-				</p>
-				<p>
-					<label>생년월일</label>
-					<!-- <input type="text" name="gName" class="insertViewInput"> -->
-					<select id="gNo">
-						<c:forEach var="glists" items="${glist }">
-							<option value="${glists.gNo}">${glists.gName}</option>
-						</c:forEach>
-					</select>
-					
-				</p>
-				<p>
-					<label>입고수량</label>
-					<input type="text" name="wQy" class="insertViewInput">
-				</p>
-				<p>
-					<label>검사결과</label>
-						<select name="wResult">
-							<option value="true">합격</option>
-							<option value="false">불합격</option>
-						</select>
-				</p>
-				<p>
-					<label>조치내용(불량발생시)</label>
-					<textarea name="wMemo" class="insertViewInput"></textarea>
-				</p>
-				<p>
-					<label>비고</label>
-					<textarea name="wNote" class="insertViewInput"></textarea>
-				</p>
+				<div>
+			<label>이름</label>
+			<input type="text" name="mName">
+		</div>
+		<div>
+			<label>생년월일</label>
+			<input type="text" name="mBirth" placeholder=" 8자리 ex) 19910619">
+		</div>
+		<div>
+			<label>연락처</label>
+			<input type="text" name="mTel" placeholder=" 11자리 ex) 01055431491">
+		</div>
+		<div>
+			<label>등록일</label>
+			<input type="date" name="mEnterday" id="nowDate" placeholder=" 8자리 ex) 20190918">
+		</div>
+		<div>
+			<label>작업자인증일</label>
+			<input type="date" name="mConfirm"  placeholder=" 8자리 ex) 20190918">
+		</div>
 			</div>
 		</div>
 	</div>
@@ -345,69 +341,45 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
+						<td rowspan="2"> </td>
 						<td rowspan="2">이름</td>
 						<td rowspan="2">생년월일</td>
-						<td rowspan="2">품명</td>
-						<td rowspan="2">작업 시간</td>
-						<td rowspan="2">생산 수량</td>
-						<td colspan="4">불량 내역 <span id="tabletdtd">*불량 발생시 표기</span></td>
-						<td rowspan="2">비고</td>
-						<td rowspan="2"></td>
-					</tr>
-					<tr class="tableTrs">
-						<td>가공</td>
-						<td>셋업</td>
-						<td>소재</td>
-						<td>기타</td>
+						<td rowspan="2">연락처</td>
+						<td rowspan="2">주소</td>
+						<td rowspan="2">작업자등록일</td>
+						<td rowspan="2">작업자인증일</td>
+						<td rowspan="2">생산실적</td>
+						<td rowspan="2">정보수정</td>
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
-					<c:forEach var="plists" items="${plist}">
+					<c:forEach var="lists" items="${list}">
 						<tr>
-							<td><!-- 라인-->
-								<input type="text" name="lNo" value="${plists.lNo[0].lLine}">
-							</td>
-							
-							<td><!-- 성명 -->
-								<select id="mNo" disabled class="dddd" >
-									<c:forEach var="p" items="${pmlist}">
-										<option value="${p.mNo[0].mNo }">${p.mNo[0].mName}</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td><!-- 품명 -->
-								<select id="gNo" class="dddd" disabled>
-									<c:forEach var="g" items="${glist }">
-										<option value="${g.gNo}">${g.gName}</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td><!-- 작업시간 -->
-								<input type="text" name="pWorktime" class="dddd" disabled="disabled">
-							</td>
-							<td><!-- 생산수량 -->
-								<input type="text" id="result1" class="dddd" disabled="disabled">
-							</td>
-							<td><!-- 가공 -->
-								<input type="text" id="result2" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 셋업 -->
-								<input type="text" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 소재 -->
-								<input type="text" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 기타 -->
-								<input type="text" id="result2" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 비고 -->
-								<input type="text" id="result2" class="dddd" disabled="disabled">
+							<td>${lists.mNo }</td>
+							<td>
+								${lists.mName}
 							</td>
 							<td>
-								<button class="BtnInsert">등록</button>
-								<button id="BtnInsertConfirm">등록확인</button>
-								<button class="BtnDelete">삭제</button>
-								<button class="BtnModify">수정</button>
+								${lists.mBirth}
+							</td>
+							<td>
+								${lists.mTel}
+							</td>
+							<td>
+								${lists.mAddr}
+							</td>
+							<td>
+								${lists.mEnterday}
+							</td>
+							<td>
+								${lists.mConfirm}
+							</td>
+							<td>
+								<button class="BtnProductResult">보기</button>
+							</td>
+							<td>
+								<button class="BtnWorkerModify">수정</button>
+								<button class="BtnWorkerDelete">삭제</button>
 							</td>
 						</tr>
 					</c:forEach>	
@@ -416,7 +388,17 @@
 		</div>
 		
 </section>
-
+<script>
+	$(document).on("click", "button#insert", function(){
+		document.getElementById("nowDate").valueAsDate = new Date();
+		$("#insertView").fadeIn(300);
+	})
+	
+			
+	$(document).on("click", "#insertViewReset", function(){
+		$(this).parents().find("#insertView").fadeOut(300);
+	})
+</script>
 <%@ include file="include/footer.jsp" %>
 
 

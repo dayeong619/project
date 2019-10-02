@@ -13,7 +13,7 @@
 		<result property="pSection" column="p_section" />
 	</resultMap>
 	<resultMap type="ProductVO" id="ProductResultMap" extends="ProductStandard">
-		<association property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
+		<collection property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
 		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
 		<collection property="lNo" resultMap="com.yi.mapper.LineMapper.LineResultMap"/>
 	</resultMap>

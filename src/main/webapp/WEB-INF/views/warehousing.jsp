@@ -405,12 +405,17 @@
 			 $(document).on("click", "button#delete", function(){ /* 입고정보삭제 */
 					
 					var wNo = $('input:radio[name=wNo]:checked').val();
+			 
 				 	var $this = $(this);
 				 	var json = {wNo:wNo};
 				 	var data = JSON.stringify(json);
 				 	
-				 	var confi = confirm("삭제하시겠습니까");
-				 	if(confi == false){
+				 	if( wNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+						alert("삭제할 정보를 체크하세요.");	
+						return;
+				 	}
+				 	var confi = confirm("삭제하시겠습니까"); 
+				 	if(confi == false){ //취소 누르면 원래 화면으로 돌아감
 				 		return;
 				 	}
 				 	

@@ -8,6 +8,9 @@ public interface ManagementService {
 	
 	public void insertManagement(ManagementVO vo) throws Exception;
 	public List<ManagementVO> selectByJoinInformation() throws Exception;
-	
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception;
+	
+	public void insertWorker(ManagementVO vo) throws Exception;
+	
+	
 }
