@@ -42,7 +42,7 @@
 	
 	<insert id="insertProduct" parameterType="ProductVO">
 		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
-		(#{wNo.wNo}, #{pWorkday}, #{lNo}, #{mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
+		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
 	</insert>
 	
 	

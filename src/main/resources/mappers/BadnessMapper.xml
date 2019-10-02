@@ -16,7 +16,7 @@
 		<association property="pNo" resultMap="com.yi.mapper.ProductMapper.ProductResultMap"/>
 	</resultMap>
 	
-	<select id="selectByBadness">
+	<select id="selectByBadness" resultMap="BadnessResultMap">
 		select * from badness
 	</select>
 	
