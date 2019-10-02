@@ -10,6 +10,6 @@ public interface ProductDao {
 	public List<ProductVO> selectProductByAll() throws Exception;
 	public List<ProductVO> selectByManagementName() throws Exception;
 	public List<ProductVO> selectByGoodsName() throws Exception;
-	
+	public List<ProductVO> selectProductByLine() throws Exception;
 	
 }

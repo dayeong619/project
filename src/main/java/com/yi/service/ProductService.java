@@ -13,4 +13,6 @@ public interface ProductService {
 	public List<ProductVO> selectByGoodsName() throws Exception;
 	public List<GoodsVO> selectByGoods () throws Exception;
 
+	public List<ProductVO> selectProductByLine() throws Exception;
+
 }

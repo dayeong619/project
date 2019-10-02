@@ -68,9 +68,8 @@
 		width: 40px;
 	}
 	
-	tbody td:nth-child(1) input{                           /* 여기서부터 tbody */
+	tbody td:nth-child(1) {                           /* 여기서부터 tbody */
 		width: 47px;
-		border:none;
 	}
 	
 	tbody td:nth-child(2) select{ 
@@ -230,212 +229,6 @@
 	<div class="divTitle2" id="">
 		<div id="left"><h3>생산일지</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<!-- <button class="ClassButtonTop" id="insert">신규</button>
-			<button class="ClassButtonTop" id="delete">삭제</button>
-			<button class="ClassButtonTop" id="modify">수정</button> -->
-				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
-				<button class="ClassButtonTop" id="delete">수정취소</button> -->
-			<div>
-				<c:forEach var="plists" items="${plist }">
-					${plists.mNo[0].mName }
-					${plists.bNo}
-					${plists.lNo[0].lLine}
-				</c:forEach>
-			</div>
-		<script>
-			
-			/* $(document).ready(function(){
-				var radio = $("input:radio[name=wResult]").val(); //값이 true 
-				
-				if( radio == false ){
-					$(".result22").attr("checked", true);
-				}
-				
-			})
-		 */
-		
-			$(document).on("click", "button#modify", function(){ /* 수정 클릭시 인풋창 활성화 */
-				var radioBtn = $('input:radio[name=wNo]:checked');
-				radioBtn.parent().parent().find(".dddd").attr("disabled", false);
-				//수정확인 버튼 생기게?
-				
-				var $input = $('input:radio[name=wNo]:checked').val();
-			
-			
-			})	
-			
-			/* 라뒤오버튼 눌렀을때 배경색 잡는거 */
-			 $(document).on("click", "input:radio[name=wNo]:checked", function(){ 
-				var radioBtn = $('input:radio[name=wNo]:checked');
-				radioBtn.parent().parent().css("background-color","#EAEAEA");
-				radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
-				$("input:radio[name=wNo]").css("background-color","white");
-			})
-			
-			/* $(document).on("click", "input:radio[name=wNo]", function(){ 
-				
-				if($("input:radio[name=wNo]:checked")){
-					var radioBtn = $('input:radio[name=wNo]:checked');
-					radioBtn.parent().parent().css("background-color","#EAEAEA");
-					radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
-				}else{
-					
-				}
-				
-			})  */
-			 
-			 
-			$("#insert").click(function(){ /* 신규 클릭시 입력창 나옴  */
-				document.getElementById("nowDate").valueAsDate = new Date();
-				$("#insertView").fadeIn(300);
-			})
-
-			
-			$(document).on("click", "#insertViewReset", function(){
-				$(this).parents().find("#insertView").fadeOut(300);
-			})
-			
-			
-			function repaint(obj){
-				$("#tableBackGround table tbody").empty();
-				
-				$(obj.list).each(function(i,res){
-					
-					var str="";
-					var date = new Date(res.wDay);
-					res.wDay = date.getFullYear()+"-"+(1+date.getMonth())+"-"+date.getDate();
-					
-					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
-					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
-					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
-					str+= "<td><select id='gNo' class='dddd' disabled>"; 
-					$(obj.glist).each(function(i, res){
-						
-						str+= "<option value='"+res.gNo+"'>"+res.gName+"</option>";
-					})					
-					str+= "</select>";
-					str+= "<td><input type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
-					/* 삼항연산자 사용 사요요ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ */
-					var r1 = (res.wResult == 1) ? 'o':''; 
-					str+= "<td><input type='text' id='result1' class='dddd' value='"+r1+"'disabled='disabled'></td>"; //합격
-					var r2 = (res.wResult == 0) ? 'o':''; 
-					str+= "<td><input type='text' id='result2' class='dddd' value='"+r2+"'disabled='disabled'></td>"; //불합격
-					if(res.wMemo == null){
-						res.wMemo = "";
-					}
-					if(res.wNote == null){
-						res.wNote = "";
-					}
-					str+= "<td><input type='text' id='wmemo1css' class='dddd' value='"+res.wMemo+"'disabled='disabled'></td>";
-					str+= "<td><input type='text' id='wmemo2css' class='dddd' value='"+res.wNote+"'disabled='disabled'></td></tr>";
-						
-					
-					$("#tableBackGround table tbody").append(str);
-				})
-				
-			}
-			
-			
-			 function ListAll(){ /* 리스트만 불러오는 녀석 */
-				$.ajax({
-					url:"warehousing/do",
-					type:"get",
-					dataType:"json",
-					success:function(res){
-						console.log(res);
-						repaint(res);
-						
-					}
-				})
-			} 
-			
-			$(document).on("click", "#insertViewinsert", function(){ /* 입고창에서 등록*/
-				var wDay = $('input[name=wDay]').val(); //입고일자
-				var gNo = $('#gNo option:selected').val(); //제품번호
-				var wQy = $('input[name=wQy]').val(); //입고수량
-				var wResult = $('input[name=wResult]').val(); //true, false
-				var wMemo = $('textarea[name=wMemo]').val(); //조치내용
-				var wNote = $('textarea[name=wNote]').val(); //비고
-							
-				var json = {gNo:{gNo:gNo}, wDay:wDay, wQy:wQy, wResult:wResult, wMemo:wMemo, wNote:wNote};
-				var data = JSON.stringify(json);
-				// gNo(객체이름):{"키":"값"}
-				
-				$.ajax({
-					url:"warehousing",
-					type:"post",
-					headers:{
-						"Content-Type":"application/json"
-					},
-					data:data,
-					dataType:"json",
-					success:function(res){
-						console.log(res); //////////////////////////////////////////////
-						$("#insertView").find(".insertViewInput").val("");
-						$("#insertView").hide();
-						
-						 repaint(res);
-					}
-				})
-			})
-			
-			
-			 $(document).on("click", "button#delete", function(){ /* 입고정보삭제 */
-					
-					var wNo = $('input:radio[name=wNo]:checked').val();
-				 	var $this = $(this);
-				 	var json = {wNo:wNo};
-				 	var data = JSON.stringify(json);
-				 	
-				 	var confi = confirm("삭제하시겠습니까");
-				 	if(confi == false){
-				 		return;
-				 	}
-				 	
-				 	
-					 $.ajax({
-						url:"warehousing/"+wNo,
-						type:"put",
-						headers:{
-							"Content-Type":"application/json"
-						},
-						data:data,
-						dataType:"json",
-						success:function(res){
-							console.log(res);
-							
-							$('input:radio[name=wNo]:checked').parent().parent().remove();						
-						}
-					})
-				}) 
-			
-				
-				$(document).on("click", "button#modify", function(){ /* 입고클릭해서 수정 */ 
-				
-					var wNo = $('input:radio[name=wNo]:checked').val(); //68
-					var wDay = $('input[name=wDay]').val(); //입고일자
-					var gNo = $('#gNo option:selected').val(); //제품번호
-					var wQy = $('input[name=wQy]').val(); //입고수량
-					var wResult = $('input[name=wResult]').val(); //true, false
-					var wMemo = $('textarea[name=wMemo]').val(); //조치내용
-					var wNote = $('textarea[name=wNote]').val(); //비고
-					
-					var json = {gNo:{gNo:gNo}, wDay:wDay, wQy:wQy, wResult:wResult, wMemo:wMemo, wNote:wNote};
-					var data = JSON.stringify(json);		
-					
-					
-					
-					
-					
-					
-					
-					
-					// repaint(res); 다시그림
-				})
-			
-			
-			
-		</script>
 	</div>
 	<div class="divTitle">
 		<div id="sectionOne">
@@ -445,9 +238,9 @@
 					document.getElementById("nowDate").valueAsDate = new Date();
 				</script>
 					&nbsp;&nbsp;&nbsp;&nbsp;구분
-					<select>
+					<select name="pSection">
 						<option value="1">주간</option>
-						<option value="1">야간</option>
+						<option value="0">야간</option>
 					</select>
 					
 			</div> 
@@ -477,7 +270,8 @@
 					<c:forEach var="plists" items="${plist}">
 						<tr>
 							<td><!-- 라인-->
-								<input type="text" name="lNo" value="${plists.lNo[0].lLine}">
+								${plists.lNo[0].lLine}
+								<input type="hidden" name="lNo" value="${plists.lNo[0].lNo}">
 							</td>
 							<td><!-- 성명 -->
 								<select id="mNo" disabled class="dddd" >
@@ -490,7 +284,7 @@
 							<td><!-- 품명 -->
 								<select id="gNo" class="dddd" disabled>
 									<option>선택하세요</option>
-									<c:forEach var="g" items="${glist }">
+									<c:forEach var="g" items="${glist}">
 										<option value="${g.gNo}">${g.gName}</option>
 									</c:forEach>
 								</select>
@@ -499,22 +293,22 @@
 								<input type="text" name="pWorktime" class="dddd" disabled="disabled">
 							</td>
 							<td><!-- 생산수량 -->
-								<input type="text" id="result1" class="dddd" disabled="disabled" >
+								<input type="text" name="pQy" id="result1" class="dddd" disabled="disabled" >
 							</td>
 							<td><!-- 가공 -->
-								<input type="text" id="result2" class="badnessInput" disabled="disabled">
+								<input type="text" name="bProcess" id="result2" class="badnessInput" disabled="disabled">
 							</td>
 							<td><!-- 셋업 -->
-								<input type="text" class="badnessInput" disabled="disabled">
+								<input type="text" name="bSetup" class="badnessInput" disabled="disabled">
 							</td>
 							<td><!-- 소재 -->
-								<input type="text" class="badnessInput" disabled="disabled">
+								<input type="text" name="bMaterial" class="badnessInput" disabled="disabled">
 							</td>
 							<td><!-- 기타 -->
-								<input type="text" id="result2" class="badnessInput" disabled="disabled">
+								<input type="text" name="bEtc" id="result2" class="badnessInput" disabled="disabled">
 							</td>
 							<td><!-- 비고 -->
-								<input type="text" id="result2" class="dddd" disabled="disabled">
+								<input type="text" name="pNote" id="result2" class="dddd" disabled="disabled">
 							</td>
 							<td>
 								<button class="BtnInsert">등록</button>
@@ -530,7 +324,8 @@
 		
 </section>
 <script>
-	$(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때
+	$(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때.
+		
 		$(this).parent().parent().find(".dddd").removeAttr("disabled");
 		$(this).parent().parent().find(".badnessInput").removeAttr("disabled");
 		$(this).parent().parent().find(".dddd").css("background-color", "#F0F8FF");
@@ -540,23 +335,44 @@
 		$(this).parent().parent().find("td:nth-child(3) select").css("visibility", "visible");
 		$(this).parent().parent().find("td:last-child").css("background-color", "#F0F8FF");
 		$(this).parent().parent().find("#mNo").focus();
-		$(this).hide();
-		$(this).next("#BtnInsertConfirm").css("display", "");
-		
+		$(this).hide(); //누른 등록버튼은 사라져랏
+		$(this).next("#BtnInsertConfirm").css("display", ""); //---------------------등록확인버튼 나타나야 되는데 아직 수정해야됨
 		
 	})
 	
 	$(document).on("click", "#BtnInsertConfirm", function(){ //등록확인 버튼 눌렀을 때 
-		var lNo = $("input:").val(); //해당라인
-		var mNo = $("#mNo option:selected").val(); //성명
-		var gNo = $("#gNo option:selected").val(); //픔명
-		var //작업시간
-		//생산수량
-		//가공
-		//셋업
-		//소재
-		//기타
-		//비고
+		
+		var pWorkday = $("select[name=pWorkday]").val(); //일자
+		var pSection = $("select[name=pSection]").val();//구분 주/야
+		var lNo = $("input[name=lNo]").val(); //해당라인
+		var mNo = $("#mNo option:selected").val(); //성명 번호
+		var gNo = $("#gNo option:selected").val(); //픔명 번호
+		var pWorktime = $("input[name=pWorktime]").val(); //작업시간
+		var pQy = $("input[name=pQy]").val(); //생산수량
+		var bProcess = $("input[name=bProcess]").val();//가공
+		var bSetup = $("input[name=bSetup]").val();//셋업
+		var bMaterial = $("input[name=bMaterial]").val();//소재
+		var bEtc = $("input[name=bEtc]").val();//기타
+		var pNote = $("input[name=pNote]").val();//비고
+		var wNo = $("input[name=wNo]").val(); //입고번호가 필요함
+		
+		var json = {};
+		var date = JSON.stringify(json);
+		
+		$.ajax({
+			url:"productInsert",
+			type:"post",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			data:data,
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+			
+			}
+		})
+		
 		
 		
 		

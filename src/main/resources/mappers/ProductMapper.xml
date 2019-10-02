@@ -31,7 +31,7 @@
 	</select>
 	
 	<select id="selectByGoodsName" resultMap="ProductResultMap">
-		select g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no
+		select g.g_no, g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no
 	</select>
 	
 	<select id="selectByManagementName" resultMap="ProductByManagement">
@@ -45,7 +45,15 @@
 		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
 	</insert>
 	
+	<select id="selectProductByLine" resultMap="ProductResultMap">
+		select l.l_no, l.l_line from product p 
+		right join line l on p.p_no = l.l_no
+	</select>
 	
+	<select id="selectProductByManagement" resultMap="ProductResultMap">
+		select m.m_no, m.m_name from product p 
+		right join management m on p.p_no = m.m_no
+	</select>
 	
 	
 	

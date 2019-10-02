@@ -44,6 +44,11 @@ public class ProductServiceImpl implements ProductService {
 		return gdao.selectByGoods();
 	}
 
+	@Override
+	public List<ProductVO> selectProductByLine() throws Exception {
+		return dao.selectProductByLine();
+	}
+
 	
 
 	

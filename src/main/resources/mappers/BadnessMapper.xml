@@ -5,8 +5,6 @@
 <mapper namespace="com.yi.mapper.BadnessMapper">
 
 	<resultMap type="BadnessVO" id="BadnessStandard">
-		<result property="bNo" column="b_no" />
-		<result property="bQy" column="b_qy" />
 		<result property="bProcess" column="b_process" />
 		<result property="bSetup" column="b_setup" />
 		<result property="bMaterial" column="b_material" />
