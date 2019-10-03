@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yi.domain.GoodsVO;
 import com.yi.domain.ProductVO;
@@ -25,8 +26,10 @@ public class ProductServiceImpl implements ProductService {
 	WarehousingDao wdao;
 	
 	@Override
+	@Transactional
 	public void insertProduct(ProductVO vo) throws Exception {
 		dao.insertProduct(vo);
+		dao.insertBadness(vo.getpNo(), vo.getbProcess(), vo.getbSetup(), vo.getbMaterial(), vo.getbEtc());
 	}
 
 	@Override

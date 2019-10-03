@@ -1,6 +1,8 @@
 package com.yi.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,18 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
+	public void insertBadness(int pNo, int bProcess, int bSetup, int bMaterial, int bEtc) throws Exception {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("pNo", pNo);
+		map.put("bProcess", bProcess);
+		map.put("bSetup", bSetup);
+		map.put("bMaterial", bMaterial);
+		map.put("bEtc", bEtc);
+		
+		sqlSession.insert(namespace+".insertBadness", map);
+	}
+	
+	@Override
 	public List<ProductVO> selectProductByAll() throws Exception {
 		return sqlSession.selectList(namespace+".selectProductByAll");
 	}
@@ -40,6 +54,8 @@ public class ProductDaoImpl implements ProductDao {
 	public List<ProductVO> selectProductByLine() throws Exception {
 		return sqlSession.selectList(namespace+".selectProductByLine");
 	}
+
+	
 	
 
 

@@ -34,13 +34,13 @@
 		select g.g_no, g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no
 	</select>
 	
-	<select id="selectByManagementName" resultMap="ProductByManagement">
-		select m.m_name from management m left join product p on m.m_no = p.p_no
+	<select id="selectByManagementName" resultMap="ProductByManagement"><!--  -->
+		select * from management m left join product p on m.m_no = p.p_no
 	</select>
 	
 	<insert id="insertProduct" parameterType="ProductVO">
 		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
-		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
+		(#{wNo}, #{pWorkday}, #{lNo}, #{mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
 	</insert>
 	
 	<select id="selectProductByLine" resultMap="ProductResultMap">
@@ -53,6 +53,11 @@
 		right join management m on p.p_no = m.m_no
 	</select>
 	
+	<insert id="insertBadness" parameterType="ProductVO">
+		insert into badness 
+		(p_no, b_process, b_setup, b_material, b_etc)
+		VALUES(#{pNo}, #{bProcess}, #{bSetup}, #{bMaterial}, #{bEtc})
+	</insert>
 	
 	
 	

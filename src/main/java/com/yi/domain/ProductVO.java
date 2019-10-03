@@ -15,21 +15,10 @@ public class ProductVO {
 	private String pNote;
 	private boolean pSection;
 	private ShipmentVO sNo;
-	private BadnessVO bNo;
-	
-	
-	public ShipmentVO getsNo() {
-		return sNo;
-	}
-	public void setsNo(ShipmentVO sNo) {
-		this.sNo = sNo;
-	}
-	public BadnessVO getbNo() {
-		return bNo;
-	}
-	public void setbNo(BadnessVO bNo) {
-		this.bNo = bNo;
-	}
+	private int bProcess;
+	private int bSetup;
+	private int bMaterial;
+	private int bEtc;
 	public int getpNo() {
 		return pNo;
 	}
@@ -48,7 +37,6 @@ public class ProductVO {
 	public void setpWorkday(Date pWorkday) {
 		this.pWorkday = pWorkday;
 	}
-	
 	public List<LineVO> getlNo() {
 		return lNo;
 	}
@@ -61,7 +49,6 @@ public class ProductVO {
 	public void setpWorkname(String pWorkname) {
 		this.pWorkname = pWorkname;
 	}
-	
 	public List<ManagementVO> getmNo() {
 		return mNo;
 	}
@@ -92,12 +79,45 @@ public class ProductVO {
 	public void setpSection(boolean pSection) {
 		this.pSection = pSection;
 	}
+	public ShipmentVO getsNo() {
+		return sNo;
+	}
+	public void setsNo(ShipmentVO sNo) {
+		this.sNo = sNo;
+	}
+	public int getbProcess() {
+		return bProcess;
+	}
+	public void setbProcess(int bProcess) {
+		this.bProcess = bProcess;
+	}
+	public int getbSetup() {
+		return bSetup;
+	}
+	public void setbSetup(int bSetup) {
+		this.bSetup = bSetup;
+	}
+	public int getbMaterial() {
+		return bMaterial;
+	}
+	public void setbMaterial(int bMaterial) {
+		this.bMaterial = bMaterial;
+	}
+	public int getbEtc() {
+		return bEtc;
+	}
+	public void setbEtc(int bEtc) {
+		this.bEtc = bEtc;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo + ", pWorkname="
 				+ pWorkname + ", mNo=" + mNo + ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote
-				+ ", pSection=" + pSection + ", sNo=" + sNo + ", bNo=" + bNo + "]";
+				+ ", pSection=" + pSection + ", sNo=" + sNo + ", bProcess=" + bProcess + ", bSetup=" + bSetup
+				+ ", bMaterial=" + bMaterial + ", bEtc=" + bEtc + "]";
 	}
+	
 	
 	
 	

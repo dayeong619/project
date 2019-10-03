@@ -496,10 +496,10 @@
 				</p>
 				<p>
 					<label>검사결과</label>
-						<select name="wResult">
-							<option value="true">합격</option>
-							<option value="false">불합격</option>
-						</select>
+					<select name="wResult">
+						<option value="0">합격</option>
+						<option value="1">불합격</option>
+					</select>
 				</p>
 				<p>
 					<label>조치내용(불량발생시)</label>
@@ -515,16 +515,12 @@
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
-				생산일자 <input type="date"> ~ <input type="date">
-				
-					&nbsp;&nbsp;&nbsp;&nbsp;거래처
-					<select>
-						<option>ㅡㅡㅡㅡㅡㅡㅡ</option>
-						<option>Y&T</option>
-						<option>신라공업</option>
-					</select>
+				<input type="radio" id="radioSearch">날짜 검색 
+				<!-- 입고일자 <input type="date" id="searchInput"> ~ <input type="date" id="searchInput2"> -->
+				<input type="radio" id="radioSearch">제품명 검색
 					&nbsp;&nbsp;&nbsp;&nbsp;품명 
 					<select id="gNo">
+						<option>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</option>
 						<c:forEach var="glists" items="${glist }">
 							<option value="${glists.gNo}">${glists.gName}</option>
 						</c:forEach>
@@ -593,4 +589,35 @@
 			</table>
 		</div>
 </section>
+<script>
+	$(document).on("click", "button.searchButton", function(){ //조회버튼 클릭시
+		//조회 누르면 셀렉트하기
+		/* var $searchInput = $("#searchInput").val();
+		var $searchInput2 = $("#searchInput2").val(); */
+		
+		var gNo = $("#divDate2 #gNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
+		
+		if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+			alert("제품을 선택하세요.");	
+			return;
+	 	}
+		
+		$.ajax({
+			url:"warehousing/"+gNo,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				
+				alert(res);					
+			}
+		})
+		
+	})
+</script>
 <%@ include file="include/footer.jsp" %>
+
+
+
+
+

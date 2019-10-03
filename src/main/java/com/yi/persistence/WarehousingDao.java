@@ -12,5 +12,5 @@ public interface WarehousingDao {
 	public void modifyWarehousing(WarehousingVO vo) throws Exception;
 	
 	public List<WarehousingVO> selectWarehousing() throws Exception;
-	
+	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception;
 }
