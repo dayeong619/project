@@ -10,4 +10,8 @@ public interface WarehousingService {
 	public List<WarehousingVO> selectWarehousingByAll() throws Exception;
 	public void deleteWarehousing(int wNo) throws Exception;
 	public void modifyWarehousing(WarehousingVO vo) throws Exception;
+	
+	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception; //제품번호로 입고이력 찾기
+	
+	
 }

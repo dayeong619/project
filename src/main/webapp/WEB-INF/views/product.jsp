@@ -250,7 +250,7 @@
 						<option value="1">주간</option>
 						<option value="0">야간</option>
 					</select>
-					
+					<!-- 연습공간 -->
 			</div> 
 		</div>
 	</div>
@@ -376,8 +376,8 @@
 		var pNote = $("input[name=pNote]").val();//비고
 		var wNo = $("input[name=wNo]").val(); //입고번호가 필요함
 		
-		var json = {};
-		var date = JSON.stringify(json);
+		var json = {wNo:wNo, pWorkday:pWorkday, lNo:lNo, mNo:mNo, pWorktime:pWorktime, pQy:pQy, pNote:pNote, pSection:pSection, bProcess:bProcess, bSetup:bSetup, bMaterial:bMaterial, bEtc:bEtc};
+		var data = JSON.stringify(json);
 		
 		$.ajax({
 			url:"productInsert",
@@ -389,7 +389,7 @@
 			dataType:"json",
 			success:function(res){
 				console.log(res);
-			
+				alert("등록됬쪙!");
 			}
 		})
 		

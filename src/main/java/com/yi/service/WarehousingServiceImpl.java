@@ -34,6 +34,11 @@ public class WarehousingServiceImpl implements WarehousingService {
 		dao.modifyWarehousing(vo);
 	}
 
+	@Override
+	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception {
+		return dao.selectWarehousingByGNo(gNo);
+	}
+
 	
 	
 }

@@ -40,7 +40,11 @@
 		select * from warehousing
 	</select>
 	
-	
+	<select id="selectWarehousingByGNo" resultMap="WarehousingResultMap">
+		select * from goods g
+		inner join warehousing w on g.g_no = w.g_no 
+		where g.g_no=#{gNo}
+	</select>
 	
 	
 	
