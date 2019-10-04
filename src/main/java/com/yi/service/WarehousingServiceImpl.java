@@ -1,5 +1,6 @@
 package com.yi.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,11 @@ public class WarehousingServiceImpl implements WarehousingService {
 	@Override
 	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception {
 		return dao.selectWarehousingByGNo(gNo);
+	}
+
+	@Override
+	public List<WarehousingVO> selectWhByWDay(String startday, String endday) throws Exception {
+		return dao.selectWhByWDay(startday, endday);
 	}
 
 	

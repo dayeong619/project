@@ -8,7 +8,6 @@ public class ShipmentVO {
 	private int sQy;
 	private Date sDay;
 	private List<ProductVO> pNo;
-	
 	private boolean sBadness;
 	private boolean sDel;
 	

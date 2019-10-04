@@ -13,4 +13,9 @@ public interface WarehousingDao {
 	
 	public List<WarehousingVO> selectWarehousing() throws Exception;
 	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception;
+	public List<WarehousingVO> selectWhByWDay(String startday, String endday) throws Exception;
+	
+	
+	
+	
 }

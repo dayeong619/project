@@ -4,8 +4,6 @@ public class DepartmentVO {
 	private int dNo;
 	private String dName;
 	
-	
-	
 	public DepartmentVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -17,14 +15,10 @@ public class DepartmentVO {
 		this.dNo = dNo;
 	}
 
-
 	public DepartmentVO(String dName) {
 		super();
 		this.dName = dName;
 	}
-
-
-	
 	
 	public int getdNo() {
 		return dNo;
@@ -44,7 +38,6 @@ public class DepartmentVO {
 	public void setdName(String dName) {
 		this.dName = dName;
 	}
-
 
 	@Override
 	public String toString() {

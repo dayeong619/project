@@ -14,11 +14,19 @@ public class ProductVO {
 	private int pQy;
 	private String pNote;
 	private boolean pSection;
+	private boolean pDel;
 	private ShipmentVO sNo;
 	private int bProcess;
 	private int bSetup;
 	private int bMaterial;
 	private int bEtc;
+	
+	public boolean ispDel() {
+		return pDel;
+	}
+	public void setpDel(boolean pDel) {
+		this.pDel = pDel;
+	}
 	public int getpNo() {
 		return pNo;
 	}
@@ -114,9 +122,9 @@ public class ProductVO {
 	public String toString() {
 		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo + ", pWorkname="
 				+ pWorkname + ", mNo=" + mNo + ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote
-				+ ", pSection=" + pSection + ", sNo=" + sNo + ", bProcess=" + bProcess + ", bSetup=" + bSetup
-				+ ", bMaterial=" + bMaterial + ", bEtc=" + bEtc + "]";
+				+ ", pSection=" + pSection + ", pDel=" + pDel + ", sNo=" + sNo + ", bProcess부터=" + bProcess+bSetup+bMaterial+bEtc+ "]";
 	}
+	
 	
 	
 	

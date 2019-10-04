@@ -10,6 +10,7 @@
 		<result property="wResult" column="w_result" />
 		<result property="wMemo" column="w_memo" />
 		<result property="wNote" column="w_note" />
+		<result property="wDel" column="w_del"/>
 	</resultMap>
 	<resultMap type="WarehousingVO" id="WarehousingResultMap" extends="WarehousingStandard">
 		<collection property="gNo" resultMap="com.yi.mapper.GoodsMapper.GoodsResultMap"/>
@@ -37,15 +38,20 @@
 	</update>
 	
 	<select id="selectWarehousing" resultMap="WarehousingResultMap">
-		select * from warehousing
+		select * from warehousing where w_del=1
 	</select>
 	
-	<select id="selectWarehousingByGNo" resultMap="WarehousingResultMap">
+	<select id="selectWarehousingByGNo" resultMap="WarehousingResultMap"><!-- 제품명으로 검색 -->
 		select * from goods g
 		inner join warehousing w on g.g_no = w.g_no 
-		where g.g_no=#{gNo}
+		where g.g_no=#{gNo} and w_del=1
 	</select>
 	
+	<select id="selectWhByWDay" resultMap="WarehousingResultMap"><!-- 날짜로 검색 -->
+		select * from goods g
+		inner join warehousing w on g.g_no = w.g_no 
+		where w_del=1 and w_day between #{startday} and #{endday}
+	</select>
 	
 	
 	

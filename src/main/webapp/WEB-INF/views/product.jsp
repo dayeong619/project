@@ -390,6 +390,7 @@
 			success:function(res){
 				console.log(res);
 				alert("등록됬쪙!");
+				
 			}
 		})
 		

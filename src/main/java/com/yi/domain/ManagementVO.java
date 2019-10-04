@@ -12,6 +12,7 @@ public class ManagementVO {
 	private String mEnterday;
 	private String mPhoto;
 	private String mConfirm;
+	private boolean mDel;
 	private DepartmentVO dNo;
 	private TitleVO tNo;
 	
@@ -93,12 +94,21 @@ public class ManagementVO {
 	public void settNo(TitleVO tNo) {
 		this.tNo = tNo;
 	}
+	
+	public boolean ismDel() {
+		return mDel;
+	}
+	public void setmDel(boolean mDel) {
+		this.mDel = mDel;
+	}
 	@Override
 	public String toString() {
 		return "ManagementVO [mNo=" + mNo + ", mId=" + mId + ", mPw=" + mPw + ", mName=" + mName + ", mBirth=" + mBirth
 				+ ", mEmail=" + mEmail + ", mTel=" + mTel + ", mAddr=" + mAddr + ", mEnterday=" + mEnterday
-				+ ", mPhoto=" + mPhoto + ", mConfirm=" + mConfirm + ", dNo=" + dNo + ", tNo=" + tNo + "]";
+				+ ", mPhoto=" + mPhoto + ", mConfirm=" + mConfirm + ", mDel=" + mDel + ", dNo=" + dNo + ", tNo=" + tNo
+				+ "]";
 	}
+	
 	
 	
 

@@ -11,6 +11,7 @@
 		<result property="pQy" column="p_qy" />
 		<result property="pNote" column="p_note" />
 		<result property="pSection" column="p_section" />
+		<result property="pDel" column="p_del"/>
 	</resultMap>
 	<resultMap type="ProductVO" id="ProductResultMap" extends="ProductStandard">
 		<collection property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
@@ -31,16 +32,16 @@
 	</select>
 	
 	<select id="selectByGoodsName" resultMap="ProductResultMap">
-		select g.g_no, g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no
+		select g.g_no, g.g_name from product p right join warehousing w on p.p_no = w.w_no right join goods g on p.p_no = g.g_no where g_del=1
 	</select>
 	
 	<select id="selectByManagementName" resultMap="ProductByManagement"><!--  -->
-		select * from management m left join product p on m.m_no = p.p_no
+		select * from management m left join product p on m.m_no = p.p_no where m_del=1
 	</select>
 	
 	<insert id="insertProduct" parameterType="ProductVO">
 		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
-		(#{wNo}, #{pWorkday}, #{lNo}, #{mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
+		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
 	</insert>
 	
 	<select id="selectProductByLine" resultMap="ProductResultMap">

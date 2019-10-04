@@ -12,6 +12,6 @@ public interface WarehousingService {
 	public void modifyWarehousing(WarehousingVO vo) throws Exception;
 	
 	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception; //제품번호로 입고이력 찾기
-	
+	public List<WarehousingVO> selectWhByWDay(String startday, String endday) throws Exception; //날짜로 입고이력 찾기
 	
 }

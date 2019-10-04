@@ -6,17 +6,19 @@
 	
 	<resultMap type="GoodsVO" id="GoodsResultMap">
 		<result property="gNo" column="g_no" />
+		<result property="gDay" column="g_day"/>
 		<result property="gName" column="g_name" />
 		<result property="gLocation" column="g_location" />
 		<result property="gClient" column="g_client" />
+		<result property="gDel" column="g_del"/>
 	</resultMap>
 	
 	<select id="selectByGoods" resultMap="GoodsResultMap">
-		select * from goods
+		select * from goods where g_del=1
 	</select>
 	
 	<select id="selectAll" parameterType="GoodsVO" resultMap="GoodsResultMap">
-		select * from goods where g_no=#{gNo}
+		select * from goods where g_del=1 and g_no=#{gNo}
 	</select>	
 	
 	

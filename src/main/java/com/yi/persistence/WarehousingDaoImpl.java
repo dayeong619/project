@@ -1,6 +1,9 @@
 package com.yi.persistence;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,15 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	@Override
 	public List<WarehousingVO> selectWarehousingByGNo(int gNo) throws Exception {
 		return sqlSession.selectList(namespace+".selectWarehousingByGNo", gNo);
+	}
+
+	@Override
+	public List<WarehousingVO> selectWhByWDay(String startday, String endday) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("startday", startday);
+		map.put("endday", endday);
+		
+		return sqlSession.selectList(namespace+".selectWhByWDay", map);
 	}
 	
 

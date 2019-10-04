@@ -133,6 +133,23 @@ public class WarehousingController {
 		return entity;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="warehousing/{startday}/{endday}", method=RequestMethod.GET)
+	public ResponseEntity<List<WarehousingVO>> selectWhByWDayGET(@PathVariable("startday") String startday, @PathVariable("endday") String endday){ 
+		logger.info("selectWhByWDayGET--> ");
+		logger.info("startday는 "+startday+"endday는 "+endday);
+		
+		ResponseEntity<List<WarehousingVO>> entity = null;
+		
+		try {
+			List<WarehousingVO> gDatelist = wservice.selectWhByWDay(startday, endday);
+			entity = new ResponseEntity<List<WarehousingVO>>(gDatelist, HttpStatus.OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); //400 error
+		}
+		return entity;
+	}
 	
 	
 	

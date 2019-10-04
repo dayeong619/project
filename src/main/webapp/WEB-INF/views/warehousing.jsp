@@ -237,7 +237,7 @@
 	.ClassButtonTop button#insert{
 		background-color:#0082a8;
 	}
-	.searchButton{
+	.searchButton, #divDateSearchBtn{
 		width: 60px;
 		height: 30px;
 	}
@@ -250,7 +250,17 @@
 	#input2css{
 		font-size: 11px;
 	}
-	
+	#divDate2 #searchInput, #spanMM, #searchInput2, #divDateSearchBtn, #divDate2 #gNo, #divDate2 .searchButton{
+		/* visibility: hidden; */
+		/* display: none; */
+	}
+	#radioSearch, #radioSearchGno{
+		width: 12px;
+		height: 12px;
+		border-radius: 10px;
+		border:1px solid darkgray;
+		focus:none;
+	}
 	
 </style>
 <section>
@@ -262,6 +272,7 @@
 			<button class="ClassButtonTop" id="modify">수정</button>
 				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
 				<button class="ClassButtonTop" id="delete">수정취소</button> -->
+	</div>
 		<script>
 			
 			/* $(document).ready(function(){
@@ -325,7 +336,8 @@
 					
 					var str="";
 					var date = new Date(res.wDay);
-					res.wDay = date.getFullYear()+"-"+(1+date.getMonth())+"-"+date.getDate();
+					
+					res.wDay = date.getFullYear()+"-"+("0"+(1+date.getMonth())).slice(-2)+"-"+("0"+date.getDate()).slice(-2);
 					
 					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
 					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
@@ -375,7 +387,7 @@
 				var wDay = $('input[name=wDay]').val(); //입고일자
 				var gNo = $('#gNo option:selected').val(); //제품번호
 				var wQy = $('input[name=wQy]').val(); //입고수량
-				var wResult = $('input[name=wResult]').val(); //true, false
+				var wResult = $('select[name=wResult]').val(); //true, false
 				var wMemo = $('textarea[name=wMemo]').val(); //조치내용
 				var wNote = $('textarea[name=wNote]').val(); //비고
 							
@@ -463,7 +475,7 @@
 			
 			
 		</script>
-	</div>
+
 	<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
 			<div id="insertViewTitle">
@@ -497,8 +509,8 @@
 				<p>
 					<label>검사결과</label>
 					<select name="wResult">
-						<option value="0">합격</option>
-						<option value="1">불합격</option>
+						<option value="true">합격</option>
+						<option value="false">불합격</option>
 					</select>
 				</p>
 				<p>
@@ -515,17 +527,28 @@
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
-				<input type="radio" id="radioSearch">날짜 검색 
-				<!-- 입고일자 <input type="date" id="searchInput"> ~ <input type="date" id="searchInput2"> -->
-				<input type="radio" id="radioSearch">제품명 검색
-					&nbsp;&nbsp;&nbsp;&nbsp;품명 
-					<select id="gNo">
+			<select>
+				<option>검색</option>
+				<option>입고일자</option>
+				<option>제품명</option>
+			</select>
+			
+				<input type="date" id="searchInput" name="startday" placeholder="시작날짜"> 
+				<span id="spanMM">~</span> 
+				<input type="date" id="searchInput2" name="endday">
+				<button class="searchButton1" id="divDateSearchBtn">조회</button>
+		
+		
+				<select id="gNo">
 						<option>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</option>
 						<c:forEach var="glists" items="${glist }">
 							<option value="${glists.gNo}">${glists.gName}</option>
 						</c:forEach>
 					</select>
-					<button class="searchButton">조회</button>
+				<button class="searchButton">조회</button>	
+		
+					
+							
 			</div> 
 		</div>
 	</div>
@@ -534,7 +557,7 @@
 				<thead>
 					<tr class="tableTrs">
 						<td rowspan="2"> </td>
-						<td rowspan="2"><input type="checkbox" disabled="disabled"></td>
+						<td rowspan="2"><input type="radio" disabled="disabled"></td>
 						<td rowspan="2">입고 일자</td>
 						<td rowspan="2">품명</td>
 						<td rowspan="2">입고 수량</td>
@@ -590,30 +613,111 @@
 		</div>
 </section>
 <script>
-	$(document).on("click", "button.searchButton", function(){ //조회버튼 클릭시
-		//조회 누르면 셀렉트하기
-		/* var $searchInput = $("#searchInput").val();
-		var $searchInput2 = $("#searchInput2").val(); */
+
+	/* 입고일자로 -> 클릭 시 나오는거 */
+	$(document).on("change", "#divDate2 #gNo", function(){
+		if($("#gNo").val() == "입고일자"){
+			$("input[name=startday]").css("display", "inline");
+			$("#spanMM").css("display", "inline");
+			$("#searchInput2").css("display", "inline");
+			$("#divDateSearchBtn").css("display", "inline");	
+			
+		}
+	})
+	
+
+	function paint(res){
+		$("#tableBackGround table tbody").empty();
 		
-		var gNo = $("#divDate2 #gNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
+		var str = "";
 		
-		if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
-			alert("제품을 선택하세요.");	
+		function getFormatDate(date){ 
+			var year = date.getFullYear(); //yyyy 
+			var month = (1 + date.getMonth()); //M 
+			month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+			var day = date.getDate(); //d 
+			day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
+			return year + '-' + month + '-' + day; 
+		}
+		
+		for(var i=0; i<res.length; i++){
+			str+= "<tr><td><p id='input2css'>"+res[i].wNo+"</p></td>";
+			str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res[i].wNo+"'></td>"; //입고번호
+			var date = new Date(res[i].wDay);
+			var wDay = getFormatDate(date);
+			str+= "<td><input type='text' value='"+wDay+"'disabled='disabled' class='dddd'></td>";  //입고일
+			str+= "<td><select id='gNo' class='dddd' disabled>"; 
+			str+= "<option value='"+res[i].gNo.gNo+"'>"+res[i].gNo.gName+"</option>";
+			str+= "</select>";
+			str+= "<td><input type='text' class='dddd' value='"+res[i].wQy+"'disabled='disabled'></td>"; //입고수량
+			var r1 = (res[i].wResult == 1) ? 'o':''; 
+			str+= "<td><input type='text' id='result1' class='dddd' value='"+r1+"'disabled='disabled'></td>"; //합격
+			var r2 = (res[i].wResult == 0) ? 'o':''; 
+			str+= "<td><input type='text' id='result2' class='dddd' value='"+r2+"'disabled='disabled'></td>"; //불합격
+			var r3 = (res[i].wMemo == null) ? '':'';
+			str+= "<td><input type='text' id='wmemo1css' class='dddd' value='"+r3+"'disabled='disabled'></td>";
+			var r4 = (res[i].wNote == null) ? '':'';
+			str+= "<td><input type='text' id='wmemo2css' class='dddd' value='"+r4+"'disabled='disabled'></td></tr>";
+				
+		}
+		$("#tableBackGround table tbody").append(str);
+	}
+	
+		$(document).on("click", "button.searchButton", function(){ //조회버튼 클릭시
+			//조회 누르면 셀렉트하기
+			/* var $searchInput = $("#searchInput").val();
+			var $searchInput2 = $("#searchInput2").val(); */
+			
+			var gNo = $("#divDate2 #gNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
+			
+			if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+				alert("제품을 선택하세요.");	
+				return;
+		 	}
+			
+			$.ajax({
+				url:"warehousing/"+gNo,
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					paint(res);
+					
+					
+					
+					
+				}
+			})
+			
+		})
+	
+	$(document).on("click", "button.searchButton1", function(){
+		var startday = $("#searchInput").val();
+		var endday = $("#searchInput2").val();
+		
+		if(startday == ""){
+			alert("시작날짜를 입력하세요");	
 			return;
-	 	}
+		}
+		if(endday == ""){
+			alert("종료날짜를 입력하세요");
+			return;
+		}
 		
 		$.ajax({
-			url:"warehousing/"+gNo,
+			url:"warehousing/"+startday+"/"+endday,
 			type:"get",
 			dataType:"json",
 			success:function(res){
 				console.log(res);
+				paint(res);
 				
-				alert(res);					
+				
 			}
 		})
 		
 	})
+	
 </script>
 <%@ include file="include/footer.jsp" %>
 
