@@ -24,6 +24,7 @@
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
+		width: 90%;
 	}
 	
 	table td{
@@ -63,7 +64,7 @@
 		width: 169px;
 	}
 	tbody td:nth-child(5){ /* 입고수량 */
-		width: 169px;
+		width: 170px;
 	}
 	tbody td:nth-child(6){ /* 검사결과:합격 */
 		width: 80px;
@@ -72,7 +73,7 @@
 		width: 80px;
 	}
 	tbody td:nth-child(8){ /* 조치내용*/
-		width: 401px;
+		width: 403px;
 	}
 	
 	tbody td:nth-child(9){ /* 비고 */
@@ -100,7 +101,7 @@
 		
 	}
 	#sectionOne{
-		width:95%;
+		width:86%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -228,7 +229,9 @@
 		bottom:150px;
 		left:700px;
 	}
-	
+	.ClassButtonTop #insert{
+		margin-left: 440px;
+	}
 	.ClassButtonTop{ /* 크기조정 */
 		width: 60px;
 		height: 30px;
@@ -252,7 +255,7 @@
 	}
 	#divDate2 #searchInput, #spanMM, #searchInput2, #divDateSearchBtn, #divDate2 #gNo, #divDate2 .searchButton{
 		/* visibility: hidden; */
-		/* display: none; */
+		display: none;
 	}
 	#radioSearch, #radioSearchGno{
 		width: 12px;
@@ -267,6 +270,7 @@
 	<div class="divTitle2" id="">
 		<div id="left"><h3>수입검사관리</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="ClassButtonTop" id="insert">신규</button>
 			<button class="ClassButtonTop" id="delete">삭제</button>
 			<button class="ClassButtonTop" id="modify">수정</button>
@@ -480,10 +484,6 @@
 		<div id="insertViewBackground">
 			<div id="insertViewTitle">
 				<span id="spaninsert">수입검사등록</span>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="등록" id="insertViewinsert">
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
@@ -527,10 +527,11 @@
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
-			<select>
+			
+			<select id="gNoSearch" onchange="category(this)"><!-- 검색하는 셀렉트박스 -->
 				<option>검색</option>
-				<option>입고일자</option>
-				<option>제품명</option>
+				<option value="1">입고일자</option>
+				<option value="2">제품명</option>
 			</select>
 			
 				<input type="date" id="searchInput" name="startday" placeholder="시작날짜"> 
@@ -540,7 +541,7 @@
 		
 		
 				<select id="gNo">
-						<option>ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</option>
+						<option value="0">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</option>
 						<c:forEach var="glists" items="${glist }">
 							<option value="${glists.gNo}">${glists.gName}</option>
 						</c:forEach>
@@ -615,16 +616,41 @@
 <script>
 
 	/* 입고일자로 -> 클릭 시 나오는거 */
-	$(document).on("change", "#divDate2 #gNo", function(){
-		if($("#gNo").val() == "입고일자"){
+/* 	$(document).on("change", "#divDate2 #gNoSearch",function(){
+		var select = $("#gNo").val(); 
+		if(select == 1){
 			$("input[name=startday]").css("display", "inline");
 			$("#spanMM").css("display", "inline");
 			$("#searchInput2").css("display", "inline");
 			$("#divDateSearchBtn").css("display", "inline");	
-			
+		}else{
+			$("#divDate2 #gNo").css("display", "inline");
+			$(".searchButton").css("display", "inline");
 		}
 	})
+	 */
 	
+	function category(e){
+		if(e.value == 1){
+			$("input[name=startday]").css("display", "inline");
+			$("#spanMM").css("display", "inline");
+			$("#searchInput2").css("display", "inline");
+			$("#divDateSearchBtn").css("display", "inline");
+			
+			$("#divDate2 #gNo").css("display", "none");
+			$(".searchButton").css("display", "none");
+			
+		}else if(e.value == 2){
+			$("input[name=startday]").css("display", "none");
+			$("#spanMM").css("display", "none");
+			$("#searchInput2").css("display", "none");
+			$("#divDateSearchBtn").css("display", "none");
+			
+			$("#divDate2 #gNo").css("display", "inline");
+			$(".searchButton").css("display", "inline");
+		}
+		
+	}
 
 	function paint(res){
 		$("#tableBackGround table tbody").empty();
@@ -670,17 +696,23 @@
 			
 			var gNo = $("#divDate2 #gNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
 			
-			if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+			if( gNo == null){ //값이 없으면  
 				alert("제품을 선택하세요.");	
 				return;
 		 	}
-			
+			if( gNo == 0){ //값이 없으면  
+				alert("제품을 선택하세요.");	
+				return;
+		 	}
 			$.ajax({
 				url:"warehousing/"+gNo,
 				type:"get",
 				dataType:"json",
 				success:function(res){
 					console.log(res);
+					if(res.length == 0){
+						alert("입고내역이 없습니다.");
+					}
 					paint(res);
 					
 					
@@ -710,8 +742,12 @@
 			dataType:"json",
 			success:function(res){
 				console.log(res);
+				
 				paint(res);
 				
+				if(res.length == 0){
+					alert("입고내역이 없습니다.");
+				}
 				
 			}
 		})
