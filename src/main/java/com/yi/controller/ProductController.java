@@ -53,7 +53,7 @@ public class ProductController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="productInsert", method=RequestMethod.POST) 
+	@RequestMapping(value="product", method=RequestMethod.POST) 
 	public ResponseEntity<List<ProductVO>> productInsertPOST(@RequestBody ProductVO vo) throws Exception { 
 		
 		ResponseEntity<List<ProductVO>> entity = null;

@@ -360,8 +360,9 @@
 		
 	})
 	
+	
 	$(document).on("click", "#BtnInsertConfirm", function(){ //등록확인 버튼 눌렀을 때 
-		
+		var $this = $(this);
 		var pWorkday = $("select[name=pWorkday]").val(); //일자
 		var pSection = $("select[name=pSection]").val();//구분 주/야
 		var lNo = $("input[name=lNo]").val(); //해당라인
@@ -376,11 +377,11 @@
 		var pNote = $("input[name=pNote]").val();//비고
 		var wNo = $("input[name=wNo]").val(); //입고번호가 필요함
 		
-		var json = {wNo:wNo, pWorkday:pWorkday, lNo:lNo, mNo:mNo, pWorktime:pWorktime, pQy:pQy, pNote:pNote, pSection:pSection, bProcess:bProcess, bSetup:bSetup, bMaterial:bMaterial, bEtc:bEtc};
+		var json = {wNo:{wNo:wNo}, pWorkday:pWorkday, lNo:{lNo:lNo}, mNo:{mNo:mNo}, pWorktime:pWorktime, pQy:pQy, pNote:pNote, pSection:pSection, bProcess:bProcess, bSetup:bSetup, bMaterial:bMaterial, bEtc:bEtc};
 		var data = JSON.stringify(json);
 		
 		$.ajax({
-			url:"productInsert",
+			url:"product",
 			type:"post",
 			headers:{
 				"Content-Type":"application/json"
@@ -389,8 +390,7 @@
 			dataType:"json",
 			success:function(res){
 				console.log(res);
-				alert("등록됬쪙!");
-				
+				$this.hide();	
 			}
 		})
 		
