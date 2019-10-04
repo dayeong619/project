@@ -131,7 +131,7 @@ $(function(){
 						입고관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/warehousing" class="aa">수입검사등록</a></li>
-							<li><a href="#" class="aa">입고현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/warehousingChart" class="aa">입고통계</a></li>
 						</ul>
 					</li>
 					<li>

@@ -151,7 +151,26 @@ public class WarehousingController {
 		return entity;
 	}
 	
+//	차트 화면으로 갈거야
+	@RequestMapping(value="warehousingChart", method=RequestMethod.GET)
+	public void warehousingChartGET(Model model) throws Exception {
+		logger.info("warehousingChartGET---");
+		List<WarehousingVO> lists = wservice.ChartWarehousingByGno(); //select 해야 될듯
+		logger.info("리스트 여기 "+lists.toString());
+        model.addAttribute("lists", lists);
+	}
 	
+/*//	차트 화면에 아작스
+	 @RequestMapping(value="warehousingChart/ch", method=RequestMethod.POST)
+	    public List<GoogleChartDto> chartData() {
+	        List<GoogleChartDto> lists = new ArrayList<GoogleChartDto>(); //select 해야 될듯
+	        String[] itme = {"test1", "test2", "test3", "test4", "test5", "test6"};
+	        Random ran = new Random();
+	        for (int i = 0; i < 6; i++) {
+	            lists.add(new GoogleChartDto(itme[i], ran.nextInt(50)));
+	        }
+	        return lists;
+	    }*/
 	
 	
 	

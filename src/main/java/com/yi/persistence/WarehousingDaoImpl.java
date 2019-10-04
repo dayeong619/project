@@ -1,6 +1,5 @@
 package com.yi.persistence;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +55,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 		map.put("endday", endday);
 		
 		return sqlSession.selectList(namespace+".selectWhByWDay", map);
+	}
+
+	@Override
+	public List<WarehousingVO> ChartWarehousingByGno() throws Exception {
+		return sqlSession.selectList(namespace+".ChartWarehousingByGno");
 	}
 	
 

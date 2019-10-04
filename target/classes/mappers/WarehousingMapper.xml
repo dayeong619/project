@@ -53,6 +53,11 @@
 		where w_del=1 and w_day between #{startday} and #{endday}
 	</select>
 	
+	<select id="ChartWarehousingByGno" resultMap="WarehousingResultMap"><!-- 차트에 통계 -->
+		select * from goods g
+		inner join warehousing w on g.g_no = w.g_no 
+		where w_del=1 order by w.g_no
+	</select>
 	
 	
 	
