@@ -23,7 +23,7 @@
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 93.5%;
+		width: 90%;
 	}
 	tbody tr{
 		background-color: white;
@@ -32,79 +32,26 @@
 	table td{
 		border:1px solid black;
 	}
-	thead td:nth-child(1){ /* 라인 */
-		width: 41px;
-	}
-	thead td:nth-child(2){ /* 성명 */
+	thead td:nth-child(1), tbody td:nth-child(1){ /* 이름 */
 		width: 80px;
 	}
-	thead td:nth-child(3){ /* 품명 */
+	thead td:nth-child(2), tbody td:nth-child(2){ /* 생년월일 */
 		width: 140px;
 	}
-	thead td:nth-child(4){ /* 작업시간 */
+	thead td:nth-child(3), tbody td:nth-child(3){ /* 연락처 */
 		width: 140px;
 	}
-	thead td:nth-child(5){ /* 생산수량 */
-		width: 140px;
-	}
-	thead td:nth-child(6){ /* 불량내역 */
+	thead td:nth-child(4), tbody td:nth-child(4){ /* 주소 */
 		width: 400px;
 	}
-	thead td:nth-child(7){ /* 비고 */
-		width: 300px;
+	thead td:nth-child(5), tbody td:nth-child(5){ /* 작업자등록일 */
+		width: 140px;
 	}
-	thead td:nth-child(8){ 
-		width: 200px;
+	thead td:nth-child(6), tbody td:nth-child(6){ /* 작업자인증일 */
+		width: 140px;
 	}
-	thead tr:nth-child(2) td:nth-child(1){
-		width: 40px;
-	}
-	thead tr:nth-child(2) td:nth-child(2){
-		width: 40px;
-	}
-	thead tr:nth-child(2) td:nth-child(3){
-		width: 40px;
-	}
-	thead tr:nth-child(2) td:nth-child(4){
-		width: 40px;
-	}
-	
-	tbody td:nth-child(1){                           /* 여기서부터 tbody */
-		width: 47px;
-	}
-	
-	tbody td:nth-child(2) select{ 
-		width: 93px;
-		visibility: hidden;
-	}
-	
-	tbody td:nth-child(3) select{ 
-		width: 163px;
-		visibility: hidden
-	}
-	tbody td:nth-child(4) input{ /* 품명 */
-		width: 163px;
-	}
-	tbody td:nth-child(5) input{ /* 입고수량 */
-		width: 163px;
-	}
-	tbody td:nth-child(6) input{ 
-		width: 56px;
-	}
-	tbody td:nth-child(7) input{ /* 불량 */
-		width: 56px;
-	}
-	tbody td:nth-child(8) input{ 
-		width: 56px;
-	}
-	tbody td:nth-child(9) input{ 
-		width: 56px;
-	}
-	tbody td:nth-child(10) input{ 
-		width: 350px;
-	}
-	tbody td:nth-child(11){ 
-		width: 215px;
+	thead td:nth-child(7), tbody td:nth-child(7){ /* 생산실적 */
+		width: 140px;
 	}
 	tbody .badnessInput{
 		width:56px; 
@@ -112,12 +59,6 @@
 		border:none;
 		background-color: white;
 		text-align: center;
-	}
-	tbody tr td:nth-child(2) select{
-		width: 93px;
-	}
-	tbody td:nth-child(10) input{
-		width: 350px;
 	}
 	tbody .success{
 		width: 80px;
@@ -148,7 +89,6 @@
 		overflow:hidden;
 		float: left;
 		width: 900px;
-		padding-top:15px;
 	}
 	#divDate2{
 		width: 100%;
@@ -287,16 +227,79 @@
 	#BtnInsertConfirm{
 		display: none;
 	}
+	#oneYear{
+		color: #E0FFFF;
+		font-size: 11px;
+	}
+	#insert{
+		width: 90px;
+  	    height: 35px;
+  	    font-size: 15px;
+	}
+	.mNameClass:hover {
+		color: red;
+		cursor: pointer;
+	}
+	.workerView{
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:80px;
+		width:100%;
+		height: 71%;
+		background: rgba(0,0,0,0.7);
+		padding:60px 500px;
+		display: none; 
+		color:#D5D5D5;
+	}
+	.workerView .workerModify{
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #ccc;
+		border:1px solid gray;
+	}
+	.workerView .workerDelete{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:#ccc;
+		border:1px solid gray;
+	}
+	.workerView .workerClose{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:#ccc;
+		border:1px solid gray;
+	}
+	.workerView .worketModifyCF{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:#ccc;
+		border:1px solid gray;
+		display: none;
+	}
+	.workerViewBackground{
+		width: 600px;
+		height: 500px;
+		background-color: white;
+		color:black;
+	}
 </style>
 <section>
 	<div class="divTitle2">
-		<div><h3>작업자현황</h3></div>
+		<div>
+			<h3>작업자현황</h3>
+			생산팀만 보임
+		</div>
 	</div>
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
 				<div id="left">
-					이름으로 검색 <input type="text" name="pName"><button>검색</button>
+					이름검색 <input type="text" name="pName" id="searchName"><button id="workerSearch">검색</button>
 				</div> 
 				<button id="insert">작업자등록</button>	
 			</div> 
@@ -315,49 +318,96 @@
 			</div>
 			<div id="insertViewcontent">
 				<div>
-			<label>이름</label>
-			<input type="text" name="mName">
-		</div>
-		<div>
-			<label>생년월일</label>
-			<input type="text" name="mBirth" placeholder=" 8자리 ex) 19910619">
-		</div>
-		<div>
-			<label>연락처</label>
-			<input type="text" name="mTel" placeholder=" 11자리 ex) 01055431491">
-		</div>
-		<div>
-			<label>등록일</label>
-			<input type="date" name="mEnterday" id="nowDate" placeholder=" 8자리 ex) 20190918">
-		</div>
-		<div>
-			<label>작업자인증일</label>
-			<input type="date" name="mConfirm"  placeholder=" 8자리 ex) 20190918">
-		</div>
+					<label>이름</label>
+					<input type="text" name="mName" class="insertViewInput">
+				</div>
+				<div>
+					<label>생년월일</label>
+					<input type="text" name="mBirth" placeholder=" 8자리 ex) 19910619" class="insertViewInput">
+				</div>
+				<div>
+					<label>연락처</label>
+					<input type="text" name="mTel" placeholder=" 11자리 ex) 01055431491" class="insertViewInput">
+				</div>
+				<div>
+					<label>주소</label>
+					<input type="text" name="mAddr" placeholder=" 대구광역시 서구 국채보상로" class="insertViewInput">
+				</div>
+				<div>
+					<label>등록일</label>
+					<input type="date" name="mEnterday" id="nowDate" placeholder=" 8자리 ex) 20190918">
+				</div>
+				<div>
+					<label>작업자인증일</label>
+					<input type="date" name="mConfirm" id="nowDate2" placeholder=" 8자리 ex) 20190918">
+				</div>
 			</div>
 		</div>
 	</div>
-		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
+		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 테이블 시작 테이블 시작 -->
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td rowspan="2"> </td>
 						<td rowspan="2">이름</td>
 						<td rowspan="2">생년월일</td>
 						<td rowspan="2">연락처</td>
 						<td rowspan="2">주소</td>
 						<td rowspan="2">작업자등록일</td>
-						<td rowspan="2">작업자인증일</td>
+						<td rowspan="2">작업자인증일<br><span id="oneYear">(1년마다 갱신)</span></td>
 						<td rowspan="2">생산실적</td>
-						<td rowspan="2">정보수정</td>
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
 					<c:forEach var="lists" items="${list}">
 						<tr>
-							<td>${lists.mNo }</td>
 							<td>
-								${lists.mName}
+								<input type="hidden" value="${lists.mNo}">
+								<div class="mNameClass">${lists.mName}</div>
+								
+		<div class="workerView"> <!-- 작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래 -->
+		<div class="workerViewBackground">
+			<div class="workerViewTitle">
+			
+				<span id="spaninsert">${lists.mName}님 상세보기</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="workerModify">수정</button>
+				<button class="worketModifyCF">수정확인</button>
+				<button class="workerDelete">삭제</button>
+				<button class="workerClose">닫기</button>
+			</div>
+			<div class="insertViewcontent">
+				<div>
+					<label>이름</label>
+					<input type="text" name="mName" value="${lists.mName }" disabled="disabled" class="insertViewInput">
+					<input type="hidden" name="wNo" value="${lists.mNo}">
+				</div>
+				<div>
+					<label>생년월일</label>
+					<input type="text" name="mBirth" value="${lists.mBirth }" disabled="disabled" class="insertViewInput">
+				</div>
+				<div>
+					<label>연락처</label>
+					<input type="text" name="mTel" value="${lists.mTel }" disabled="disabled" class="insertViewInput">
+				</div>
+				<div>
+					<label>주소</label>
+					<input type="text" name="mAddr" value="${lists.mAddr }" disabled="disabled" class="insertViewInput">
+				</div>
+				<div>
+					<label>등록일</label>
+					<input type="date" name="mEnterday" id="nowDate" value="${lists.mEnterday}" disabled="disabled" class="insertViewInput">
+				</div>
+				<div>
+					<label>작업자인증일</label>
+					<input type="date" name="mConfirm" id="nowDate2" value="${lists.mConfirm}" disabled="disabled" class="insertViewInput">
+				</div>
+			</div>
+		</div>
+	</div>
+				
 							</td>
 							<td>
 								${lists.mBirth}
@@ -377,20 +427,17 @@
 							<td>
 								<button class="BtnProductResult">보기</button>
 							</td>
-							<td>
-								<button class="BtnWorkerModify">수정</button>
-								<button class="BtnWorkerDelete">삭제</button>
-							</td>
 						</tr>
 					</c:forEach>	
 				</tbody>
 			</table>
 		</div>
-		
+	
 </section>
 <script>
 	$(document).on("click", "button#insert", function(){
 		document.getElementById("nowDate").valueAsDate = new Date();
+		document.getElementById("nowDate2").valueAsDate = new Date();
 		$("#insertView").fadeIn(300);
 	})
 	
@@ -398,6 +445,172 @@
 	$(document).on("click", "#insertViewReset", function(){
 		$(this).parents().find("#insertView").fadeOut(300);
 	})
+	
+	function paint(res){
+		$("#tableBackGround table tbody").empty();
+		
+		var str = "";
+		
+		
+		
+		for(var i=0; i<res.length; i++){
+			str+= "<tr><td><input type='hidden' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
+			str+= "<div class='workerView'><div class='workerViewBackground'><div class='workerViewTitle'>";
+			str+= "<span id='spaninsert'>"+res[i].mName+"님 상세보기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+			"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			str+= "&nbsp;&nbsp;&nbsp;&nbsp;<button class='workerModify'>수정</button><button class='worketModifyCF'>수정확인</button><button class='workerDelete'>삭제</button>";
+			str+= "<button class='workerClose'>닫기</button>";
+			str+= "</div><div class='insertViewcontent'><div>";
+			str+= "<label>이름</label><input type='text' name='mName' value='"+res[i].mName+"' disabled='disabled'>";
+			str+= "<input type='hidden' name='wNo' value='"+res[i].mNo+"'></div><div>";
+			str+= "<label>생년월일</label><input type='text' name='mBirth' value='"+res[i].mBirth+"' disabled='disabled'></div>";
+			str+= "<div><label>연락처</label><input type='text' name='mTel' value='"+res[i].mTel+"' disabled='disabled'></div>";
+			str+= "<div><label>주소</label><input type='text' name='mAddr' value='"+res[i].mAddr+"' disabled='disabled'></div>";
+			str+= "<div><label>등록일</label><input type='date' name='mEnterday' id='nowDate' value='"+res[i].mEnterday+"' disabled='disabled'></div>";
+			str+= "<div><label>작업자인증일</label><input type='date' name='mConfirm' id='nowDate2' value='"+res[i].mConfirm+"' disabled='disabled'></div>";
+			str+= "</div></div></div>";
+			str+= "</td>"; //이름
+			str+= "<td>"+res[i].mBirth+"</td>";  //생년월일
+			str+= "<td>"+res[i].mTel+"</td>"; //연락처
+			str+= "<td>"+res[i].mAddr+"</td>"; //주소
+			str+= "<td>"+res[i].mEnterday+"</td>"; //작업자등록일
+			str+= "<td>"+res[i].mConfirm+"</td>"; //작업자인증일
+			str+= "<td><button class='tnProductResult'>보기</td></tr>"; //생산실적
+				
+		}
+		$("#tableBackGround table tbody").append(str);
+	}
+	
+	
+	
+	$(document).on("click", "#workerSearch", function(){ /* 이름으로 검색 */
+		var mName = $("#searchName").val();
+		
+		if(mName == null){
+			alert("검색할 이름을 입력하세요");	
+		}
+		
+		$.ajax({
+			url:"worker/"+mName,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				if(res.length == 0){
+					alert("검색된 정보가 없습니다.");
+				}
+				paint(res); 
+			}
+		})
+		
+	})
+	
+	
+	$(document).on("click", "#insertViewinsert", function(){ 			/*작업자등록창에서 등록*/
+				var mName = $('input[name=mName]').val(); 
+				var mBirth = $('input[name=mName]').val(); 
+				var mTel = $('input[name=mTel]').val(); 
+				var mAddr = $('input[name=mAddr]').val();
+				var mEnterday = $('input[name=mEnterday]').val(); 
+				var mConfirm = $('input[name=mConfirm]').val(); 
+							
+				var json = {mName:mName, mBirth:mBirth, mTel:mTel, mAddr:mAddr, mEnterday:mEnterday, mConfirm:mConfirm};
+				var data = JSON.stringify(json);
+				// gNo(객체이름):{"키":"값"}
+				
+				$.ajax({
+					url:"workerinsert",
+					type:"post",
+					headers:{
+						"Content-Type":"application/json"
+					},
+					data:data,
+					dataType:"json",
+					success:function(res){
+						console.log(res); //////////////////////////////////////////////
+						$("#insertView").find(".insertViewInput").val("");
+						$("#insertView").hide();
+						
+						paint(res); 
+					}
+				})
+			})
+			
+			
+			
+	// 작업자 상세보기		
+	$(document).on("click", ".workerClose", function(){ //닫기버튼
+		$(this).parent().parent().parent().fadeOut(300);
+	})		
+			
+			
+	$(document).on("click", ".mNameClass", function(){ // 작업자 상세보기 
+		$(this).parent().find(".workerView").fadeIn(300); 
+	})	
+	
+	$(document).on("click", ".workerDelete", function(){ //작업자 삭제
+		var $tr = $(this).parent().parent().parent().parent().parent();
+		var con = confirm("삭제하시겠습니까?");
+		if(con == false){
+			return;
+		}
+		
+		var mNo = $('input[name=wNo]').val();
+		
+		var json = {mNo:mNo};
+	 	var data = JSON.stringify(json);
+		
+		$.ajax({
+			url:"worker/"+mNo,
+			type:"put",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			data:data,
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				$(".workerView").fadeOut(300);
+				$tr.remove(); 	//테이블에서 지우기					
+			}
+		})
+	})
+	
+	$(document).on("click", ".workerModify", function(){ //작업자 수정
+		$(this).parent().parent().find(".insertViewcontent").find(".insertViewInput").attr("disabled", false);
+		$(this).css("display", "none");
+		$(this).next(".worketModifyCF").css("display", "inline");
+		
+	})
+	
+	$(document).on("click", ".worketModifyCF", function(){ //작업자 진짜루짜루짜루 수정
+		var mNo = $('input[name=mNo]').val();
+		var mName = $('input[name=mName]').val(); 
+		var mBirth = $('input[name=mName]').val(); 
+		var mTel = $('input[name=mTel]').val(); 
+		var mAddr = $('input[name=mAddr]').val();
+		var mEnterday = $('input[name=mEnterday]').val(); 
+		var mConfirm = $('input[name=mConfirm]').val();
+		
+		var json = {mNo:mNo, mName:mName, mBirth:mBirth, mTel:mTel, mAddr:mAddr, mEnterday:mEnterday, mConfirm:mConfirm};
+	 	var data = JSON.stringify(json);
+		
+	 	 $.ajax({
+				url:"warehousing/"+wNo,
+				type:"put",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				data:data,
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					//수정확인버튼 없어지고 인풋 비활성화 시키기 
+					//ㅈwNo 로 넘기는거 맞는지 확인하고 컨트롤러 작성하면 끝임~~~~
+				}
+			})
+	})
+			
 </script>
 <%@ include file="include/footer.jsp" %>
 

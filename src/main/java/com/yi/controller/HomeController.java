@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yi.domain.GoodsVO;
 import com.yi.domain.LoginDto;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.ProductVO;

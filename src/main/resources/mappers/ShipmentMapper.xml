@@ -19,7 +19,7 @@
 		select s.s_day, s.s_no, g.g_name, s.s_qy from shipment s
 		left join product p on s.s_no = p.p_no
 		left join warehousing w on p.p_no = w.w_no
-		left join goods g on w.w_no = g.g_no
+		left join goods g on w.w_no = g.g_no where s.s_del=1 order by s.s_day desc <!-- limit 10 -->
 	</select>
 
 

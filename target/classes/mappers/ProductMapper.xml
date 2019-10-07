@@ -59,6 +59,7 @@
 		(p_no, b_process, b_setup, b_material, b_etc)
 		VALUES(#{pNo}, #{bProcess}, #{bSetup}, #{bMaterial}, #{bEtc})
 	</insert>
+
 	
 	
 	

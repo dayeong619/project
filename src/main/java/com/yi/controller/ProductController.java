@@ -52,6 +52,31 @@ public class ProductController {
 		model.addAttribute("pmlist", pmlist);
 	}
 	
+	@RequestMapping(value="productSearch", method=RequestMethod.GET)
+	public void productSearch(Model model) throws Exception {
+	
+		List<ProductVO> plist = pservice.selectProductByLine();
+		logger.info("생산리스트다 자 봐라~~~~"+plist);
+		model.addAttribute("plist", plist);                  //생산리스트
+		
+		List<WarehousingVO> wlist = pservice.selectWarehousing();
+		model.addAttribute("wlist", wlist);                  //입고리스트
+		
+		List<GoodsVO> glist = pservice.selectByGoods();      //제품리스트
+		logger.info("제품리스트 야 -> "+glist);
+		model.addAttribute("glist", glist);
+		
+		List<ProductVO> pmlist = pservice.selectByManagementName(); //생산자이름리스트
+		logger.info("pmlist를 봅시다"+pmlist);
+		model.addAttribute("pmlist", pmlist);
+	}
+	
+	
+	
+	
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value="product", method=RequestMethod.POST) 
 	public ResponseEntity<List<ProductVO>> productInsertPOST(@RequestBody ProductVO vo) throws Exception { 

@@ -36,6 +36,23 @@ public class ManagementServiceImpl implements ManagementService {
 		dao.insertWorker(vo);
 	}
 
+	@Override
+	public List<ManagementVO> selectWorkerByWorkerName(String mName) throws Exception {
+		return dao.selectWorkerByWorkerName(mName);
+	}
+
+	@Override
+	public List<ManagementVO> selectByDno() throws Exception {
+		return dao.selectByDno();
+	}
+
+	@Override
+	public void deleteWorkerByMno(int mNo) throws Exception {
+		dao.deleteWorkerByMno(mNo);
+		
+	}
+
+	
 	
 	
 }

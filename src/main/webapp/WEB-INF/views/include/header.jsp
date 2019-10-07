@@ -98,7 +98,11 @@
 		height:3px;
 		border-bottom: 3px solid #ccc;	
 	}
-	
+	#sh{
+		font-size: 25px;
+		padding-left: 30px;
+		color:#ccc;
+	}
 		
 	
 </style>
@@ -118,7 +122,7 @@ $(function(){
 </head>
 	<header>
 		<div id="headerRelative">
-			<div id="logo"><a href="${pageContext.request.contextPath}">SH Company</a></div><!-- 맨 왼쪽에 위치. 회사로고-->
+			<div id="logo"><a href="${pageContext.request.contextPath}"><span id="sh">SH Company</span></a></div><!-- 맨 왼쪽에 위치. 회사로고-->
 				<ul class="menu">
 					<li>
 						제품관리
@@ -138,7 +142,7 @@ $(function(){
 						생산관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/product" class="aa">생산일지</a></li>
-							<li><a href="#" class="aa">생산현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/productSearch" class="aa">생산현황</a></li>
 						</ul>
 					</li>
 					<li>
@@ -152,7 +156,7 @@ $(function(){
 						작업자관리 
 						<ul class="tip">
 							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">사원관리</a></li>
+							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">사원관리or부서관리</a></li>
 						</ul>
 					</li>
 				</ul>

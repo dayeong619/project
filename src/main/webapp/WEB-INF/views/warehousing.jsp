@@ -24,7 +24,7 @@
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 90%;
+		width: 91%;
 	}
 	
 	table td{
@@ -77,7 +77,7 @@
 	}
 	
 	tbody td:nth-child(9){ /* 비고 */
-		width: 382px;
+		width: 390px;
 	}
 	
 	tbody #success, .tableTrs #success2{
@@ -276,7 +276,9 @@
 		border:1px solid darkgray;
 		focus:none;
 	}
-	
+	.classInputColor{
+		background-color: #B0C4DE;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="">
@@ -290,18 +292,6 @@
 				<button class="ClassButtonTop" id="delete">수정취소</button> -->
 	</div>
 		<script>
-			
-			/* $(document).ready(function(){
-				var radio = $("input:radio[name=wResult]").val(); //값이 true 
-				
-				if( radio == false ){
-					$(".result22").attr("checked", true);
-				}
-					
-					
-				
-			})
-		 */
 		
 			$(document).on("click", "button#modify", function(){ /* 수정 클릭시 인풋창 활성화 */
 				/* var radioBtn = $('input:radio[name=wNo]:checked');
@@ -313,25 +303,23 @@
 			
 			})	
 			
+			
+			
 			/* 라뒤오버튼 눌렀을때 배경색 잡는거 */
 			 $(document).on("click", "input:radio[name=wNo]:checked", function(){ 
-				var radioBtn = $('input:radio[name=wNo]:checked');
-				radioBtn.parent().parent().css("background-color","#EAEAEA");
-				radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
-				$("input:radio[name=wNo]").css("background-color","white");
+				 var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
+					radioBtnUnchecked.parent().parent().removeClass("classInputColor");
+					radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor");
+				 var radioBtn = $('input:radio[name=wNo]:checked');
+				
+				radioBtn.parent().parent().addClass("classInputColor");
+				radioBtn.parent().parent().find(".dddd").addClass("classInputColor");
+				/* var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
+				radioBtnUnchecked.parent().parent().removeClass("classInputColor");
+				radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor"); */
+				 
 			})
 			
-			/* $(document).on("click", "input:radio[name=wNo]", function(){ 
-				
-				if($("input:radio[name=wNo]:checked")){
-					var radioBtn = $('input:radio[name=wNo]:checked');
-					radioBtn.parent().parent().css("background-color","#EAEAEA");
-					radioBtn.parent().parent().find(".dddd").css("background-color","#EAEAEA");
-				}else{
-					
-				}
-				
-			})  */
 			 
 			 
 			$("#insert").click(function(){ /* 신규 클릭시 입력창 나옴  */
@@ -535,16 +523,16 @@
 		</div>
 	</div>
 	<div id="modifyView"> <!-- 수정창ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
-		<div id="insertViewBackground">
-			<div id="insertViewTitle">
-				<span id="spaninsert">수입검사등록</span>
-				<input type="submit" value="등록" id="insertViewinsert">
-				<input type="reset" value="취소" id="insertViewReset">
+		<div id="ModifyViewBackground">
+			<div id="ModifyViewTitle">
+				<span id="Modifyspaninsert">수입검사등록</span>
+				<input type="submit" value="등록" id="ModifyViewinsert">
+				<input type="reset" value="취소" id="ModifyViewReset">
 			</div>
-			<div id="insertViewcontent">
+			<div id="ModifyViewcontent">
 				<p>
 					<label>입고일자</label>
-					<input type="Date" name="wDay" id="nowDate" class="insertViewInput">
+					<input type="Date" name="wDay" id="nowModifyDate" class="insertViewInput">
 				</p>
 				<p>
 					<label>제품명</label>
@@ -668,20 +656,6 @@
 </section>
 <script>
 
-	/* 입고일자로 -> 클릭 시 나오는거 */
-/* 	$(document).on("change", "#divDate2 #gNoSearch",function(){
-		var select = $("#gNo").val(); 
-		if(select == 1){
-			$("input[name=startday]").css("display", "inline");
-			$("#spanMM").css("display", "inline");
-			$("#searchInput2").css("display", "inline");
-			$("#divDateSearchBtn").css("display", "inline");	
-		}else{
-			$("#divDate2 #gNo").css("display", "inline");
-			$(".searchButton").css("display", "inline");
-		}
-	})
-	 */
 	
 	function category(e){
 		if(e.value == 1){

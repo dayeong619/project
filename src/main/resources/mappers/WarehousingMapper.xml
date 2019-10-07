@@ -19,7 +19,7 @@
 	<select id="selectWarehousingByAll" resultMap="WarehousingResultMap">
 		select w.w_no, w.w_day, g.g_no, g.g_name, w.w_qy, w.w_result, w.w_memo, w.w_note, w.w_del
 		from warehousing w 
-		left join goods g on w.g_no = g.g_no where w.w_del=1 order by w.w_no desc
+		left join goods g on w.g_no = g.g_no where w.w_del=1 order by w.w_day desc <!-- limit 10 -->
 	</select>
 	
 	<insert id="insertWarehousing" parameterType="WarehousingVO">
@@ -50,7 +50,7 @@
 	<select id="selectWhByWDay" resultMap="WarehousingResultMap"><!-- 날짜로 검색 -->
 		select * from goods g
 		inner join warehousing w on g.g_no = w.g_no 
-		where w_del=1 and w_day between #{startday} and #{endday}
+		where w_del=1 and w_day between #{startday} and #{endday} order by w.w_day
 	</select>
 	
 	<select id="ChartWarehousingByGno" resultMap="WarehousingResultMap"><!-- 차트에 통계 -->

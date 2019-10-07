@@ -12,7 +12,9 @@
 	
 </style>
 <section>
-	
+	<div>
+		출고현황 해야됭
+	</div>
 </section>
 <script>
 	

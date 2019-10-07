@@ -9,7 +9,13 @@
 		height: 800px;
 		background-color: #dfe5e8; /* 전체 배경색  */
 	}
-	
+	#piechart{
+		width:100%;
+		height: 400px;
+	}
+	#for{
+		visibility: hidden;
+	}
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -21,11 +27,11 @@
 		
 		var data = google.visualization.arrayToDataTable([
 			
-	    	['2019', '1', '2', '3', '4'],
-	    	['tle감마', 2000, 1800, 600, 2300],
-	    	['내부제어', 2000, 1800, 200, 2000],
-	    	['신유', 2000, 1800, 200, 2000],
-	    	['내부제어2', 2000, 1800, 200, 2000],
+	    	['2019', 'tle감마', 'GB내부제어', 'TLE신U', 'SLS'],
+	    	['2019/09', 2000, 1800, 600, 2300],
+	    	['2019/08', 2000, 1800, 200, 2000],
+	    	['2019/07', 2000, 1800, 200, 2000],
+	    	['2019/06', 2000, 1800, 200, 2000],
 	  	]);
 	
 	  	var options = {
@@ -44,13 +50,17 @@
 
 </script> 
 <section>
-	<c:forEach items="${lists }" var="l">
+	
+	<div id="for">
+		<c:forEach items="${lists }" var="l">
 		${l.wNo }
 		${l.gNo.gName }
 		${l.wQy }
 	</c:forEach>
-	
-	<div id="piechart"></div>
+	</div>
+	<div></div>
+	<div id="piechart">
+	</div>
 </section>
 <%@ include file="include/footer.jsp" %>
 

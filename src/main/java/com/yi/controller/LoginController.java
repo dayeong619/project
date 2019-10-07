@@ -63,7 +63,7 @@ public class LoginController {
 		
 		loginservice.insertManagement(vo);
 		
-		return "redirect:/";
+		return "redirect:/auth/login";
 	}
 	
 	

@@ -274,19 +274,22 @@
 </style>
 <section>
 	<div class="divTitle2" id="">
-		<div id="left"><h3>수입검사관리</h3></div>
+		<div id="left"><h3>생산현황</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- <button class="ClassButtonTop" id="insert">신규</button>
 			<button class="ClassButtonTop" id="delete">삭제</button>
 			<button class="ClassButtonTop" id="modify">수정</button> -->
 				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
 				<button class="ClassButtonTop" id="delete">수정취소</button> -->
-			<div>
+			<%-- <div>
 				<c:forEach var="plists" items="${plist }">
+					<c:if test="${plists.mNo[0].mName == null }">
+						제품이름없음
+					</c:if>
 					${plists.mNo[0].mName }
 					${plists.bNo}
 				</c:forEach>
-			</div>
+			</div> --%>
 		<script>
 			
 			/* $(document).ready(function(){

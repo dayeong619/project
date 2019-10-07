@@ -25,6 +25,12 @@
 		select *
 		from management 
 	</select>
+	<!-- worker 생산팀만 나오도록 쪼로록  -->
+	<select id="selectByDno" resultMap="ManagementResultMap">
+		select *
+		from management where m_del=1 and d_no=2 order by m_no desc
+	</select>
+	
 	<select id="selectByJoinInformationTwo" resultMap="ManagementResultMap">
 		select m.m_id, m.m_pw, m.m_name, m.m_birth, m.m_email, m.m_tel, m.m_enterday, m.m_photo, d.d_name, t.t_name from department d
 		left join management m on d.d_no = m.d_no
@@ -51,12 +57,24 @@
 	<!-- 작업자관리 에서 작업자등록 -->
 	<insert id="insertWorker" parameterType="ManagementVO">
 		INSERT INTO management
-		(m_name, m_birth, m_tel, m_enterday, m_confirm, d_no, t_no) values
-		(#{mName}, #{mBirth}, #{mTel}, #{mEnterday}, #{mConfirm}, 2, 1)
+		(m_name, m_birth, m_tel, m_enterday, m_confirm, m_addr, d_no, t_no) values
+		(#{mName}, #{mBirth}, #{mTel}, #{mEnterday}, #{mConfirm}, #{mAddr},2, 1)
 	</insert>
 	
-	
-	
+	<!-- worker 이름으로 검색  -->	
+	<select id="selectWorkerByWorkerName" resultMap="ManagementResultMap">
+		select * from management where m_name=#{mName} and m_del=1
+	</select>
+	<update id="deleteWorkerByMno">
+		update management 
+		set m_del=0
+		where m_no = #{mNo}
+	</update>
+	<update id="modifyWorkerByMno">
+		UPDATE management
+		SET m_name=#{mName}, m_birth=#{mBirth}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, m_confirm=#{mConfirm}
+		WHERE m_no=#{mNo}
+	</update>
 	
 	
 	

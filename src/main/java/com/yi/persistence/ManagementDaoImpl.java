@@ -46,6 +46,23 @@ public class ManagementDaoImpl implements ManagementDao {
 	public void insertWorker(ManagementVO vo) throws Exception {
 		sqlSession.insert(namespace+".insertWorker", vo);
 	}
+
+
+	@Override
+	public List<ManagementVO> selectWorkerByWorkerName(String mName) throws Exception {
+		return sqlSession.selectList(namespace+".selectWorkerByWorkerName", mName);
+	}
+
+	@Override
+	public List<ManagementVO> selectByDno() throws Exception {
+		return sqlSession.selectList(namespace+".selectByDno");
+	}
+
+	@Override
+	public void deleteWorkerByMno(int mNo) throws Exception {
+		sqlSession.update(namespace+".deleteWorkerByMno", mNo);
+	}
+
 	
 
 

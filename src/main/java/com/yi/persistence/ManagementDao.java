@@ -12,10 +12,10 @@ public interface ManagementDao {
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception;
 	
 	public void insertWorker(ManagementVO vo) throws Exception;
+	public List<ManagementVO> selectWorkerByWorkerName(String mName) throws Exception;
 	
-	
-	
-	
+	public List<ManagementVO> selectByDno() throws Exception;
+	public void deleteWorkerByMno(int mNo) throws Exception;
 	
 	
 	
