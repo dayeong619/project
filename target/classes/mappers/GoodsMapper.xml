@@ -21,7 +21,9 @@
 		select * from goods where g_del=1 and g_no=#{gNo}
 	</select>	
 	
-	
+	<update id="deleteGood">
+		UPDATE goods SET g_del=0 WHERE g_no=#{gNo}
+	</update>
 	
 	
 	

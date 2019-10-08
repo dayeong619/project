@@ -277,7 +277,7 @@
 		focus:none;
 	}
 	.classInputColor{
-		background-color: #B0C4DE;
+		background-color: #ccc;
 	}
 	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #gNo{
 		height: 27px !important; 
@@ -317,9 +317,6 @@
 				
 				radioBtn.parent().parent().addClass("classInputColor");
 				radioBtn.parent().parent().find(".dddd").addClass("classInputColor");
-				/* var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
-				radioBtnUnchecked.parent().parent().removeClass("classInputColor");
-				radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor"); */
 				 
 			})
 			

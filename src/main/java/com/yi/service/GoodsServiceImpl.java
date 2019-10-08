@@ -24,6 +24,11 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.selectAll(vo);
 	}
 
+	@Override
+	public void deleteGood(int gNo) throws Exception {
+		dao.deleteGood(gNo);
+	}
+
 	
 
 	

@@ -25,6 +25,12 @@ public class GoodsDaoImpl implements GoodsDao {
 	public GoodsVO selectAll(GoodsVO vo) throws Exception {
 		return sqlSession.selectOne(namespace+".selectAll", vo);
 	}
+
+	@Override
+	public void deleteGood(int gNo) throws Exception {
+		sqlSession.update(namespace+".deleteGood", gNo);
+	}
+
 	
 	
 	
