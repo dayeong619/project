@@ -17,6 +17,7 @@ import com.yi.domain.WarehousingVO;
 import com.yi.persistence.DepartmentDao;
 import com.yi.persistence.GoodsDao;
 import com.yi.persistence.ManagementDao;
+import com.yi.persistence.ProductDao;
 import com.yi.persistence.ShipmentDao;
 import com.yi.persistence.TitleDao;
 import com.yi.persistence.WarehousingDao;
@@ -43,7 +44,8 @@ public class EtcTest {
 	@Autowired
 	WarehousingDao wdao;
 	
-	
+	@Autowired
+	ProductDao pdao;
 ////	@Test
 //	public void createTest() throws Exception {
 //		ManagementVO vo  = new ManagementVO();
@@ -126,7 +128,7 @@ public class EtcTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void insertWarehousing() throws Exception{
 		WarehousingVO wvo = new WarehousingVO();
 		GoodsVO gvo = new GoodsVO();
@@ -161,7 +163,11 @@ public class EtcTest {
 //		}
 //	} 
 	
-	
+	@Test
+	public void nextPno() throws Exception {
+		int nextno = pdao.nextPno();
+		System.out.println(nextno);
+	} 
 	
 	
 	

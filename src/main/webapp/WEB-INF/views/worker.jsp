@@ -130,7 +130,6 @@
 	#workname{
 		width: 120px;
 	}
-	
 	#insertView{ /* 신규클릭시 나오는 입고등록 */
 		z-index:100;
 		position:fixed;
@@ -255,7 +254,7 @@
 	.workerView .workerModify{
 		width: 60px;
 		height: 30px;
-		color:white;
+		color:black;
 		background-color: #ccc;
 		border:1px solid gray;
 	}
@@ -281,12 +280,40 @@
 		border:1px solid gray;
 		display: none;
 	}
-	.workerViewBackground{
+	.workerView .workerViewBackground{
 		width: 600px;
 		height: 500px;
 		background-color: white;
 		color:black;
 	}
+	.workerView #spaninsert2{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.workerView .workerViewTitle{
+		height: 50px;
+		padding-top:10px;
+	}
+	.workerView label{
+		width: 200px;
+		height: 50px;
+		display:inline-block;
+	}
+	.workerView .insertViewInput{
+		width:300px; 
+		height: 30px;
+	}
+	.workerView .insertViewcontent{
+		width: 570px;
+		margin-left:10px;
+		padding-left:10px;	
+		padding-top:20px;
+		border-top:2px solid #ccc;	
+		border-bottom:2px solid #ccc;	
+	}
+	
+	
+	
 </style>
 <section>
 	<div class="divTitle2">
@@ -361,14 +388,14 @@
 					<c:forEach var="lists" items="${list}">
 						<tr>
 							<td>
-								<input type="hidden" value="${lists.mNo}">
+								<input type="hidden" name="mNo" value="${lists.mNo}">
 								<div class="mNameClass">${lists.mName}</div>
 								
 		<div class="workerView"> <!-- 작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래작업자볼래 -->
 		<div class="workerViewBackground">
 			<div class="workerViewTitle">
 			
-				<span id="spaninsert">${lists.mName}님 상세보기</span>
+				<span id="spaninsert2">${lists.mName}님 상세보기</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -382,7 +409,7 @@
 				<div>
 					<label>이름</label>
 					<input type="text" name="mName" value="${lists.mName }" disabled="disabled" class="insertViewInput">
-					<input type="hidden" name="wNo" value="${lists.mNo}">
+					<input type="hidden" name="mNo" value="${lists.mNo}">
 				</div>
 				<div>
 					<label>생년월일</label>
@@ -454,20 +481,20 @@
 		
 		
 		for(var i=0; i<res.length; i++){
-			str+= "<tr><td><input type='hidden' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
+			str+= "<tr><td><input type='hidden' name='mNo' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
 			str+= "<div class='workerView'><div class='workerViewBackground'><div class='workerViewTitle'>";
 			str+= "<span id='spaninsert'>"+res[i].mName+"님 상세보기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
 			"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-			str+= "&nbsp;&nbsp;&nbsp;&nbsp;<button class='workerModify'>수정</button><button class='worketModifyCF'>수정확인</button><button class='workerDelete'>삭제</button>";
-			str+= "<button class='workerClose'>닫기</button>";
+			str+= "&nbsp;&nbsp;&nbsp;&nbsp;<button class='workerModify'>수정</button> <button class='worketModifyCF'>수정확인</button> <button class='workerDelete'>삭제</button>";
+			str+= " <button class='workerClose'>닫기</button>";
 			str+= "</div><div class='insertViewcontent'><div>";
-			str+= "<label>이름</label><input type='text' name='mName' value='"+res[i].mName+"' disabled='disabled'>";
-			str+= "<input type='hidden' name='wNo' value='"+res[i].mNo+"'></div><div>";
-			str+= "<label>생년월일</label><input type='text' name='mBirth' value='"+res[i].mBirth+"' disabled='disabled'></div>";
-			str+= "<div><label>연락처</label><input type='text' name='mTel' value='"+res[i].mTel+"' disabled='disabled'></div>";
-			str+= "<div><label>주소</label><input type='text' name='mAddr' value='"+res[i].mAddr+"' disabled='disabled'></div>";
-			str+= "<div><label>등록일</label><input type='date' name='mEnterday' id='nowDate' value='"+res[i].mEnterday+"' disabled='disabled'></div>";
-			str+= "<div><label>작업자인증일</label><input type='date' name='mConfirm' id='nowDate2' value='"+res[i].mConfirm+"' disabled='disabled'></div>";
+			str+= "<label>이름</label><input type='text' name='mName' value='"+res[i].mName+"' disabled='disabled' class='insertViewInput'>";
+			str+= "<input type='hidden' name='mNo' value='"+res[i].mNo+"' class='insertViewInput'></div><div>";
+			str+= "<label>생년월일</label><input type='text' name='mBirth' value='"+res[i].mBirth+"' disabled='disabled' class='insertViewInput'></div>";
+			str+= "<div><label>연락처</label><input type='text' name='mTel' value='"+res[i].mTel+"' disabled='disabled' class='insertViewInput'></div>";
+			str+= "<div><label>주소</label><input type='text' name='mAddr' value='"+res[i].mAddr+"' disabled='disabled' class='insertViewInput'></div>";
+			str+= "<div><label>등록일</label><input type='date' name='mEnterday' id='nowDate' value='"+res[i].mEnterday+"' disabled='disabled' class='insertViewInput'></div>";
+			str+= "<div><label>작업자인증일</label><input type='date' name='mConfirm' id='nowDate2' value='"+res[i].mConfirm+"' disabled='disabled' class='insertViewInput'></div>";
 			str+= "</div></div></div>";
 			str+= "</td>"; //이름
 			str+= "<td>"+res[i].mBirth+"</td>";  //생년월일
@@ -508,7 +535,7 @@
 	
 	$(document).on("click", "#insertViewinsert", function(){ 			/*작업자등록창에서 등록*/
 				var mName = $('input[name=mName]').val(); 
-				var mBirth = $('input[name=mName]').val(); 
+				var mBirth = $('input[name=mBirth]').val(); 
 				var mTel = $('input[name=mTel]').val(); 
 				var mAddr = $('input[name=mAddr]').val();
 				var mEnterday = $('input[name=mEnterday]').val(); 
@@ -555,7 +582,7 @@
 			return;
 		}
 		
-		var mNo = $('input[name=wNo]').val();
+		var mNo = $('input[name=mNo]').val();
 		
 		var json = {mNo:mNo};
 	 	var data = JSON.stringify(json);
@@ -584,19 +611,29 @@
 	})
 	
 	$(document).on("click", ".worketModifyCF", function(){ //작업자 진짜루짜루짜루 수정
-		var mNo = $('input[name=mNo]').val();
-		var mName = $('input[name=mName]').val(); 
-		var mBirth = $('input[name=mName]').val(); 
-		var mTel = $('input[name=mTel]').val(); 
-		var mAddr = $('input[name=mAddr]').val();
-		var mEnterday = $('input[name=mEnterday]').val(); 
-		var mConfirm = $('input[name=mConfirm]').val();
+		
+		var $this = $(this);
+		/* var $class = $(this).parent().next().find(".insertViewInput"); */
+		
+		
+		
+		
+		
+		
+		
+		var mNo = $(this).parent().next().find('input[name=mNo]').val();
+		var mName = $(this).parent().next().find('input[name=mName]').val(); 
+		var mBirth = $(this).parent().next().find('input[name=mBirth]').val(); 
+		var mTel = $(this).parent().next().find('input[name=mTel]').val(); 
+		var mAddr = $(this).parent().next().find('input[name=mAddr]').val();
+		var mEnterday = $(this).parent().next().find('input[name=mEnterday]').val(); 
+		var mConfirm = $(this).parent().next().find('input[name=mConfirm]').val();
 		
 		var json = {mNo:mNo, mName:mName, mBirth:mBirth, mTel:mTel, mAddr:mAddr, mEnterday:mEnterday, mConfirm:mConfirm};
 	 	var data = JSON.stringify(json);
 		
 	 	 $.ajax({
-				url:"warehousing/"+wNo,
+				url:"worker/modify/"+mNo,
 				type:"put",
 				headers:{
 					"Content-Type":"application/json"
@@ -605,8 +642,13 @@
 				dataType:"json",
 				success:function(res){
 					console.log(res);
-					//수정확인버튼 없어지고 인풋 비활성화 시키기 
-					//ㅈwNo 로 넘기는거 맞는지 확인하고 컨트롤러 작성하면 끝임~~~~
+					//수정확인버튼 없어지고 인풋 비활성화 시키기
+					alert("수정되었습니다.");
+					$this.parent().parent().parent().fadeOut(1000);
+					/* $this.css("display", "none");
+					$class.attr("disabled", true); */
+					paint(res); 
+					
 				}
 			})
 	})

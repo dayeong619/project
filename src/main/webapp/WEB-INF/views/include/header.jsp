@@ -122,7 +122,18 @@ $(function(){
 </head>
 	<header>
 		<div id="headerRelative">
-			<div id="logo"><a href="${pageContext.request.contextPath}"><span id="sh">SH Company</span></a></div><!-- 맨 왼쪽에 위치. 회사로고-->
+			<div id="logo">
+			<c:if test="${Auth == null }">
+				<a href="${pageContext.request.contextPath}/auth/login">
+					<span id="sh">SH Company</span>
+				</a>
+			</c:if>
+			<c:if test="${Auth != null }">
+				<a href="${pageContext.request.contextPath}/mypage">
+					<span id="sh">SH Company</span>
+				</a>
+			</c:if>
+			</div><!-- 맨 왼쪽에 위치. 회사로고-->
 				<ul class="menu">
 					<li>
 						제품관리

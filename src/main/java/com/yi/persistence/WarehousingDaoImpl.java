@@ -61,6 +61,11 @@ public class WarehousingDaoImpl implements WarehousingDao {
 	public List<WarehousingVO> ChartWarehousingByGno() throws Exception {
 		return sqlSession.selectList(namespace+".ChartWarehousingByGno");
 	}
+
+	@Override
+	public List<WarehousingVO> selectWGByJoin() throws Exception {
+		return sqlSession.selectList(namespace+".selectWGByJoin");
+	}
 	
 
 

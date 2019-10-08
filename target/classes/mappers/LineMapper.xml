@@ -9,7 +9,9 @@
 		<result property="lLine" column="l_line" />
 	</resultMap>
 	
-	
+	<select id="selectByline" resultMap="LineResultMap">
+		select * from line
+	</select>
 	
 	
 	

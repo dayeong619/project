@@ -12,9 +12,18 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 		width:200px;
 		height:200px;
 		font-size: 10px;
+		border-collapse: collapse;
 	}
-	
-
+	#warehousingTable tbody{
+		height: 100px;
+		overflow: auto;
+	}
+	#wareFont, #wareFont2{
+		color:#4d636f;
+		font-weight: bold;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 </style>
 <body class="w3-theme-l5">
 
@@ -29,7 +38,14 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
         <div class="w3-container">
        	 <c:forEach var="mlists" items="${mlist }">
 	         <h4 class="w3-center">${mlists.mId}님의 정보</h4>
-	         <p class="w3-center"><img src="${pageContext.request.contextPath}/resources/images/${mlists.mPhoto}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+	         <p class="w3-center">
+	         	<c:if test="${mlists.mPhoto == null }">
+					사진없음			         	
+	         	</c:if>
+	         	<c:if test="${mlists.mPhoto != null }">
+	         		<img src="${pageContext.request.contextPath}/resources/images/${mlists.mPhoto}" class="w3-circle" style="height:106px;width:106px" alt="Avatar">
+	         	</c:if>
+	         </p>
 	         <hr>
 	         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ${mlists.mName}</p>
 	         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> ${mlists.dNo.dName} | ${mlists.tNo.tName}</p>
@@ -44,7 +60,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
         <div class="w3-white">
           <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>나의 정보</button>
           <div id="Demo1" class="w3-hide w3-container">
-            <p>정보수정</p>
+            <p><a href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정보수정</a></p>
           </div>
           <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>생산이력</button>
           <div id="Demo2" class="w3-hide w3-container">
@@ -79,7 +95,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       <br>
       
       <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
+      <!-- <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Interests</p>
           <p>
@@ -96,23 +112,35 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
             <span class="w3-tag w3-small w3-theme-l5">Photos</span>
           </p>
         </div>
-      </div>
+      </div> -->
       <br>
       
       <!-- Alert Box -->
-      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+     <!--  <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
           <i class="fa fa-remove"></i>
         </span>
         <p><strong>Hey!</strong></p>
         <p>People are looking at your profile. Find out who.</p>
-      </div>
+      </div> -->
     
     <!-- End Left Column -->
     </div>
     
     <!-- Middle Column -->
     <div class="w3-col m7">
+    
+      <!-- <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">입고현황</h6>
+              <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
+              <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  등록</button> 
+            </div>
+          </div>
+        </div>
+      </div> -->
       
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <span class="w3-right w3-opacity">16 min</span>
@@ -130,13 +158,13 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
        				</tr>
         		</c:forEach>
         	</table>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  등록</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  전체보기</button> 
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> <a href="${pageContext.request.contextPath}/product"> 생산일지 등록하기</a></button> 
+       <!--  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  전체보기</button>  -->
       </div>  
 
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <span class="w3-right w3-opacity">32 min</span>
-        <h4>생산현황(주,야간 같이) 출고현황 연습중</h4><br>
+        <h4>생산라인별로 작업자 그리기 </h4><br>
         <hr class="w3-clear">
 			 <c:forEach var="slists" items="${slist }">
 	          	<p>출고일<fmt:formatDate value="${slists.sDay}" pattern="yyyy-MM-dd"/></p>
@@ -144,14 +172,108 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 				<p>출고품명${slists.pNo[0].wNo.gNo.gName}</p>
 				<p>출고수량${slists.sQy }</p>
           	</c:forEach>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> --> 
       </div> 
       
     <!-- End Middle Column -->
     </div>
     
-    
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p id="wareFont">입고현황</p>
+          <table id="warehousingTable" border="1">
+          	<thead>
+          		<tr>
+          			<td>일자</td>
+          			<td>품명</td>
+          			<td>수량</td>
+          		</tr>
+          	</thead>
+           	<tbody>
+	           	<c:forEach var="i" items="${wlist }" begin="1" end="10" varStatus="status">
+		          	<tr>
+		          		<td>
+		          			<fmt:formatDate value="${i.wDay}" pattern="yyyy-MM-dd"/>	
+						</td>
+		          		<td>${i.gNo.gName }</td>
+		          		<td>${i.wQy }</td>
+		          	</tr>
+	          	</c:forEach>
+          	 </tbody>
+          </table>
+          <br>
+         <p>
+         	<button class="w3-button w3-block w3-theme-l4">
+         		<a href="${pageContext.request.contextPath}/warehousing">입고현황 페이지 가기</a>
+         	</button>
+         </p>
+         <br>
+        </div>
+      </div>
+      <br>
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p id="wareFont2">출고현황</p>
+          <table id="shipmentTable" border="1">
+          <thead>
+          	<tr>
+          		<td>일자</td>
+          		<td>품명</td>
+          		<td>수량</td>
+          	</tr>
+          </thead>
+          <tbody>
+           <c:forEach var="s" items="${slist }" begin="1" end="10" varStatus="status">
+	          	<tr>
+	          		<td>
+	          			<fmt:formatDate value="${s.sDay}" pattern="yyyy-MM-dd"/>
+					</td>
+	          		<td>${s.pNo[0].wNo.gNo.gName }</td>
+	          		<td>${s.sQy }</td>
+	          	</tr>
+          	</c:forEach>
+          	</tbody>
+          </table>
+          <br>	
+      	 	<p>
+      	 		<button class="w3-button w3-block w3-theme-l4">
+      	 			<a href="${pageContext.request.contextPath}/shipment">출고현황 페이지 가기</a>
+      	 		</button>
+      	 	</p>
+      	  <br>
+        </div>
+      </div>
+       <br>
+      <!-- <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <span>Jane Doe</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <br>
+      
+      <!-- <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div> -->
+      <br>
+      
+     <!--  <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <p><i class="fa fa-bug w3-xxlarge"></i></p>
+      </div> -->
+      
+    <!-- End Right Column -->
+    </div>
     
   <!-- End Grid -->
   </div>

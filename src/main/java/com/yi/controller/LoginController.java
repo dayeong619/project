@@ -44,6 +44,8 @@ public class LoginController {
 		dto.setUserid(dbMember.getmId());
 		dto.setUsername(dbMember.getmPw());
 		model.addAttribute("loginDto", dto);
+		
+		
 	}
 	
 	@RequestMapping(value="join", method=RequestMethod.GET) // 회원가입 GET

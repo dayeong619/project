@@ -52,6 +52,11 @@ public class ManagementServiceImpl implements ManagementService {
 		
 	}
 
+	@Override
+	public void modifyWorkerByMno(ManagementVO vo) throws Exception {
+		dao.modifyWorkerByMno(vo);
+	}
+
 	
 	
 	

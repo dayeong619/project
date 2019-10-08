@@ -17,5 +17,6 @@ public interface WarehousingDao {
 	
 	public List<WarehousingVO> ChartWarehousingByGno() throws Exception;
 	
+	public List<WarehousingVO> selectWGByJoin() throws Exception;
 	
 }

@@ -48,7 +48,14 @@ public class HomeController {
 	GoodsService gservice;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request) throws Exception {
+	public String home() throws Exception {
+		logger.info("Welcome home! ");
+		
+		return "redirect:/auth/login";
+	}
+	
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public void mypage(Model model, HttpServletRequest request) throws Exception {
 		logger.info("Welcome home! ");
 		/* Locale locale, 
 		Date date = new Date();
@@ -76,12 +83,7 @@ public class HomeController {
 		logger.info("출고리스트 나가신다 길을 비켜랏"+slist.toString());
 		System.out.println(slist.toString());
 		model.addAttribute("slist", slist);
-		
-		
-		return "home";
 	}
-	
-
 	
 	
 	

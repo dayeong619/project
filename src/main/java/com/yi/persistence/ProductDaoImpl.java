@@ -55,6 +55,16 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSession.selectList(namespace+".selectProductByLine");
 	}
 
+	@Override
+	public int nextPno() {
+		return sqlSession.selectOne(namespace+".nextPno");
+	}
+
+	@Override
+	public List<ProductVO> selectMnoWnoPqyByProduct() throws Exception {
+		return sqlSession.selectList(namespace+".selectMnoWnoPqyByProduct");
+	}
+
 	
 	
 

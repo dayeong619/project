@@ -6,7 +6,6 @@
 	<resultMap type="ProductVO" id="ProductStandard">
 		<result property="pNo" column="p_no" />
 		<result property="pWorkday" column="p_workday" />
-		<result property="pWorkname" column="p_workname" />
 		<result property="pWorktime" column="p_worktime" />
 		<result property="pQy" column="p_qy" />
 		<result property="pNote" column="p_note" />
@@ -14,9 +13,9 @@
 		<result property="pDel" column="p_del"/>
 	</resultMap>
 	<resultMap type="ProductVO" id="ProductResultMap" extends="ProductStandard">
-		<collection property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
-		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
-		<collection property="lNo" resultMap="com.yi.mapper.LineMapper.LineResultMap"/>
+		<association property="wNo" resultMap="com.yi.mapper.WarehousingMapper.WarehousingResultMap"/>
+		<association property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
+		<association property="lNo" resultMap="com.yi.mapper.LineMapper.LineResultMap"/>
 	</resultMap>
 	<resultMap type="ProductVO" id="ProductByManagement" extends="ProductStandard">
 		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
@@ -39,10 +38,7 @@
 		select * from management m left join product p on m.m_no = p.p_no where m_del=1
 	</select>
 	
-	<insert id="insertProduct" parameterType="ProductVO">
-		insert into product (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section) VALUES
-		(#{wNo.wNo}, #{pWorkday}, #{lNo.lNo}, #{mNo.mNo}, #{pWorktime}, #{pQy}, #{pNote}, #{pSection})
-	</insert>
+	
 	
 	<select id="selectProductByLine" resultMap="ProductResultMap">
 		select l.l_no, l.l_line from product p 
@@ -54,12 +50,31 @@
 		right join management m on p.p_no = m.m_no
 	</select>
 	
+	<!-- product에서 생산일지등록 -->
 	<insert id="insertBadness" parameterType="ProductVO">
-		insert into badness 
-		(p_no, b_process, b_setup, b_material, b_etc)
+		insert into badness (p_no, b_process, b_setup, b_material, b_etc)
 		VALUES(#{pNo}, #{bProcess}, #{bSetup}, #{bMaterial}, #{bEtc})
 	</insert>
-
+	<insert id="insertProduct" parameterType="ProductVO"><!-- 상세보기할 때 그대로 쓰기. -->
+		INSERT INTO product (p_no, p_workday, p_section, m_no, l_no, w_no, p_worktime, p_qy, p_note)
+		VALUES(#{pNo},#{pWorkday}, #{pSection}, #{mNo.mNo}, #{lNo.lNo}, #{wNo.wNo}, #{pWorktime}, #{pQy}, #{pNote})
+	</insert>
+	<select id="nextPno" resultType="int"><!-- autoincrement 다음값 알아내긔 -->
+		select max(p_no)+1 from product
+	</select>
+	<select id="selectMnoWnoPqyByProduct" resultMap="ProductResultMap">
+		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy
+		from product p 
+		left join line l on p.l_no = l.l_no
+		left join management m on p.m_no = m.m_no
+		left join warehousing w on p.w_no = w.w_no
+		left join goods g on w.g_no = g.g_no
+		left join badness b on p.p_no = b.p_no 
+ 	 	where exists (select l_no from line where l_no =l.l_no) order by l_no
+	</select>
+	
+	
+	
 	
 	
 	

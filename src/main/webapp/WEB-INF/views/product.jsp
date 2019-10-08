@@ -31,120 +31,84 @@
 	table td{
 		border:1px solid black;
 	}
-	thead td:nth-child(1){ /* 라인 */
-		width: 41px;
+	.tableTrs {
+    	background-color: #7d97a5;
+    	color: white;
+    	font-size:20px;
+    	height: 40px;
 	}
-	thead td:nth-child(2){ /* 성명 */
-		width: 80px;
+	thead td:nth-child(1){ 
+		width: 100px;
 	}
-	thead td:nth-child(3){ /* 품명 */
+	thead td:nth-child(2){ 
 		width: 140px;
 	}
-	thead td:nth-child(4){ /* 작업시간 */
+	thead td:nth-child(3){ 
 		width: 140px;
 	}
-	thead td:nth-child(5){ /* 생산수량 */
+	thead td:nth-child(4){
 		width: 140px;
 	}
-	thead td:nth-child(6){ /* 불량내역 */
+	thead td:nth-child(5){ 
 		width: 140px;
 	}
-	thead td:nth-child(7){ /* 비고 */
-		width: 400px;
+	thead td:nth-child(6){ 
+		width: 140px;
+	}
+	thead td:nth-child(7){ 
+		width: 140px;
 	}
 	thead td:nth-child(8){ 
-		width: 300px;
+		width: 140px;
 	}
 	thead td:nth-child(9){ 
-		width: 200px;
+		width: 140px;
 	}
-	thead tr:nth-child(2) td:nth-child(1){
-		width: 40px;
+	thead td:nth-child(10){ 
+		width: 140px;
 	}
-	thead tr:nth-child(2) td:nth-child(2){
-		width: 40px;
+	/* 추가될 라인에 대해서 */
+	thead td:nth-child(11){ 
+		width: 140px;
 	}
-	thead tr:nth-child(2) td:nth-child(3){
-		width: 40px;
-	}
-	thead tr:nth-child(2) td:nth-child(4){
-		width: 40px;
-	}
-	
 	tbody td:nth-child(1) {                           /* 여기서부터 tbody */
-		width: 47px;
+		width: 100px;
 	}
-	
-	tbody td:nth-child(2) select{ 
-		width: 93px;
-		visibility: hidden;
+	tbody td:nth-child(2){ 
+		width: 140px;
 	}
-	
-	tbody td:nth-child(3) select{ 
-		width: 163px;
-		visibility: hidden
+	tbody td:nth-child(3){ 
+		width: 140px;
 	}
-	tbody td:nth-child(4) select{ 
-		width: 163px;
-		visibility: hidden
+	tbody td:nth-child(4){ 
+		width: 140px;
 	}
-	tbody td:nth-child(4) input{ /* 품명 */
-		width: 163px;
+	tbody td:nth-child(5){ 
+		width: 140px;
 	}
-	tbody td:nth-child(5) input{ /* 입고수량 */
-		width: 163px;
+	tbody td:nth-child(6){ 
+		width: 140px;
 	}
-	tbody td:nth-child(6) input{ 
-		width: 163px;
+	tbody td:nth-child(7){
+		width: 140px;
 	}
-	tbody td:nth-child(7) input{ /* 불량 */
-		width: 56px;
+	tbody td:nth-child(8){ 
+		width: 140px;
 	}
-	tbody td:nth-child(8) input{ 
-		width: 56px;
+	tbody td:nth-child(9){ 
+		width: 140px;
 	}
-	tbody td:nth-child(9) input{ 
-		width: 56px;
-	}
-	tbody td:nth-child(10) input{ 
-		width: 56px;
-	}
-	tbody td:nth-child(11){ 
-		width: 130px;
-	}
-	tbody td:nth-child(12){ 
-		width: 200px;
-	}
-	tbody .badnessInput{
-		width:56px; 
-		height:60px;
-		border:none;
-		background-color: white;
-		text-align: center;
-	}
-	tbody tr td:nth-child(2) select{
-		width: 93px;
-	}
-	
-	tbody .success{
-		width: 80px;
-	}
-	tbody select{
-		-webkit-appearance: none;  /* 네이티브 외형 감추기 */
-    	-moz-appearance: none;
-    	appearance: none;
+	tbody td:nth-child(10){ 
+		width: 140px;
 	}
 	.divTitle{ 
 		width:85%;
 		height: 50px;
 		margin:0 auto;
-		
 	}
-	#sectionOne{
-		width:95%;
-		border-top:2px solid #ccc;
-		border-bottom:2px solid #ccc;
-		background-color: white;
+	.divTitle2 h3{
+		margin-left:160px;
+		display: inline;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
@@ -154,230 +118,321 @@
 	#left{
 		overflow:hidden;
 		float: left;
-		width: 900px;
+		width: 100%;
 		padding-top:15px;
 	}
-	#divDate2{
-		width: 100%;
-		height: 50px;
-		padding-left:20px;
-		line-height:50px;
-	} 
-	#divDate ul, #divDate2 ul{
-		list-style: none;
-		float: left;
-		overflow: hidden;
-		width:100%;
-	}
-	#divDate ul li{
-		width: 10%;
-	}
-	 #divDate2 ul li{
-	 	width: 10%;
-	 }
-	.imgLoupe{
-		width: 15px;
-		height: 15px;
-	}
-	.dddd{
+
+	
+	/* .dddd{ 인풋쓸꺼면 넣으면됨
 		height: 60px;
 		border:none;
 		background-color: white;
 		text-align: center;
-	}	
-	table thead #tabletdtd{ /* 불량발생시 조치 */
-		color:red;
-		font-size: 13px;
-	}
-	.tableTrs{
-		background-color: #7d97a5;
-		color:white;
-		height: 30px;
-	}
-	#workname{
-		width: 120px;
-	}
-	
-	#pagepage{
-		position:absolute;
-		bottom:150px;
-		left:700px;
-	}
-	
-	.ClassButtonTop{ /* 크기조정 */
-		width: 60px;
-		height: 30px;
-		margin-top:10px;
-	}
-	.ClassButtonTop button#insert{
-		background-color:#0082a8;
-	}
-	.searchButton{
-		width: 60px;
-		height: 30px;
-	}
-	
-	#tableScroll select{
-		-webkit-appearance: none;  /* 네이티브 외형 감추기 */
-    	-moz-appearance: none;
-    	appearance: none;
-	}
-	#input2css{
-		font-size: 11px;
-	}
-	 .timeBox {
-        text-align:center;
-        width:60px;    
-    }
-	#BtnInsertConfirm{
+	} */
 		
+	#insertView{ /* 신규클릭시 나오는 입고등록 */
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:80px;
+		width:100%;
+		height: 71%;
+		background: rgba(0,0,0,0.7);
+		padding:60px 500px;
+		display: none;
+		color:#D5D5D5;
+	}
+	#insertViewBackground{
+		width: 600px;
+		height: 650px;
+		background-color: white;
+		color:black;
+	}
+	#spaninsert{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	#insertViewTitle{
+		height: 50px;
+		padding-left:10px;
+		padding-top:10px;
+	}
+	#insertView #insertViewinsert{
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
+	#insertView #insertViewReset{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:white;
+		border:1px solid #ccc;
+	}
+	#insertView label{
+		width: 200px;
+		height: 50px;
+		display:inline-block;
+		
+	}
+	#insertView .insertViewInput{
+		width:200px; 
+		height: 30px;
+	}
+	#insertViewcontent{
+		width: 570px;
+		margin-left:10px;
+		padding-left:10px;	
+		border-top:2px solid #ccc;	
+		border-bottom:2px solid #ccc;	
+	}
+	#insertView textarea{
+		width: 340px !important;
+		height: 70px !important;
+	}
+	#insertViewcontent select{
+		width: 204px;
+		height: 34px;
+	}
+	#BadnessTable {
+		height: 100px;	
+	}
+	#BadnessTable .BadnessTableInput{
+		width: 50px;
+	}
+	#BadnessTable tr:nth-child(1) td:nth-child(1), #BadnessTable tr:nth-child(1) td:nth-child(2), #BadnessTable tr:nth-child(1) td:nth-child(3){
+		width: 70px;
+		border:1px solid #ccc;
+	}
+	#BadnessTable tr:nth-child(1) td:nth-child(4){
+		width: 70px;
+		border:1px solid #ccc;
+	}
+	#pBadness{
+		display: inline;
 	}
 </style>
 <section>
-	<div class="divTitle2" id="">
-		<div id="left"><h3>생산일지</h3></div>
+	<div class="divTitle2" id="left">
+		<h3>생산일지</h3>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button id="productInsert">등록</button>
 	</div>
 	<div class="divTitle">
-		<div id="sectionOne">
-			<div id="divDate2">
-				생산일자 <input type="date" id="nowDate" name="pWorkday">
-				<script>
-					document.getElementById("nowDate").valueAsDate = new Date();
-				</script>
-					&nbsp;&nbsp;&nbsp;&nbsp;구분
-					<select name="pSection">
-						<option value="1">주간</option>
-						<option value="0">야간</option>
+		<div id="insertView"> <!-- 신규창 -->
+		<div id="insertViewBackground">
+			<div id="insertViewTitle">
+				<span id="spaninsert">생산일지등록</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="reset" value="취소" id="insertViewReset">
+			</div>
+			<div id="insertViewcontent">
+				<p>
+					<label>입고일자</label>
+					<input type="Date" name="pWorkday" id="nowDate" class="insertViewInput">
+				</p>
+				<p>
+					<label>구분</label>
+					<input type="radio" id="radio1" name="pSection" value="true" checked="checked">주간
+					&nbsp;&nbsp;&nbsp;
+					<input type="radio" id="radio0" name="pSection" value="false">야간
+				</p>
+				<p>
+					<label>작업자</label>
+					<select name="mNo" class="insertViewInput">
+						<c:forEach items="${mlist }" var="m">
+							<option value="${m.mNo }">${m.mName }</option>
+						</c:forEach>
 					</select>
-					<!-- 연습공간 -->
-			</div> 
+				</p>
+				<p>
+					<label>라인</label>
+					<select name="lNo" class="insertViewInput">
+					<c:forEach var="L" items="${Llist }">
+							<option value="${L.lNo }">${L.lLine }</option>
+						</c:forEach>
+					</select>
+				</p>
+				<p>
+					<label>제품명</label>
+					<!-- <input type="text" name="gName" class="insertViewInput"> -->
+					<select class="insertViewInput" name="wNo">
+						<c:forEach var="w" items="${wList }">
+							<option value="${w.wNo}">${w.gNo.gName} (입고번호:W${w.wNo})</option>
+						</c:forEach>
+					</select>
+				</p>
+				<p>
+					<label>작업시간</label>
+					<input type="text" name="pWorktime" class="insertViewInput" value="08:00-20:00">
+				</p>
+				<p>
+					<label>생산수량</label>
+					<input type="text" name="pQy" class="insertViewInput">
+				</p>
+				<p>
+					<label>비고</label>
+					<textarea name="pNote" class="insertViewInput"></textarea>
+				</p>
+				<p id="pBadness">*불량발생 시 입력</p>
+				<table id="BadnessTable">
+					<tr>
+						<td>가공불량</td>
+						<td>셋업불량</td>
+						<td>소재불량</td>
+						<td>기타불량</td>
+					</tr>
+					<tr>
+						<td><input type="text" name="bProcess" class="BadnessTableInput" value="0"></td>
+						<td><input type="text" name="bSetup" class="BadnessTableInput" value="0"></td>
+						<td><input type="text" name="bMaterial" class="BadnessTableInput" value="0"></td>
+						<td><input type="text" name="bEtc" class="BadnessTableInput" value="0"></td>
+					</tr>
+				</table>
+			</div>
 		</div>
+	</div>
 	</div>
 		<div class="divTitle2" id="tableBackGround"><!-- 테이블 시작 div -->
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td rowspan="2">라인</td>
-						<td rowspan="2">성명</td>
-						<td rowspan="2">입고번호</td>
-						<td rowspan="2">품명</td>
-						<td rowspan="2">작업 시간</td>
-						<td rowspan="2">생산 수량</td>
-						<td colspan="4">불량 내역 <span id="tabletdtd">*불량 발생시 표기</span></td>
-						<td rowspan="2">비고</td>
-						<td rowspan="2"></td>
-					</tr>
-					<tr class="tableTrs">
-						<td>가공</td>
-						<td>셋업</td>
-						<td>소재</td>
-						<td>기타</td>
+						<td>날짜</td>
+						<c:forEach var="L" items="${Llist }">
+							<td data-lno="${L.lNo }">${L.lLine }</td>
+						</c:forEach>
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
-					<c:forEach var="plists" items="${plist}">
+					<c:forEach items="${plist }" var="p">
 						<tr>
-							<td><!-- 라인-->
-								${plists.lNo[0].lLine}
-								<input type="hidden" name="lNo" value="${plists.lNo[0].lNo}">
-							</td>
-							<td><!-- 성명 -->
-								<select id="mNo" disabled class="dddd" >
-									<option>선택하세요</option>
-									<c:forEach var="p" items="${pmlist}">
-										<option value="${p.mNo[0].mNo }">${p.mNo[0].mName}</option>
-									</c:forEach>
-								</select>
+							<td>
+								<fmt:formatDate value="${p.pWorkday }" pattern="yyyy-MM-dd"/>
 							</td>
 							<td>
-								<!-- 입고번호랑 +품명 = set
-								수량은 내가 입력할수 있어야 함. -->
-								<select id="wNo" class="dddd" disabled> 
-									<c:forEach items="${wlist }" var="w">
-										<option value="${w.wNo }">W00${w.wNo }</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td><!-- 품명 -->
-								<select id="gNo" disabled class="dddd">
-									<option>선택하세요</option>
-									<c:forEach var="g" items="${glist}">
-										<option value="${g.gNo}">${g.gName}</option>
-									</c:forEach>
-								</select>
-							</td>
-							<td><!-- 작업시간 -->
-								<input type="text" name="pWorktime" class="dddd" disabled="disabled">
-							</td>
-							<td><!-- 생산수량 -->
-								<input type="text" name="pQy" id="result1" class="dddd" disabled="disabled" >
-							</td>
-							<td><!-- 가공 -->
-								<input type="text" name="bProcess" id="result2" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 셋업 -->
-								<input type="text" name="bSetup" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 소재 -->
-								<input type="text" name="bMaterial" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 기타 -->
-								<input type="text" name="bEtc" id="result2" class="badnessInput" disabled="disabled">
-							</td>
-							<td><!-- 비고 -->
-								<input type="text" name="pNote" id="result2" class="dddd" disabled="disabled">
+								<c:if test="${p.lNo.lNo == 1}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
 							</td>
 							<td>
-								<button class="BtnInsert">등록</button>
-								<button id="BtnInsertConfirm">등록확인</button>
-								<button class="BtnDelete">삭제</button>
-								<button class="BtnModify">수정</button>
+								<c:if test="${p.lNo.lNo == 2}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
 							</td>
-						</tr>
-					</c:forEach>	
+							<td>
+								<c:if test="${p.lNo.lNo == 3}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 4}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 5}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 6}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 7}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 8}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							<td>
+								<c:if test="${p.lNo.lNo == 9}">
+									${p.mNo.mName }<br>
+									${p.wNo.gNo.gName }<br>	
+									${p.pQy }
+								</c:if>
+							</td>
+							</tr>
+							</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		
 </section>
 <script>
-	$(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때.
+/* $(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때.
+
+$(this).parent().parent().find(".dddd").removeAttr("disabled");
+$(this).parent().parent().find(".badnessInput").removeAttr("disabled");
+$(this).parent().parent().find(".dddd").css("background-color", "#F0F8FF");
+$(this).parent().parent().find(".badnessInput").css("background-color", "#F0F8FF");
+$(this).parent().parent().find("td:nth-child(1)").css("background-color", "#F0F8FF");
+$(this).parent().parent().find("td:nth-child(2) select").css("visibility", "visible");
+$(this).parent().parent().find("td:nth-child(3) select").css("visibility", "visible");
+$(this).parent().parent().find("td:nth-child(4) select").css("visibility", "visible");
+$(this).parent().parent().find("td:nth-child(5) input").attr("value", "08:00-20:00");
+$(this).parent().parent().find("td:last-child").css("background-color", "#F0F8FF");
+$(this).parent().parent().find("#mNo").focus();
+$(this).hide(); //누른 등록버튼은 사라져랏
+$(this).next("#BtnInsertConfirm").css("display", ""); //---------------------등록확인버튼 나타나야 되는데 아직 수정해야됨
+
+}) */
+
+	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
+		document.getElementById("nowDate").valueAsDate = new Date();
 		
-		$(this).parent().parent().find(".dddd").removeAttr("disabled");
-		$(this).parent().parent().find(".badnessInput").removeAttr("disabled");
-		$(this).parent().parent().find(".dddd").css("background-color", "#F0F8FF");
-		$(this).parent().parent().find(".badnessInput").css("background-color", "#F0F8FF");
-		$(this).parent().parent().find("td:nth-child(1)").css("background-color", "#F0F8FF");
-		$(this).parent().parent().find("td:nth-child(2) select").css("visibility", "visible");
-		$(this).parent().parent().find("td:nth-child(3) select").css("visibility", "visible");
-		$(this).parent().parent().find("td:nth-child(4) select").css("visibility", "visible");
-		$(this).parent().parent().find("td:nth-child(5) input").attr("value", "08:00-20:00");
-		$(this).parent().parent().find("td:last-child").css("background-color", "#F0F8FF");
-		$(this).parent().parent().find("#mNo").focus();
-		$(this).hide(); //누른 등록버튼은 사라져랏
-		$(this).next("#BtnInsertConfirm").css("display", ""); //---------------------등록확인버튼 나타나야 되는데 아직 수정해야됨
+		$("#insertView").fadeIn(300);
+	})
+	$(document).on("click", "#insertViewReset", function(){ //작업일 등록할 창에서 취소 눌러
+		$("#insertView").fadeOut(300);
 		
 	})
 	
-	
-	$(document).on("click", "#BtnInsertConfirm", function(){ //등록확인 버튼 눌렀을 때 
-		var $this = $(this);
-		var pWorkday = $("select[name=pWorkday]").val(); //일자
-		var pSection = $("select[name=pSection]").val();//구분 주/야
-		var lNo = $("input[name=lNo]").val(); //해당라인
-		var mNo = $("#mNo option:selected").val(); //성명 번호
-		var gNo = $("#gNo option:selected").val(); //픔명 번호
-		var pWorktime = $("input[name=pWorktime]").val(); //작업시간
-		var pQy = $("input[name=pQy]").val(); //생산수량
-		var bProcess = $("input[name=bProcess]").val();//가공
-		var bSetup = $("input[name=bSetup]").val();//셋업
-		var bMaterial = $("input[name=bMaterial]").val();//소재
-		var bEtc = $("input[name=bEtc]").val();//기타
-		var pNote = $("input[name=pNote]").val();//비고
-		var wNo = $("input[name=wNo]").val(); //입고번호가 필요함
+	$(document).on("click", "#insertViewinsert", function(){ //작업일 등록할 창에서 등록 눌렀어
+		var $this = $(this); //등록버튼
 		
-		var json = {wNo:{wNo:wNo}, pWorkday:pWorkday, lNo:{lNo:lNo}, mNo:{mNo:mNo}, pWorktime:pWorktime, pQy:pQy, pNote:pNote, pSection:pSection, bProcess:bProcess, bSetup:bSetup, bMaterial:bMaterial, bEtc:bEtc};
+		var pWorkday = $this.parent().parent().find("#insertViewcontent").find('input[name=pWorkday]').val(); //일자
+		var pSection = $this.parent().parent().find("#insertViewcontent").find('input:radio[name=pSection]:checked').val();//구분 주/야
+		var mNo = $this.parent().parent().find("#insertViewcontent").find('select[name=mNo]').val(); //성명 번호
+		var lNo = $this.parent().parent().find("#insertViewcontent").find('select[name=lNo]').val(); //해당라인
+		var wNo = $this.parent().parent().find("#insertViewcontent").find('select[name=wNo]').val(); //픔명 번호
+		var pWorktime = $this.parent().parent().find("#insertViewcontent").find('input[name=pWorktime]').val(); //작업시간
+		var pQy = $this.parent().parent().find("#insertViewcontent").find('input[name=pQy]').val(); //생산수량
+		var pNote = $this.parent().parent().find("#insertViewcontent").find('textarea[name=pNote]').val();//비고
+		
+		var bProcess = $this.parent().parent().find("#insertViewcontent").find('input[name=bProcess]').val();//가공
+		var bSetup = $this.parent().parent().find("#insertViewcontent").find('input[name=bSetup]').val();//셋업
+		var bMaterial = $this.parent().parent().find("#insertViewcontent").find('input[name=bMaterial]').val();//소재
+		var bEtc = $this.parent().parent().find("#insertViewcontent").find('input[name=bEtc]').val();//기타
+		
+		var json = {pWorkday:pWorkday, pSection:pSection,mNo:{mNo:mNo},lNo:{lNo:lNo},wNo:{wNo:wNo},pWorktime:pWorktime,pQy:pQy,pNote:pNote,bProcess:bProcess,bSetup:bSetup,bMaterial:bMaterial,bEtc:bEtc}; 
 		var data = JSON.stringify(json);
 		
 		$.ajax({
@@ -390,7 +445,7 @@
 			dataType:"json",
 			success:function(res){
 				console.log(res);
-				$this.hide();	
+				$this.parent().parent().parent().hide();	
 			}
 		})
 		

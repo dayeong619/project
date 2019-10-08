@@ -16,7 +16,7 @@ public interface ManagementDao {
 	
 	public List<ManagementVO> selectByDno() throws Exception;
 	public void deleteWorkerByMno(int mNo) throws Exception;
-	
+	public void modifyWorkerByMno(ManagementVO vo) throws Exception;
 	
 	
 }

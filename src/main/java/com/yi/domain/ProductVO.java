@@ -1,15 +1,13 @@
 package com.yi.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class ProductVO {
 	private int pNo;
 	private WarehousingVO wNo;
 	private Date pWorkday;
-	private List<LineVO> lNo;
-	private String pWorkname;
-	private List<ManagementVO> mNo;
+	private LineVO lNo;
+	private ManagementVO mNo;
 	private String pWorktime;
 	private int pQy;
 	private String pNote;
@@ -45,22 +43,17 @@ public class ProductVO {
 	public void setpWorkday(Date pWorkday) {
 		this.pWorkday = pWorkday;
 	}
-	public List<LineVO> getlNo() {
+	
+	public LineVO getlNo() {
 		return lNo;
 	}
-	public void setlNo(List<LineVO> lNo) {
+	public void setlNo(LineVO lNo) {
 		this.lNo = lNo;
 	}
-	public String getpWorkname() {
-		return pWorkname;
-	}
-	public void setpWorkname(String pWorkname) {
-		this.pWorkname = pWorkname;
-	}
-	public List<ManagementVO> getmNo() {
+	public ManagementVO getmNo() {
 		return mNo;
 	}
-	public void setmNo(List<ManagementVO> mNo) {
+	public void setmNo(ManagementVO mNo) {
 		this.mNo = mNo;
 	}
 	public String getpWorktime() {
@@ -117,13 +110,14 @@ public class ProductVO {
 	public void setbEtc(int bEtc) {
 		this.bEtc = bEtc;
 	}
-	
 	@Override
 	public String toString() {
-		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo + ", pWorkname="
-				+ pWorkname + ", mNo=" + mNo + ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote
-				+ ", pSection=" + pSection + ", pDel=" + pDel + ", sNo=" + sNo + ", bProcess부터=" + bProcess+bSetup+bMaterial+bEtc+ "]";
+		return "ProductVO [pNo=" + pNo + ", wNo=" + wNo + ", pWorkday=" + pWorkday + ", lNo=" + lNo + ", mNo=" + mNo
+				+ ", pWorktime=" + pWorktime + ", pQy=" + pQy + ", pNote=" + pNote + ", pSection=" + pSection
+				+ ", pDel=" + pDel + ", sNo=" + sNo + ", bProcess=" + bProcess + ", bSetup=" + bSetup + ", bMaterial="
+				+ bMaterial + ", bEtc=" + bEtc + "]";
 	}
+	
 	
 	
 	

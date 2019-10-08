@@ -63,6 +63,11 @@ public class ManagementDaoImpl implements ManagementDao {
 		sqlSession.update(namespace+".deleteWorkerByMno", mNo);
 	}
 
+	@Override
+	public void modifyWorkerByMno(ManagementVO vo) throws Exception {
+		sqlSession.update(namespace+".modifyWorkerByMno", vo);
+	}
+
 	
 
 

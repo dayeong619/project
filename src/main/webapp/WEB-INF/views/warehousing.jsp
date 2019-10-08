@@ -279,6 +279,9 @@
 	.classInputColor{
 		background-color: #B0C4DE;
 	}
+	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #gNo{
+		height: 27px !important; 
+	}
 </style>
 <section>
 	<div class="divTitle2" id="">
@@ -483,6 +486,10 @@
 		<div id="insertViewBackground">
 			<div id="insertViewTitle">
 				<span id="spaninsert">수입검사등록</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="등록" id="insertViewinsert">
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
@@ -575,10 +582,10 @@
 				<option value="2">제품명</option>
 			</select>
 			
-				<input type="date" id="searchInput" name="startday" placeholder="시작날짜"> 
+				&nbsp;&nbsp;<input type="date" id="searchInput" name="startday" placeholder="시작날짜"> 
 				<span id="spanMM">~</span> 
 				<input type="date" id="searchInput2" name="endday">
-				<button class="searchButton1" id="divDateSearchBtn">조회</button>
+				<button class="searchButton1" id="divDateSearchBtn">검색</button>
 		
 		
 				<select id="gNo">
@@ -587,7 +594,7 @@
 							<option value="${glists.gNo}">${glists.gName}</option>
 						</c:forEach>
 					</select>
-				<button class="searchButton">조회</button>	
+				<button class="searchButton">검색</button>	
 		
 					
 							

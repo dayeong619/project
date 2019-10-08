@@ -35,8 +35,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			session.setAttribute("Auth", loginDto); //그 사람의 아이디랑 비번 저장됨.
 			
 			Object dest = session.getAttribute("dest");
-			String path = (dest != null) ? (String) dest : request.getContextPath();
-			
+			String path = (dest != null) ? (String) dest :request.getContextPath()+"/mypage";
+			//mypage로 간당 로그인 됬으면
 			
 			response.sendRedirect(path); //home컨트롤러에 return값으로 감.
 		}else { //로그인 실패했을때

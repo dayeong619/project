@@ -14,4 +14,7 @@ public interface ProductDao {
 	public List<ProductVO> selectByGoodsName() throws Exception;
 	public List<ProductVO> selectProductByLine() throws Exception;
 	
+	public int nextPno();
+	
+	public List<ProductVO> selectMnoWnoPqyByProduct() throws Exception;
 }

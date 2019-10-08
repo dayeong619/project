@@ -75,10 +75,7 @@
 		SET m_name=#{mName}, m_birth=#{mBirth}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, m_confirm=#{mConfirm}
 		WHERE m_no=#{mNo}
 	</update>
-	
-	
-	
-	
+
 	
 	
 	

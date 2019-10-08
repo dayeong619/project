@@ -79,7 +79,7 @@ public class WorkerController {
 		return entity;
 	}
 	
-	//번호로 상세보기 selectDetailByMno
+	//작업자 삭제
 	@ResponseBody
 	@RequestMapping(value="worker/{mNo}", method=RequestMethod.PUT)
 	public ResponseEntity<List<ManagementVO>> deleteWorkerByMno(@PathVariable("mNo") int mNo){ 
@@ -98,6 +98,25 @@ public class WorkerController {
 		return entity;
 	}
 	
+	//작업자 수정
+	@ResponseBody
+	@RequestMapping(value="worker/modify/{mNo}", method=RequestMethod.PUT)
+	public ResponseEntity<List<ManagementVO>> modifyWorkerByMno(@PathVariable("mNo") int mNo, @RequestBody ManagementVO vo){ 
+		logger.info("modifyWorkerByMno--> 수정할 번호는 "+mNo);
+		logger.info("vo를 보여줄게"+vo.toString());
+		ResponseEntity<List<ManagementVO>> entity = null;
+		vo.setmNo(mNo);
+		
+		try {
+			 mservice.modifyWorkerByMno(vo);
+			 List<ManagementVO> mlist = mservice.selectByDno();
+			entity = new ResponseEntity<List<ManagementVO>>(mlist, HttpStatus.OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); //400 error
+		}
+		return entity;
+	}
 	
 	
 	
