@@ -78,6 +78,11 @@ public class ManagementDaoImpl implements ManagementDao {
 		return sqlSession.selectList(namespace+".selectThreeJoinByDno", dNo);
 	}
 
+	@Override
+	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception {
+		return sqlSession.selectList(namespace+".selectThreeJoinByDname", dName);
+	}
+
 
 	
 

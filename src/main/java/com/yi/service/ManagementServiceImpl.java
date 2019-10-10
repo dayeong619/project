@@ -89,6 +89,11 @@ public class ManagementServiceImpl implements ManagementService {
 		return dao.selectThreeJoinByDno(dNo);
 	}
 
+	@Override
+	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception {
+		return dao.selectThreeJoinByDname(dName);
+	}
+
 	
 	
 }

@@ -19,4 +19,6 @@ public interface ManagementDao {
 	public void modifyWorkerByMno(ManagementVO vo) throws Exception;
 	public void modifyEmployee(ManagementVO vo) throws Exception;
 	public List<ManagementVO> selectThreeJoinByDno(int dNo) throws Exception;
+	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception;
+	
 }

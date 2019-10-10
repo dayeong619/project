@@ -23,5 +23,5 @@ public interface ManagementService {
 	public List<TitleVO> selectAllTitle() throws Exception;
 	public void modifyEmployee(ManagementVO vo) throws Exception;
 	public List<ManagementVO> selectThreeJoinByDno(int dNo) throws Exception;
-	
+	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception;
 }

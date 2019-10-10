@@ -84,6 +84,22 @@ public class ManagementController {
 		return entity;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="manage/{dName}", method=RequestMethod.GET)
+	public ResponseEntity<List<ManagementVO>> selectThreeJoinByDname(@PathVariable("dName") String dName){ 
+		logger.info("selectThreeJoinByDno--> 찾으려는 이름은 "+dName);
+		
+		ResponseEntity<List<ManagementVO>> entity = null;
+		
+		try {
+			List<ManagementVO> mlist = mservice.selectThreeJoinByDname(dName);
+			entity = new ResponseEntity<List<ManagementVO>>(mlist, HttpStatus.OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); //400 error
+		}
+		return entity;
+	}
 	
 	
 	@RequestMapping(value="worker", method=RequestMethod.GET) 

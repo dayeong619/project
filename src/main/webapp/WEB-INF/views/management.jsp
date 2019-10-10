@@ -233,7 +233,7 @@
 		border-bottom:2px solid #ccc;	
 	}
 	
-	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #gNo{
+	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #dNo{
 		height: 27px !important; 
 	}
 	#insertViewModify{
@@ -261,7 +261,7 @@
 				<option value="1">이름</option>
 				<option value="2">부서별 </option>
 			</select>
-				&nbsp;&nbsp;<input type="text" id="searchInput" name="startday" placeholder="2자이상 입력"> 
+				&nbsp;&nbsp;<input type="text" id="searchInput" name="startday" placeholder="1자이상 입력"> 
 				<button class="searchButton1" id="divDateSearchBtn">검색</button>
 				<select id="dNo">
 						<option value="0">선택하세요</option>
@@ -386,6 +386,33 @@
 	
 </section>
 <script>
+	
+	$(document).on("click", "button.searchButton1", function(){ //이름으로 조회
+		var dName = $("#searchInput").val();
+		
+		if( dName == null){ 
+			alert("이름을 입력하세요.");	
+			return;
+	 	}
+		if( dName == ""){ 
+			alert("이름을 입력하세요.");	
+			return;
+	 	}
+		$.ajax({
+			url:"manage/"+dName,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				if(res.length == 0){
+					alert("검색결과가 없습니다.");
+				}
+				paint(res);
+			}
+		})
+		
+	})
+
 	$(document).on("click", "button.searchButton", function(){ //부서 조회 
 		
 		var dNo = $("#divDate2 #dNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
@@ -421,7 +448,7 @@
 			$("#searchInput2").css("display", "inline");
 			$("#divDateSearchBtn").css("display", "inline");
 			
-			$("#divDate2 #gNo").css("display", "none");
+			$("#divDate2 #dNo").css("display", "none");
 			$(".searchButton").css("display", "none");
 			
 		}else if(e.value == 2){
@@ -430,7 +457,8 @@
 			$("#searchInput2").css("display", "none");
 			$("#divDateSearchBtn").css("display", "none");
 			
-			$("#divDate2 #gNo").css("display", "inline");
+			$("#divDate2 #dNo").css("display", "inline");
+			$("#divDate2 #dNo").css("width", "166px");
 			$(".searchButton").css("display", "inline");
 			
 		}else if(e.value == 12){
@@ -438,7 +466,7 @@
 			$("#spanMM").css("display", "none");
 			$("#searchInput2").css("display", "none");
 			$("#divDateSearchBtn").css("display", "none");
-			$("#divDate2 #gNo").css("display", "none");
+			$("#divDate2 #dNo").css("display", "none");
 			$(".searchButton").css("display", "none");
 			
 		}
@@ -603,7 +631,9 @@
 			str+= "<td><input type='hidden' name='dNo' value='"+res[i].dNo.dNo+"'>"+res[i].dNo.dName+"</td>"; 
 			str+= "<td><input type='hidden' name='tNo' value='"+res[i].tNo.tNo+"'>"+res[i].tNo.tName+"</td>";
 			//str+= "<td>"+(res[i].mTel).substring(0, 3)+"-"+(res[i].mTel).substring(3, 7)+"-"+(res[i].mTel).substring(7, 11)+"</td>";
-			str+= "<td>"+res[i].mTel+"</td>"
+			var mTel = res[i].mTel;
+			var Tel = mTel.substring(0, 3)+"-"+mTel.substring(3, 7)+"-"+mTel.substring(7,11);
+			str+= "<td>"+Tel+"</td>"
 			str+= "<td>"+res[i].mEmail+"</td>";
 			str+= "<td>"+res[i].mId+"</td>";
 		}

@@ -73,7 +73,6 @@
 	</update>
 	<update id="modifyWorkerByMno">
 		UPDATE management
-		SET m_name=#{mName}, m_birth=#{mBirth}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, m_confirm=#{mConfirm}
 		WHERE m_no=#{mNo}
 	</update>
 	<update id="modifyEmployee">
@@ -87,8 +86,12 @@
 		inner join department d on m.d_no = d.d_no
 		inner join title t on m.t_no = t.t_no where m_del=1 and m.d_no=#{dNo}
 	</select>
-	
-	
+	<!-- 사원관리에서 이름 검색 -->
+	<select id="selectThreeJoinByDname" resultMap="ManagementResultMap" parameterType="String">
+		select * from management m
+		inner join department d on m.d_no = d.d_no 
+		inner join title t on m.t_no = t.t_no where m_del=1 and m_name like concat('%', #{mName}, '%')
+	</select>
 	
 </mapper>
 
