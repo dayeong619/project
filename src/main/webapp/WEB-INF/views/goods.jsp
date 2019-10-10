@@ -24,7 +24,7 @@
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 46%;
+		width: 44%;
 	}
 	
 	table td{
@@ -55,7 +55,7 @@
 		
 	}
 	#sectionOne{
-		width:86%;
+		width:46%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -68,7 +68,7 @@
 	#left{
 		overflow:hidden;
 		float: left;
-		width: 900px;
+		width: 550px;
 		padding-top:15px;
 	}
 	#divDate2{
@@ -236,17 +236,20 @@
 	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #gNo{
 		height: 27px !important; 
 	}
+	#insertViewModify{
+		display: none;
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:white;
+		border:1px solid #ccc;
+	}
 </style>
 <section>
 	<div class="divTitle2">
 		<div id="left"><h3>제품현황</h3></div>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="ClassButtonTop" id="insert">신규</button>
-			<button class="ClassButtonTop" id="delete">삭제</button>
-			<button class="ClassButtonTop" id="modify">수정</button>
-	</div>
-	<div id="insertView"> <!-- 신규창 -->
+		<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
 			<div id="insertViewTitle">
 				<span id="spaninsert">제품등록</span>
@@ -255,86 +258,32 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="submit" value="수정" id="insertViewModify">
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
 			<div id="insertViewcontent">
 				<p>
-					<label>입고일자</label>
-					<input type="Date" name="wDay" id="nowDate" class="insertViewInput">
+					<label>등록일</label>
+					<input type="Date" name="gDay" id="nowDate" class="insertViewInput">
 				</p>
 				<p>
 					<label>제품명</label>
-					<!-- <input type="text" name="gName" class="insertViewInput"> -->
-					<select id="gNo">
-						<c:forEach var="glists" items="${glist }">
-							<option value="${glists.gNo}">${glists.gName}</option>
-						</c:forEach>
-					</select>
+					<input type="text" name="gName" class="insertViewInput">
 				</p>
 				<p>
-					<label>입고수량</label>
-					<input type="text" name="wQy" class="insertViewInput">
+					<label>공급사</label>
+					<input type="text" name="gLocation" class="insertViewInput">
 				</p>
 				<p>
-					<label>검사결과</label>
-					<select name="wResult">
-						<option value="true">합격</option>
-						<option value="false">불합격</option>
-					</select>
+					<label>고객사</label>
+					<input type="text" name="gClient" class="insertViewInput">
 				</p>
-				<p>
-					<label>조치내용(불량발생시)</label>
-					<textarea name="wMemo" class="insertViewInput"></textarea>
-				</p>
-				<p>
-					<label>비고</label>
-					<textarea name="wNote" class="insertViewInput"></textarea>
-				</p>
+				
 			</div>
 		</div>
 	</div>
-	<div id="modifyView"> <!-- 수정창ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
-		<div id="ModifyViewBackground">
-			<div id="ModifyViewTitle">
-				<span id="Modifyspaninsert">수입검사등록</span>
-				<input type="submit" value="등록" id="ModifyViewinsert">
-				<input type="reset" value="취소" id="ModifyViewReset">
-			</div>
-			<div id="ModifyViewcontent">
-				<p>
-					<label>입고일자</label>
-					<input type="Date" name="wDay" id="nowModifyDate" class="insertViewInput">
-				</p>
-				<p>
-					<label>제품명</label>
-					<!-- <input type="text" name="gName" class="insertViewInput"> -->
-					<select id="gNo">
-						<c:forEach var="glists" items="${glist }">
-							<option value="${glists.gNo}">${glists.gName}</option>
-						</c:forEach>
-					</select>
-				</p>
-				<p>
-					<label>입고수량</label>
-					<input type="text" name="wQy" class="insertViewInput">
-				</p>
-				<p>
-					<label>검사결과</label>
-					<select name="wResult">
-						<option value="true">합격</option>
-						<option value="false">불합격</option>
-					</select>
-				</p>
-				<p>
-					<label>조치내용(불량발생시)</label>
-					<textarea name="wMemo" class="insertViewInput"></textarea>
-				</p>
-				<p>
-					<label>비고</label>
-					<textarea name="wNote" class="insertViewInput"></textarea>
-				</p>
-			</div>
-		</div>
+			<button class="ClassButtonTop" id="delete">삭제</button>
+			<button class="ClassButtonTop" id="modify">수정</button>
 	</div>
 	<div class="divTitle">
 		<div id="sectionOne">
@@ -439,7 +388,7 @@
 				 	var data = JSON.stringify(json);
 				 	
 				 	if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
-						alert("삭제할 정보를 체크하세요.");	
+						alert("삭제할 제품을 선택하세요.");	
 						return;
 				 	}
 				 	
@@ -461,7 +410,117 @@
 							repaint(res);
 						}
 					})
-				}) 
+		}) 
+		//제품등록창에서 취소버튼
+		$(document).on("click", "#insertViewReset", function(){
+				$(this).parents().find("#insertView").fadeOut(300);
+			})
+			
+		//제품 등록
+		$(document).on("click", "button#insert", function(){
+			document.getElementById("nowDate").valueAsDate = new Date();
+			$("#insertView").fadeIn(300);
+		})
+		$(document).on("click", "#insertViewinsert", function(){
+			var gDay = $(this).parent().parent().find("#insertViewcontent").find('input[name=gDay]').val();
+			var gName = $(this).parent().parent().find("#insertViewcontent").find('input[name=gName]').val();
+			var gLocation = $(this).parent().parent().find("#insertViewcontent").find('input[name=gLocation]').val();
+			var gClient = $(this).parent().parent().find("#insertViewcontent").find('input[name=gClient]').val();
+			var json = {gDay:gDay, gName:gName, gLocation:gLocation, gClient:gClient};
+			var data = JSON.stringify(json);
+			
+			$.ajax({
+				url:"goodsinsert",
+				type:"post",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				data:data,
+				dataType:"json",
+				success:function(res){
+					console.log(res); 
+					$("#insertView").find(".insertViewInput").val("");
+					$("#insertView").hide();
+					
+					 repaint(res);
+				}
+			})
+			
+		})
+		//제품번호로 검색
+		//수정 버튼 누르면 gNo가 들어와서 셀렉트해서 결과 res로 수정창 만들기
+		$(document).on("click", "button#modify", function(){ 
+			var gNo = $('input:radio[name=gNo]:checked').val();
+			var $this = $(this);
+			var $insertView = $this.parent().find("#insertView"); //나타날 수정창
+			var BtnInsertHidden = $this.parent().find("#insertViewinsert").css("display", "none"); //숨겨야될 등록버튼
+			var BtnModifyShow = $this.parent().find("#insertViewModify").css("display", "inline"); //보여야되는 수정버튼
+			
+			if( gNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+				alert("수정할 제품을 선택하세요.");	
+				return;
+		 	}
+			
+			$.ajax({
+				url:"goods/"+gNo,
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					console.log(res); 
+					BtnInsertHidden
+					BtnModifyShow
+					$insertView.fadeIn(300);
+					var str="";
+					$(res).each(function(i, item){
+						var date = new Date(res[i].gDay);
+						gDay = date.getFullYear()+"-"+("0"+(1+date.getMonth())).slice(-2)+"-"+("0"+date.getDate()).slice(-2);
+						$insertView.find("input[name=gDay]").val(gDay);
+						
+						var gName = res[i].gName;
+						$insertView.find("input[name=gName]").val(gName);
+						
+						var gLocation = res[i].gLocation;
+						$insertView.find("input[name=gLocation]").val(gLocation);
+						
+						var gClient = res[i].gClient;
+						$insertView.find("input[name=gClient]").val(gClient);
+						str+="<input type='hidden' name='gNo' value='"+res[i].gNo+"'>";
+					})
+					$insertView.find("#spaninsert").text("제품수정");
+					$insertView.find("#insertViewcontent").prepend(str); //gNo숨기기
+				}
+			})
+		})
+		
+		//제품 수정
+		$(document).on("click", "#insertViewModify", function(){ 
+			var gNo = $(this).parent().parent().find("#insertViewcontent").find('input[name=gNo]').val();
+			var gDay = $(this).parent().parent().find("#insertViewcontent").find('input[name=gDay]').val();
+			var gName = $(this).parent().parent().find("#insertViewcontent").find('input[name=gName]').val();
+			var gLocation = $(this).parent().parent().find("#insertViewcontent").find('input[name=gLocation]').val();
+			var gClient = $(this).parent().parent().find("#insertViewcontent").find('input[name=gClient]').val();
+			var json = {gDay:gDay, gName:gName, gLocation:gLocation, gClient:gClient};
+			var data = JSON.stringify(json);
+			
+			$.ajax({
+				url: "goods/update/"+gNo,
+				type: "put",
+				headers:{
+					"Content-Type":"application/json"
+				},
+				data:data,
+				dataType:"json",
+				success:function(res){
+					console.log(res);
+					$("#insertView").hide();
+					repaint(res);
+				}
+			})		
+					
+					//창 숨기기 
+					// repaint(res); 다시그림
+		})
+				
 </script>
 <%@ include file="include/footer.jsp" %>
 

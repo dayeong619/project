@@ -163,14 +163,26 @@ public class EtcTest {
 //		}
 //	} 
 	
-	@Test
+//	@Test
 	public void nextPno() throws Exception {
 		int nextno = pdao.nextPno();
 		System.out.println(nextno);
 	} 
 	
+//	@Test
+	public void select() throws Exception{
+		List<GoodsVO> glist = gdao.selectByGno(1);
+		System.out.println(glist.toString());
+	}
 	
-	
-	
+	@Test
+	public void update() throws Exception{
+		GoodsVO vo = new GoodsVO();
+		vo.setgLocation("고고");
+		vo.setgName("안녕");
+		vo.setgNo(1);
+		gdao.modifyByGno(vo);
+		System.out.println(vo.toString());
+	}
 	
 }

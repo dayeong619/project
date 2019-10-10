@@ -65,6 +65,11 @@
 		where w_del=1
 	</select>
 	
+	<select id="selectByWno" resultMap="WarehousingResultMap"><!-- 입고번호로 검색-->
+		select * from goods g
+		inner join warehousing w on g.g_no = w.g_no 
+		where w.w_no=#{wNo}
+	</select>
 	
 	
 </mapper>

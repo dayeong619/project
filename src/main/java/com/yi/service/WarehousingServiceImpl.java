@@ -49,6 +49,11 @@ public class WarehousingServiceImpl implements WarehousingService {
 		return dao.ChartWarehousingByGno();
 	}
 
+	@Override
+	public List<WarehousingVO> selectByWno(int wNo) throws Exception {
+		return dao.selectByWno(wNo);
+	}
+
 	
 	
 }
