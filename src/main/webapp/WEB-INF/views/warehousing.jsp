@@ -644,7 +644,6 @@
 								<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
 							</td>
 							<td><!-- 합격-->
-								
 								<input type="text" id="result1" class="dddd" value="${wlists.wResult == true ? 'ㅇ':''}" disabled="disabled">
 							</td>
 							<td><!-- 불합격-->

@@ -68,6 +68,17 @@ public class ManagementDaoImpl implements ManagementDao {
 		sqlSession.update(namespace+".modifyWorkerByMno", vo);
 	}
 
+	@Override
+	public void modifyEmployee(ManagementVO vo) throws Exception {
+		sqlSession.update(namespace+".modifyEmployee", vo);
+	}
+
+	@Override
+	public List<ManagementVO> selectThreeJoinByDno(int dNo) throws Exception {
+		return sqlSession.selectList(namespace+".selectThreeJoinByDno", dNo);
+	}
+
+
 	
 
 

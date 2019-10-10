@@ -27,6 +27,12 @@ public class DepartmentDaoImpl implements DepartmentDao {
 	public List<DepartmentVO> selectAllDepartment() throws Exception {
 		return sqlSession.selectList(namespace+".selectAllDepartment");
 	}
+
+
+	@Override
+	public DepartmentVO selectDepartment(DepartmentVO vo) {
+		return sqlSession.selectOne(namespace+".selectDepartment", vo);
+	}
 	
 
 

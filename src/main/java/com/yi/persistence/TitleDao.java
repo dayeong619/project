@@ -8,5 +8,5 @@ public interface TitleDao {
 
 	public void inserttitle(TitleVO vo) throws Exception;
 	public List<TitleVO> selectAllTitle() throws Exception;
-	
+	public TitleVO selectTitle (TitleVO vo);
 }

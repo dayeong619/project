@@ -236,7 +236,6 @@
   	    font-size: 15px;
 	}
 	.mNameClass:hover {
-		color: red;
 		cursor: pointer;
 	}
 	.workerView{
@@ -302,6 +301,9 @@
 	.workerView .insertViewInput{
 		width:300px; 
 		height: 30px;
+		background-color: white;
+		border:none;
+		font-size: 18px;
 	}
 	.workerView .insertViewcontent{
 		width: 570px;
@@ -462,6 +464,16 @@
 	
 </section>
 <script>
+	$(".mNameClass").mouseenter(function() {
+		$(this).parent().parent().css("background-color", "AliceBlue");
+		$(this).parent().parent().css("font-size", "17px");
+	
+	})
+	$(".mNameClass").mouseleave(function() {
+		$(this).parent().parent().css("background-color", "white");
+		$(this).parent().parent().css("font-size", "15px");
+	})
+
 	$(document).on("click", "button#insert", function(){
 		document.getElementById("nowDate").valueAsDate = new Date();
 		document.getElementById("nowDate2").valueAsDate = new Date();

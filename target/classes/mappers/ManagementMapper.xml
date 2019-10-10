@@ -22,8 +22,9 @@
 	</resultMap>
 	<!--  -->
 	<select id="selectByJoinInformation" resultMap="ManagementResultMap">
-		select *
-		from management 
+		select * from management m
+		inner join department d on m.d_no = d.d_no
+		inner join title t on m.t_no = t.t_no where m_del=1 order by m.t_no desc
 	</select>
 	<!-- worker 생산팀만 나오도록 쪼로록  -->
 	<select id="selectByDno" resultMap="ManagementResultMap">
@@ -75,9 +76,17 @@
 		SET m_name=#{mName}, m_birth=#{mBirth}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, m_confirm=#{mConfirm}
 		WHERE m_no=#{mNo}
 	</update>
-
-	
-	
+	<update id="modifyEmployee">
+		UPDATE management
+		SET m_birth=#{mBirth}, m_email=#{mEmail}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, d_no=#{dNo.dNo}, t_no=#{tNo.tNo}
+		WHERE m_no=#{mNo}
+	</update>
+	<!-- 사원관리에서 부서로 검색 -->
+	<select id="selectThreeJoinByDno" resultMap="ManagementResultMap">
+		select * from management m
+		inner join department d on m.d_no = d.d_no
+		inner join title t on m.t_no = t.t_no where m_del=1 and m.d_no=#{dNo}
+	</select>
 	
 	
 	

@@ -27,6 +27,12 @@ public class TitleDaoImpl implements TitleDao {
 	public List<TitleVO> selectAllTitle() throws Exception {
 		return sqlSession.selectList(namespace+".selectAllTitle");
 	}
+
+
+	@Override
+	public TitleVO selectTitle(TitleVO vo) {
+		return sqlSession.selectOne(namespace+".selectTitle", vo);
+	}
 	
 
 

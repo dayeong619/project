@@ -166,10 +166,10 @@ $(function(){
 						</ul>
 					</li>
 					<li>
-						작업자관리 
+						인사관리 
 						<ul class="tip">
+							<li><a href="${pageContext.request.contextPath}/management" class="aa">사원관리</a></li>
 							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/auth/join" class="aa">사원관리or부서관리</a></li>
 						</ul>
 					</li>
 				</ul>

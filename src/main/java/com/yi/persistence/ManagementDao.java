@@ -15,8 +15,8 @@ public interface ManagementDao {
 	public List<ManagementVO> selectWorkerByWorkerName(String mName) throws Exception;
 	
 	public List<ManagementVO> selectByDno() throws Exception;
-	public void deleteWorkerByMno(int mNo) throws Exception;
+	public void deleteWorkerByMno(int mNo) throws Exception; //작업자관리에서 작업자삭제
 	public void modifyWorkerByMno(ManagementVO vo) throws Exception;
-	
-	
+	public void modifyEmployee(ManagementVO vo) throws Exception;
+	public List<ManagementVO> selectThreeJoinByDno(int dNo) throws Exception;
 }
