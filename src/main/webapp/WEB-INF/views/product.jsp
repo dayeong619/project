@@ -213,6 +213,14 @@
 	#pBadness{
 		display: inline;
 	}
+	#insertViewTitle #insertViewModify,#insertViewTitle #insertViewModiCon,#insertViewTitle #insertViewDelete{
+		display: none;
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="left">
@@ -231,6 +239,9 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="submit" value="수정" id="insertViewModify">
+				<input type="submit" value="수정확인" id="insertViewModiCon">
+				<input type="submit" value="삭제" id="insertViewDelete">
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
 			<div id="insertViewcontent">
@@ -387,32 +398,75 @@
 		
 </section>
 <script>
-/* $(".BtnInsert").click(function(){ //tbody td 에서 등록버튼 눌렀을때.
+function repaint(res){
+	$("#tableBackGround table tbody").empty();
+	
+	var str = "";
+	function getFormatDate(date){ 
+		var year = date.getFullYear(); //yyyy 
+		var month = (1 + date.getMonth()); //M 
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d 
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
+		return year + '-' + month + '-' + day; 
+	}
+	
+	
+	for(var i=0; i<res.length; i++){
+		var date = new Date(res[i].pWorkday);
+		var pWorkday = getFormatDate(date);
+		str+= "<tr><td>"+pWorkday+"</td>";
+		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 1'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 2'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 3'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 4'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 5'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 6'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 7'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 8'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 9'>";
+  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
+  		
+		str+="</tr>";
+		
+	}
+	
+	$("#tableBackGround table tbody").append(str);
+}
 
-$(this).parent().parent().find(".dddd").removeAttr("disabled");
-$(this).parent().parent().find(".badnessInput").removeAttr("disabled");
-$(this).parent().parent().find(".dddd").css("background-color", "#F0F8FF");
-$(this).parent().parent().find(".badnessInput").css("background-color", "#F0F8FF");
-$(this).parent().parent().find("td:nth-child(1)").css("background-color", "#F0F8FF");
-$(this).parent().parent().find("td:nth-child(2) select").css("visibility", "visible");
-$(this).parent().parent().find("td:nth-child(3) select").css("visibility", "visible");
-$(this).parent().parent().find("td:nth-child(4) select").css("visibility", "visible");
-$(this).parent().parent().find("td:nth-child(5) input").attr("value", "08:00-20:00");
-$(this).parent().parent().find("td:last-child").css("background-color", "#F0F8FF");
-$(this).parent().parent().find("#mNo").focus();
-$(this).hide(); //누른 등록버튼은 사라져랏
-$(this).next("#BtnInsertConfirm").css("display", ""); //---------------------등록확인버튼 나타나야 되는데 아직 수정해야됨
 
-}) */
+	$(document).on("mouseenter", "#tableScroll td", function(){
+		$(this).css("background-color", "AliceBlue");
+		$(this).parent().find("td:nth-child(1)").css("background-color", "white");
+		$(this).css("cursor", "pointer");
+	})
+	
+	$(document).on("mouseleave", "#tableScroll td", function(){
+		$(this).css("background-color", "white");
+	})
 
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
 		document.getElementById("nowDate").valueAsDate = new Date();
-		
 		$("#insertView").fadeIn(300);
 	})
 	$(document).on("click", "#insertViewReset", function(){ //작업일 등록할 창에서 취소 눌러
 		$("#insertView").fadeOut(300);
-		
 	})
 	
 	$(document).on("click", "#insertViewinsert", function(){ //작업일 등록할 창에서 등록 눌렀어
@@ -445,7 +499,8 @@ $(this).next("#BtnInsertConfirm").css("display", ""); //---------------------등
 			dataType:"json",
 			success:function(res){
 				console.log(res);
-				$this.parent().parent().parent().hide();	
+				$this.parent().parent().parent().hide();
+				repaint(res); //다시그려야해...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			}
 		})
 		

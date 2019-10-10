@@ -1,6 +1,8 @@
 package com.yi.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,29 +75,22 @@ public class ProductController {
 		model.addAttribute("pmlist", pmlist);
 	}
 	
-	
-	
-	
-	
 	@ResponseBody
 	@RequestMapping(value="product", method=RequestMethod.POST) 
 	public ResponseEntity<List<ProductVO>> productInsertPOST(@RequestBody ProductVO vo) throws Exception { 
 		ResponseEntity<List<ProductVO>> entity = null;
-		
 		logger.info("----- productInsertPOST");
 		logger.info("insert내용은 ->"+vo);
 		
 		try {
 			pservice.insertProduct(vo);
 			logger.info("들어갔어! 들어갔어!");
-			//select 해서 새로운 리스트 던져주기
-			entity = new ResponseEntity<>( HttpStatus.OK);
+			List<ProductVO> plist = pservice.selectMnoWnoPqyByProduct();
+			entity = new ResponseEntity<>(plist, HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
-		
 		return entity;
 	}
 	
