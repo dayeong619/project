@@ -19,76 +19,79 @@
 		display: block;
 	}
 	tbody{
-		background-color: white;
 		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 91%;
+		width: 90%;
 	}
 	
 	table td{
 		border:1px solid black;
 	}
-	thead td:nth-child(1){ /* 선택 */
-		width: 41px;
+	
+	thead td:nth-child(1){ /* No */
+		width: 26px;
 	}
-	thead td:nth-child(2){ /* No */
-		width: 31px;
-	}
-	thead td:nth-child(3){ /* 입고일자 */
+	thead td:nth-child(2){ /* 입고일자 */
 		width: 169px;
 	}
-	thead td:nth-child(4){ /* 품명 */
-		width: 169px;
+	thead td:nth-child(3){ /* 품명 */
+		width: 159px;
 	}
-	thead td:nth-child(5){ /* 입고수량 */
-		width: 169px;
+	thead td:nth-child(4){ /* 입고수량 */
+		width: 170px;
 	}
-	thead td:nth-child(6){ /* 검사결과 */
+	thead td:nth-child(5){ /* 검사결과 */
 		width: 160px;
+	}
+	thead td:nth-child(6){
+		width: 338px;
+	}
+	thead td:nth-child(7){
+		width: 347px;
 	}
 	thead #success, .tableTrs #success2{
 		width: 80px;
 	}
-	tbody td:nth-child(1){ /*                 여기서부터 tbody */
-		width: 40px;
+															 /*여기서부터 tbody */
+	/* tbody td:nth-child(1) #input2css{                
+		width: 32px;
+	} */
+	tbody td:nth-child(1) input{ /* No */
+		width: 26px;
 	}
-	tbody td:nth-child(2){ /* No */
-		width: 31px;
+	.tableTbody2{
+		background-color: white;
 	}
-	tbody td:nth-child(3){ /* 입고일자 */
+	tbody td:nth-child(2) input{ /* 입고일자 */
 		width: 169px;
 	}
-	tbody td:nth-child(4){ /* 품명 */
-		width: 169px;
+	tbody td:nth-child(3) select{ /* 품명 */
+		width: 159px;
+		padding-left:30px;
 	}
-	tbody td:nth-child(5){ /* 입고수량 */
+	tbody td:nth-child(4) input{ /* 입고수량 */
 		width: 170px;
 	}
-	tbody td:nth-child(6){ /* 검사결과:합격 */
+	tbody td:nth-child(5) input{ /* 검사결과:합격 */
 		width: 80px;
 	}
-	tbody td:nth-child(7){ /* 검사결과:불합격 */
+	tbody td:nth-child(6) input{ /* 검사결과:불합격 */
 		width: 80px;
 	}
-	tbody td:nth-child(8){ /* 조치내용*/
-		width: 403px;
+	tbody td:nth-child(7) input{ /* 조치내용*/
+		width: 338px;
 	}
-	
-	tbody td:nth-child(9){ /* 비고 */
-		width: 390px;
+	tbody td:nth-child(8) input{ /* 비고 */
+		width: 346px;
 	}
 	
 	tbody #success, .tableTrs #success2{
 		width: 80px;
 	}
-	#tdContent{
-		width: 401px;
-	}
-	#tdEtc{
-		width: 401px;
-	}
+	
+	
 	#tableScroll #result1, table #result2{/* 합격,불합격 인풋태그  */
 		width: 80px;
 		text-align: center;
@@ -277,10 +280,13 @@
 		focus:none;
 	}
 	.classInputColor{
-		background-color: #B0C4DE;
+		background-color: #ccc;
 	}
 	#divDate2 #gNoSearch, #divDate2 #searchInput, #divDate2 #searchInput2, #divDate2 #gNo{
 		height: 27px !important; 
+	}
+	#insertViewModify{
+		display:none;
 	}
 </style>
 <section>
@@ -310,17 +316,17 @@
 			
 			/* 라뒤오버튼 눌렀을때 배경색 잡는거 */
 			 $(document).on("click", "input:radio[name=wNo]:checked", function(){ 
-				 var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
-					radioBtnUnchecked.parent().parent().removeClass("classInputColor");
-					radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor");
-				 var radioBtn = $('input:radio[name=wNo]:checked');
+				var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
+				
+				radioBtnUnchecked.parent().parent().removeClass("classInputColor");
+				radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor");
+				radioBtnUnchecked.parent().parent().find(".tableTbody2").removeClass("classInputColor");
+				
+				var radioBtn = $('input:radio[name=wNo]:checked');
 				
 				radioBtn.parent().parent().addClass("classInputColor");
 				radioBtn.parent().parent().find(".dddd").addClass("classInputColor");
-				/* var radioBtnUnchecked = $('tbody input:radio[name=wNo]');
-				radioBtnUnchecked.parent().parent().removeClass("classInputColor");
-				radioBtnUnchecked.parent().parent().find(".dddd").removeClass("classInputColor"); */
-				 
+				radioBtn.parent().parent().find(".tableTbody2").addClass("classInputColor");
 			})
 			
 			 
@@ -346,8 +352,7 @@
 					
 					res.wDay = date.getFullYear()+"-"+("0"+(1+date.getMonth())).slice(-2)+"-"+("0"+date.getDate()).slice(-2);
 					
-					str+= "<tr><td><p id='input2css'>"+res.wNo+"</p></td>";
-					str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
+					str+= "<td class='tableTbody2'><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
 					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
 					str+= "<td><select id='gNo' class='dddd' disabled>"; 
 					$(obj.glist).each(function(i, res){
@@ -370,7 +375,6 @@
 					str+= "<td><input type='text' id='wmemo1css' class='dddd' value='"+res.wMemo+"'disabled='disabled'></td>";
 					str+= "<td><input type='text' id='wmemo2css' class='dddd' value='"+res.wNote+"'disabled='disabled'></td></tr>";
 						
-					
 					$("#tableBackGround table tbody").append(str);
 				})
 				
@@ -491,6 +495,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="등록" id="insertViewinsert">
+				<input type="submit" value="수정" id="insertViewModify">
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
 			<div id="insertViewcontent">
@@ -519,7 +524,7 @@
 					</select>
 				</p>
 				<p>
-					<label>조치내용(불량발생시)</label>
+					<label>조치내용(불량발생시 입력)</label>
 					<textarea name="wMemo" class="insertViewInput"></textarea>
 				</p>
 				<p>
@@ -529,7 +534,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="modifyView"> <!-- 수정창ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
+<%-- 	<div id="modifyView"> <!-- 수정창ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt -->
 		<div id="ModifyViewBackground">
 			<div id="ModifyViewTitle">
 				<span id="Modifyspaninsert">수입검사등록</span>
@@ -571,13 +576,13 @@
 				</p>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
 			
 			<select id="gNoSearch" onchange="category(this)"><!-- 검색하는 셀렉트박스 -->
-				<option>검색</option>
+				<option value="12">검색</option>
 				<option value="1">입고일자</option>
 				<option value="2">제품명</option>
 			</select>
@@ -605,14 +610,13 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td rowspan="2"> </td>
 						<td rowspan="2"><input type="radio" disabled="disabled"></td>
 						<td rowspan="2">입고 일자</td>
 						<td rowspan="2">품명</td>
 						<td rowspan="2">입고 수량</td>
 						<td colspan="2" id="tdnth5">검사 결과</td>
-						<td rowspan="2" id="tdContent">조치 내용 <span id="tabletdtd">*불량 발생시 조치</span></td>
-						<td rowspan="2" id="tdEtc">비고</td>
+						<td rowspan="2">조치 내용 <span id="tabletdtd">(불량 발생시 입력)</span></td>
+						<td rowspan="2">비고</td>
 					</tr>
 					<tr class="tableTrs">
 						<td id="success">합격</td>
@@ -622,10 +626,7 @@
 				<tbody id="tableScroll">
 					<c:forEach var="wlists" items="${wlist}">
 						<tr>
-							<td><!-- wNo 입고번호순서-->
-								<p id="input2css">${wlists.wNo }</p>
-							</td>
-							<td><!-- 체크박스 -->
+							<td class="tableTbody2"><!-- 체크박스 -->
 								<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
 							</td>
 							<td><!-- wDay 입고일자 -->
@@ -682,6 +683,14 @@
 			
 			$("#divDate2 #gNo").css("display", "inline");
 			$(".searchButton").css("display", "inline");
+		}else if(e.value == 12){
+			$("input[name=startday]").css("display", "none");
+			$("#spanMM").css("display", "none");
+			$("#searchInput2").css("display", "none");
+			$("#divDateSearchBtn").css("display", "none");
+			$("#divDate2 #gNo").css("display", "none");
+			$(".searchButton").css("display", "none");
+			
 		}
 		
 	}
@@ -701,8 +710,7 @@
 		}
 		
 		for(var i=0; i<res.length; i++){
-			str+= "<tr><td><p id='input2css'>"+res[i].wNo+"</p></td>";
-			str+= "<td><input type='radio' id='input1css' name='wNo' value='"+res[i].wNo+"'></td>"; //입고번호
+			str+= "<td class='tableTbody2'><input type='radio' id='input1css' name='wNo' value='"+res[i].wNo+"'></td>"; //입고번호
 			var date = new Date(res[i].wDay);
 			var wDay = getFormatDate(date);
 			str+= "<td><input type='text' value='"+wDay+"'disabled='disabled' class='dddd'></td>";  //입고일
@@ -725,8 +733,6 @@
 	
 		$(document).on("click", "button.searchButton", function(){ //조회버튼 클릭시
 			//조회 누르면 셀렉트하기
-			/* var $searchInput = $("#searchInput").val();
-			var $searchInput2 = $("#searchInput2").val(); */
 			
 			var gNo = $("#divDate2 #gNo").val(); //찾고싶은 제품명이 숫자로 들어옴 
 			
@@ -748,9 +754,6 @@
 						alert("입고내역이 없습니다.");
 					}
 					paint(res);
-					
-					
-					
 					
 				}
 			})
@@ -787,6 +790,65 @@
 		})
 		
 	})
+	
+	$(document).on("click", "button#modify", function(){ 
+			var wNo = $('input:radio[name=wNo]:checked').val();
+			var $this = $(this);
+			var $insertView = $this.parent().find("#insertView"); //나타날 수정창
+			var BtnInsertHidden = $this.parent().find("#insertViewinsert").css("display", "none"); //숨겨야될 등록버튼
+			var BtnModifyShow = $this.parent().find("#insertViewModify").css("display", "inline"); //보여야되는 수정버튼
+			
+			if( wNo == null){ //라디오 체크하지 않고 삭제를 눌렀을 때 
+				alert("수정할 정보를 선택하세요.");	
+				return;
+		 	}
+			
+			$.ajax({
+				url:"warehousing/W/"+wNo,
+				type:"get",
+				dataType:"json",
+				success:function(res){
+					console.log(res); 
+					BtnInsertHidden
+					BtnModifyShow
+					$insertView.fadeIn(300);
+					var str="";
+					$(res).each(function(i, item){
+						var date = new Date(res[i].wDay);
+						wDay = date.getFullYear()+"-"+("0"+(1+date.getMonth())).slice(-2)+"-"+("0"+date.getDate()).slice(-2);
+						$insertView.find("input[name=wDay]").val(wDay); //입고일자
+						
+						var gName = res[i].gNo.gName;
+						$insertView.find("#gNo").val(gName).prop("selected", true); //제품명
+						
+						var wQy = res[i].wQy;
+						$insertView.find("input[name=wQy]").val(wQy);  //입고수량
+						
+						var wResult = res[i].wResult; //검사결과
+						var success = "합격";
+						var fail = "불합격";
+						if(wResult == 1){
+							$insertView.find("input:select[name=wResult]").val(success).attr("selected", "selected");
+						}else{
+							$insertView.find("input:select[name=wResult]").val(fail).attr("selected", "selected");
+						}
+						$insertView.find("input[name=wResult]").val(wResult);
+						
+						var wMemo = res[i].wMemo;
+						$insertView.find("textarea[name=wMemo]").val(wMemo); //조치내용
+						
+						var wNote = res[i].wNote;
+						$insertView.find("textarea[name=wNote]").val(wNote); //비고
+					})
+					$insertView.find("#spaninsert").text("입고내역수정");
+					
+				}
+			})
+		})
+	
+	
+	
+	
 	
 </script>
 <%@ include file="include/footer.jsp" %>

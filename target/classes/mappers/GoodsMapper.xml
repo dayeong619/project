@@ -21,14 +21,25 @@
 		select * from goods where g_del=1 and g_no=#{gNo}
 	</select>	
 	
+	<update id="deleteGood">
+		UPDATE goods SET g_del=0 WHERE g_no=#{gNo}
+	</update>
 	
-	
-	
-	
-	
-	
-	
-	
+	<insert id="insertGood">
+		INSERT INTO goods (g_day, g_name, g_location, g_client)
+		VALUES(#{gDay}, #{gName}, #{gLocation}, #{gClient})
+	</insert>
+	<!-- gNo번호로 검색 -->
+	<select id="selectByGno" resultMap="GoodsResultMap">
+		select * from goods where g_no=#{gNo}
+	</select>
+	<!-- gNo번호로 제품수정 -->
+	<update id="modifyByGno">
+		update goods
+		SET g_name=#{gName}, g_location=#{gLocation}, g_client=#{gClient}, g_day=#{gDay}
+		WHERE g_no=#{gNo}
+	</update>
+	 
 	
 	
 	

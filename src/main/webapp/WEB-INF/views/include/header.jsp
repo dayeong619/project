@@ -138,8 +138,10 @@ $(function(){
 					<li>
 						제품관리
 						<ul class="tip">
-							<li><a href="#" class="aa">제품관리</a></li>
+						<%-- <c:if test="${Auth!=null }"></c:if> 로그인 안했을때 막기 --%>
+							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품관리</a></li>
 							<li><a href="#"  class="aa">제품현황</a></li>
+						
 						</ul>
 					</li>
 					<li>

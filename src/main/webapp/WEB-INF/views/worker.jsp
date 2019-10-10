@@ -479,7 +479,6 @@
 		var str = "";
 		
 		
-		
 		for(var i=0; i<res.length; i++){
 			str+= "<tr><td><input type='hidden' name='mNo' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
 			str+= "<div class='workerView'><div class='workerViewBackground'><div class='workerViewTitle'>";
@@ -561,7 +560,7 @@
 						paint(res); 
 					}
 				})
-			})
+	})
 			
 			
 			
@@ -611,15 +610,7 @@
 	})
 	
 	$(document).on("click", ".worketModifyCF", function(){ //작업자 진짜루짜루짜루 수정
-		
 		var $this = $(this);
-		/* var $class = $(this).parent().next().find(".insertViewInput"); */
-		
-		
-		
-		
-		
-		
 		
 		var mNo = $(this).parent().next().find('input[name=mNo]').val();
 		var mName = $(this).parent().next().find('input[name=mName]').val(); 
@@ -655,11 +646,4 @@
 			
 </script>
 <%@ include file="include/footer.jsp" %>
-
-
-
-
-
-
-
 

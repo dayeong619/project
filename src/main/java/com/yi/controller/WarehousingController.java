@@ -172,6 +172,25 @@ public class WarehousingController {
 	        return lists;
 	    }*/
 	
+	@ResponseBody
+	@RequestMapping(value="warehousing/W/{wNo}", method=RequestMethod.GET)
+	public ResponseEntity<List<WarehousingVO>> selectByWno(@PathVariable("wNo") int wNo){ 
+		logger.info("selectByWnoGET--> ");
+		ResponseEntity<List<WarehousingVO>> entity = null;
+		
+		try {
+			List<WarehousingVO> list = wservice.selectByWno(wNo);
+			entity = new ResponseEntity<List<WarehousingVO>>(list, HttpStatus.OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); //400 error
+		}
+		return entity;
+	}
+	
+	
+	
+	
 	
 	
 }
