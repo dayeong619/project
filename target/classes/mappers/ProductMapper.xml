@@ -38,8 +38,6 @@
 		select * from management m left join product p on m.m_no = p.p_no where m_del=1
 	</select>
 	
-	
-	
 	<select id="selectProductByLine" resultMap="ProductResultMap">
 		select l.l_no, l.l_line from product p 
 		right join line l on p.p_no = l.l_no
