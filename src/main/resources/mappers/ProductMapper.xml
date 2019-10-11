@@ -61,7 +61,7 @@
 		select max(p_no)+1 from product
 	</select>
 	<select id="selectMnoWnoPqyByProduct" resultMap="ProductResultMap">
-		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy
+		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy, p.p_worktime
 		from product p 
 		left join line l on p.l_no = l.l_no
 		left join management m on p.m_no = m.m_no
@@ -74,9 +74,10 @@
 	<!-- 삭제 -->
 	
 	
-	<!-- 수정 -->
+	<!-- 생산번호로 셀렉트 -->
 	<select id="selectJoinProductByPno" resultMap="ProductResultMap">
-		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy from product p 
+		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy, p.p_worktime 
+		from product p 
 		left join line l on p.l_no = l.l_no
 		left join management m on p.m_no = m.m_no
 		left join warehousing w on p.w_no = w.w_no

@@ -161,7 +161,7 @@ $(function(){
 					<li>
 						출고관리 
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/shipment" class="aa">출하전표등록</a></li>
+							<li><a href="${pageContext.request.contextPath}/shipment" class="aa">출하전표관리</a></li>
 							<li><a href="#" class="aa">출고현황</a></li>
 						</ul>
 					</li>

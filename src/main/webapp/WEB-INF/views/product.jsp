@@ -23,7 +23,7 @@
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 93.5%;
+		width: 82%;
 	}
 	tbody tr{
 		background-color: white;
@@ -268,7 +268,7 @@
 				</p>
 				<p>
 					<label>작업자</label>
-					<select name="mNo" class="insertViewInput">
+					<select name="mNo" class="insertViewInput" id="mNo">
 						<c:forEach items="${mlist }" var="m">
 							<option value="${m.mNo }">${m.mName }</option>
 						</c:forEach>
@@ -285,7 +285,7 @@
 				<p>
 					<label>제품명</label>
 					<!-- <input type="text" name="gName" class="insertViewInput"> -->
-					<select class="insertViewInput" name="wNo">
+					<select class="insertViewInput" name="wNo" id="wNo">
 						<c:forEach var="w" items="${wList }">
 							<option value="${w.wNo}">${w.gNo.gName} (입고번호:W${w.wNo})</option>
 						</c:forEach>
@@ -351,7 +351,7 @@
 </section>
 <script>
 	
-	$(document).on("click", "tbody td span", function(){ //상세보기 창 띄우기
+	$(document).on("click", "tbody td div", function(){ //상세보기 창 띄우기
 		$("#insertView").find("#insertViewinsert").css("display", "none");
 		$("#insertView").find("#insertViewModify").css("display", "inline");
 		$("#insertView").find("#insertViewDelete").css("display", "inline");
@@ -369,23 +369,56 @@
 				console.log(res);
 				//검색된 리스트 하나만 와서 뿌려주긔 
 				
+				$("#insertView").fadeIn(300);
+				
+				var str="";
+				
 				$(res).each(function(i, obj) {
 					var workDay = new Date(obj.pWorkday);
-					var pWorkDay = getFormatDate(workDay); //일자
+					var pWorkDay = getFormatDate(workDay); //입고일자
 					$this.find("#nowDate").val(pWorkDay); 
-					var mName = obj.mNo//작업자
-					var lNo = obj.lNo; //라인
 					
+					var mNo = obj.mNo.mNo;//작업자 이름 다시 넣어줘야됭.
+					$this.find("select[name=mNo]").val(mNo).prop("selected", true);
+					
+					var lNo = obj.lNo.lNo; //라인
+					$this.find("select[name=lNo]").val(lNo).prop("selected", true);
+					
+					var wNo = obj.wNo.gNo.gNo; //제품명
+					$this.find("#wNo").val(wNo).prop("selected", true);
+					//$this.find("#wNo option:eq(wNo)").prop("selected", true);
+					
+					var pWorktime = obj.pWorktime; //작업시간
+					$this.find("input[name=pWorktime]").val(pWorktime);
+					
+					var pQy = obj.pQy;//생산수량
+					$this.find("input[name=pQy]").val(pQy);
+					
+					var pNote = obj.pNote;//비고
+					$this.find("input[name=pNote]").val(pNote);
+					
+					var bProcess = obj.bProcess; //가공불량
+					$this.find("input[name=bProcess]").val(bProcess);
+					
+					var bSetup = obj.bSetup; //셋업불량
+					$this.find("input[name=bSetup]").val(bSetup);
+					
+					var bMaterial = obj.bMaterial; //소재불량
+					$this.find("input[name=bMaterial]").val(bMaterial);
+					
+					var bEtc = obj.bEtc; //기타불량
+					$this.find("input[name=bEtc]").val(bEtc);
 				})
 					
-					
+				//제품명이 제대로 안들어옴. 10/11 18:37 
+				//원인: 처음에 깔리는 제품명이 입고입장에서 받아온 리스트라서 번호가 다름.내가 지금뿌리는 리스트에 입고번호랑 ,,ㅠㅠ 
 					
 				           
 				
 				
 				
 				
-				$("#insertView").fadeIn(300);
+				
 				
 			}
 		})
@@ -469,7 +502,7 @@
 					var $tr = $("td:contains('"+sWorkDay+"')").parent();
 					var $target = $tr.find("td:eq("+obj.lNo.lNo+")");
 					var $input = "<input type='hidden' name='pNo' id='hiddenPNO' value='"+obj.pNo+"'>";
-					var $span = "<span>";
+					var $span = "<div>";
 					$target.append($input+$span+obj.wNo.gNo.gName+obj.pQy+"<br>");
 					//pNo 가 있어서 클릭하면 상세보기로 
 				
@@ -482,16 +515,16 @@
 	
 
 
-	$(document).on("mouseenter", "#tableScroll td", function(){
-		$(this).css("background-color", "AliceBlue");
+	$(document).on("mouseenter", "#tableScroll td div", function(){
+		$(this).parent().css("background-color", "AliceBlue");
 		$(this).parent().find("td:nth-child(1)").css("background-color", "white");
-		$(this).find("span").css("cursor", "pointer");
-		$(this).find("span").css("text-decoration", "underline");
+		$(this).css("cursor", "pointer");
+		$(this).css("text-decoration", "underline");
 	})
 	
-	$(document).on("mouseleave", "#tableScroll td", function(){
-		$(this).css("background-color", "white");
-		$(this).find("span").css("text-decoration", "none");
+	$(document).on("mouseleave", "#tableScroll td div", function(){
+		$(this).parent().css("background-color", "white");
+		$(this).css("text-decoration", "none");
 	})
 
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께

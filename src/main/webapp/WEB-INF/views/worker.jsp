@@ -313,7 +313,9 @@
 		border-top:2px solid #ccc;	
 		border-bottom:2px solid #ccc;	
 	}
-	
+	.divTitle2 h3{
+		padding-top:15px;
+	}
 	
 	
 </style>
@@ -321,7 +323,6 @@
 	<div class="divTitle2">
 		<div>
 			<h3>작업자현황</h3>
-			생산팀만 보임
 		</div>
 	</div>
 	<div class="divTitle">
