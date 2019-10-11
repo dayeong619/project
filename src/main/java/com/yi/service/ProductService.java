@@ -24,4 +24,5 @@ public interface ProductService {
 	public List<WarehousingVO> selectWGByJoin() throws Exception; //wNo,Gname 필요해서
 	public List<ManagementVO> selectByJoinInformation() throws Exception;
 	public List<ProductVO> selectMnoWnoPqyByProduct() throws Exception;
+	public List<ProductVO> selectJoinProductByPno(int pNo) throws Exception;
 }

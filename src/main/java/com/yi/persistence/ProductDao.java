@@ -17,4 +17,5 @@ public interface ProductDao {
 	public int nextPno();
 	
 	public List<ProductVO> selectMnoWnoPqyByProduct() throws Exception;
+	public List<ProductVO> selectJoinProductByPno(int pNo) throws Exception;
 }

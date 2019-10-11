@@ -65,6 +65,11 @@ public class ProductDaoImpl implements ProductDao {
 		return sqlSession.selectList(namespace+".selectMnoWnoPqyByProduct");
 	}
 
+	@Override
+	public List<ProductVO> selectJoinProductByPno(int pNo) throws Exception {
+		return sqlSession.selectList(namespace+".selectJoinProductByPno", pNo);
+	}
+
 	
 	
 

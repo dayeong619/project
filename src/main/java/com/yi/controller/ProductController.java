@@ -1,8 +1,10 @@
 package com.yi.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +38,33 @@ public class ProductController {
 	ProductService pservice;
 	
 	
+	
+	
+	//selectJoinProductByPno 수정 하려는거
+	@ResponseBody
+	@RequestMapping(value="product/modifypNo/{pNo}", method=RequestMethod.GET) 
+	public ResponseEntity<List<ProductVO>> selectJoinProductByPno(@PathVariable("pNo") int pNo) throws Exception { 
+		ResponseEntity<List<ProductVO>> entity = null;
+		logger.info("----- selectJoinProductByPno");
+		
+		try {
+			logger.info("수정했음-");
+			
+			List<ProductVO> plist = pservice.selectJoinProductByPno(pNo);
+			logger.info("리스트를 뿌리자->"+plist);
+			entity = new ResponseEntity<>(plist, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value="product", method=RequestMethod.GET)
 	public void product(Model model) throws Exception {
 	
@@ -53,9 +83,42 @@ public class ProductController {
 		List<ProductVO> plist = pservice.selectMnoWnoPqyByProduct();
 		logger.info("리스트를 뿌리자->"+plist);
 		model.addAttribute("plist", plist);
+	
+		Set<Date> gubun = new TreeSet<>();
+		for(ProductVO p : plist) {
+			gubun.add(p.getpWorkday());
+		}
 		
+		List<Date> gu = new ArrayList<Date>(gubun);
+		
+		model.addAttribute("gu", gu);
+//		for(Date d: gu) {
+//			System.out.printf("%tF%n", d);
+//		}
+
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="product/ListAll", method=RequestMethod.GET)
+	public ResponseEntity<List<ProductVO>> productListAll() throws Exception {		
+		
+		ResponseEntity<List<ProductVO>> entity = null;
+		logger.info("----- productListAll");
+		
+		try {
+			List<ProductVO> plist = pservice.selectMnoWnoPqyByProduct();
+			logger.info("리스트를 뿌리자->"+plist);
+			entity = new ResponseEntity<>(plist, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;		
+
+	}
+	
+	
+	// 해야됨.
 	@RequestMapping(value="productSearch", method=RequestMethod.GET)
 	public void productSearch(Model model) throws Exception {
 	
