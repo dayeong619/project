@@ -95,6 +95,11 @@ public class ProductServiceImpl implements ProductService {
 		return dao.selectMnoWnoPqyByProduct();
 	}
 
+	@Override
+	public List<ProductVO> selectJoinProductByPno(int pNo) throws Exception {
+		return dao.selectJoinProductByPno(pNo);
+	}
+
 	
 
 	

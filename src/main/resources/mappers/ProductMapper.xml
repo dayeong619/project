@@ -68,11 +68,22 @@
 		left join warehousing w on p.w_no = w.w_no
 		left join goods g on w.g_no = g.g_no
 		left join badness b on p.p_no = b.p_no 
- 	 	where exists (select l_no from line where l_no =l.l_no) order by l_no
+ 	 	where p.p_del=1 and exists (select l_no from line where l_no =l.l_no) order by p_workday, l_no
 	</select>
 	
+	<!-- 삭제 -->
 	
 	
+	<!-- 수정 -->
+	<select id="selectJoinProductByPno" resultMap="ProductResultMap">
+		select l.l_no, l.l_line, p.p_workday, p.p_no, p.p_section, m.m_no, m.m_name, g.g_no, g.g_name, p.p_qy from product p 
+		left join line l on p.l_no = l.l_no
+		left join management m on p.m_no = m.m_no
+		left join warehousing w on p.w_no = w.w_no
+		left join goods g on w.g_no = g.g_no
+		left join badness b on p.p_no = b.p_no 
+ 	 	where p.p_no =#{pNo}
+	</select>
 	
 	
 	

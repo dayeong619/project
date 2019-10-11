@@ -44,7 +44,7 @@
 		width: 140px;
 	}
 	thead td:nth-child(3){ 
-		width: 140px;
+		width: 146px;
 	}
 	thead td:nth-child(4){
 		width: 140px;
@@ -73,33 +73,43 @@
 	}
 	tbody td:nth-child(1) {                           /* 여기서부터 tbody */
 		width: 100px;
+		height: 70px
 	}
 	tbody td:nth-child(2){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(3){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(4){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(5){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(6){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(7){
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(8){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(9){ 
 		width: 140px;
+		height: 70px;
 	}
 	tbody td:nth-child(10){ 
 		width: 140px;
+		height: 70px;
 	}
 	.divTitle{ 
 		width:85%;
@@ -144,7 +154,7 @@
 	}
 	#insertViewBackground{
 		width: 600px;
-		height: 650px;
+		height: 700px;
 		background-color: white;
 		color:black;
 	}
@@ -237,7 +247,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
 				<input type="submit" value="등록" id="insertViewinsert">
 				<input type="submit" value="수정" id="insertViewModify">
 				<input type="submit" value="수정확인" id="insertViewModiCon">
@@ -246,6 +256,7 @@
 			</div>
 			<div id="insertViewcontent">
 				<p>
+					<input type="hidden" name="pNo" id="hiddenPno" value="">
 					<label>입고일자</label>
 					<input type="Date" name="pWorkday" id="nowDate" class="insertViewInput">
 				</p>
@@ -322,143 +333,165 @@
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
-					<c:forEach items="${plist }" var="p">
+					<c:forEach items="${gu }" var="g">
 						<tr>
 							<td>
-								<fmt:formatDate value="${p.pWorkday }" pattern="yyyy-MM-dd"/>
+								<fmt:formatDate value="${g }" pattern="yyyy-MM-dd" var="gubun"/>
+									${gubun }
 							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 1}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 2}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 3}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 4}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 5}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 6}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 7}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 8}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							<td>
-								<c:if test="${p.lNo.lNo == 9}">
-									${p.mNo.mName }<br>
-									${p.wNo.gNo.gName }<br>	
-									${p.pQy }
-								</c:if>
-							</td>
-							</tr>
+							<c:forEach var="i" begin="1" end="${Llist.size() }">
+								<td></td>
 							</c:forEach>
+							</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		
 </section>
 <script>
-function repaint(res){
-	$("#tableBackGround table tbody").empty();
 	
-	var str = "";
-	function getFormatDate(date){ 
-		var year = date.getFullYear(); //yyyy 
-		var month = (1 + date.getMonth()); //M 
-		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
-		var day = date.getDate(); //d 
-		day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
-		return year + '-' + month + '-' + day; 
-	}
-	
-	
-	for(var i=0; i<res.length; i++){
-		var date = new Date(res[i].pWorkday);
-		var pWorkday = getFormatDate(date);
-		str+= "<tr><td>"+pWorkday+"</td>";
-		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 1'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 2'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 3'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 4'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 5'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 6'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 7'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 8'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-  		str+= "<td><c:if test='"+res[i].lNo.lNo+" == 9'>";
-  		str+= res[i].mNo.mName+"<br>"+res[i].wNo.gNo.gName+"<br>"+res[i].pQy+"</c:if></td>";
-  		
-		str+="</tr>";
+	$(document).on("click", "tbody td span", function(){ //상세보기 창 띄우기
+		$("#insertView").find("#insertViewinsert").css("display", "none");
+		$("#insertView").find("#insertViewModify").css("display", "inline");
+		$("#insertView").find("#insertViewDelete").css("display", "inline");
+		$("#insertView").find("#spaninsert").text("상세보기");
+		var $this =$(this).parents().find("#insertView").find("#insertViewcontent");
+ 		var pNo= $(this).parent().find("#hiddenPNO").val(); //span에 있는 value값
+		/* $("#insertView").find("#hiddenPno").val(pno); //띄운창에 spanV값 넣어라 */
 		
+
+		$.ajax({
+			url:"product/modifypNo/"+pNo,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				//검색된 리스트 하나만 와서 뿌려주긔 
+				
+				$(res).each(function(i, obj) {
+					var workDay = new Date(obj.pWorkday);
+					var pWorkDay = getFormatDate(workDay); //일자
+					$this.find("#nowDate").val(pWorkDay); 
+					var mName = obj.mNo//작업자
+					var lNo = obj.lNo; //라인
+					
+				})
+					
+					
+					
+				           
+				
+				
+				
+				
+				$("#insertView").fadeIn(300);
+				
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+	$(document).on("click", "#insertViewModify", function(){
+		var $this = $(this); //수정버튼
+		var $parent =$this.parent().next();
+		var pNo = $this.parent().next().find('input[name=pNo]').val(); //검색할 pNo번호 
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+	/* $(document).on("click", "#insertViewModify", function(){ //상세보기에서 수정버튼 클릭시
+		var $this = $(this);
+		var pNo = $this.parent().next().find('input[name=pNo]').val();
+		
+		var pWorkday = $this.parent().parent().find("#insertViewcontent").find('input[name=pWorkday]').val(); //일자
+		var pSection = $this.parent().parent().find("#insertViewcontent").find('input:radio[name=pSection]:checked').val();//구분 주/야
+		var mNo = $this.parent().parent().find("#insertViewcontent").find('select[name=mNo]').val(); //성명 번호
+		var lNo = $this.parent().parent().find("#insertViewcontent").find('select[name=lNo]').val(); //해당라인
+		var wNo = $this.parent().parent().find("#insertViewcontent").find('select[name=wNo]').val(); //픔명 번호
+		var pWorktime = $this.parent().parent().find("#insertViewcontent").find('input[name=pWorktime]').val(); //작업시간
+		var pQy = $this.parent().parent().find("#insertViewcontent").find('input[name=pQy]').val(); //생산수량
+		var pNote = $this.parent().parent().find("#insertViewcontent").find('textarea[name=pNote]').val();//비고
+		
+		var bProcess = $this.parent().parent().find("#insertViewcontent").find('input[name=bProcess]').val();//가공
+		var bSetup = $this.parent().parent().find("#insertViewcontent").find('input[name=bSetup]').val();//셋업
+		var bMaterial = $this.parent().parent().find("#insertViewcontent").find('input[name=bMaterial]').val();//소재
+		var bEtc = $this.parent().parent().find("#insertViewcontent").find('input[name=bEtc]').val();//기타
+		
+		var json = {pWorkday:pWorkday, pSection:pSection,mNo:{mNo:mNo},lNo:{lNo:lNo},wNo:{wNo:wNo},pWorktime:pWorktime,pQy:pQy,pNote:pNote,bProcess:bProcess,bSetup:bSetup,bMaterial:bMaterial,bEtc:bEtc}; 
+		var data = JSON.stringify(json); 
+	
+		$.ajax({
+			url:"product/modify/"+pNo,
+			type:"put",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			data:data,
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				//수정확인버튼 없어지고 인풋 비활성화 시키기
+				alert("수정되었습니다.");
+				$this.parent().parent().parent().fadeOut(1000);
+				paint(res); 
+				
+			}
+		})
+	
+	}) */
+	
+	
+	
+	
+	function refresh(){
+		$.ajax({
+			url:"product/ListAll",
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				
+				$(res).each(function(i, obj) {
+					var workDay = new Date(obj.pWorkday);
+					var sWorkDay = getFormatDate(workDay);
+					var $tr = $("td:contains('"+sWorkDay+"')").parent();
+					var $target = $tr.find("td:eq("+obj.lNo.lNo+")");
+					var $input = "<input type='hidden' name='pNo' id='hiddenPNO' value='"+obj.pNo+"'>";
+					var $span = "<span>";
+					$target.append($input+$span+obj.wNo.gNo.gName+obj.pQy+"<br>");
+					//pNo 가 있어서 클릭하면 상세보기로 
+				
+				})
+			}
+		})
 	}
 	
-	$("#tableBackGround table tbody").append(str);
-}
+	
+	
 
 
 	$(document).on("mouseenter", "#tableScroll td", function(){
 		$(this).css("background-color", "AliceBlue");
 		$(this).parent().find("td:nth-child(1)").css("background-color", "white");
-		$(this).css("cursor", "pointer");
+		$(this).find("span").css("cursor", "pointer");
+		$(this).find("span").css("text-decoration", "underline");
 	})
 	
 	$(document).on("mouseleave", "#tableScroll td", function(){
 		$(this).css("background-color", "white");
+		$(this).find("span").css("text-decoration", "none");
 	})
 
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
@@ -500,7 +533,19 @@ function repaint(res){
 			success:function(res){
 				console.log(res);
 				$this.parent().parent().parent().hide();
-				repaint(res); //다시그려야해...!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				$("tbody td").not("tbody td:nth-child(1)").empty();
+				
+				$(res).each(function(i, obj) {
+					var workDay = new Date(obj.pWorkday);
+					var sWorkDay = getFormatDate(workDay);
+					var $tr = $("td:contains('"+sWorkDay+"')").parent();
+					var $target = $tr.find("td:eq("+obj.lNo.lNo+")");
+					var $input = "<input type='hidden' name='pNo' value='"+obj.pNo+"'>";
+					$target.append($input+obj.wNo.gNo.gName+obj.pQy+"<br>");
+				
+				})
+				
+				
 			}
 		})
 		
@@ -511,6 +556,21 @@ function repaint(res){
 		
 		
 	})
+	
+	function getFormatDate(date){ 
+		var year = date.getFullYear(); //yyyy 
+		var month = (1 + date.getMonth()); //M 
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d 
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
+		return year + '-' + month + '-' + day; 
+	}
+	
+	/* 처음에 리스트 불러오는 아작스  */
+	$(document).ready(function(){ 
+		refresh();
+	})
+
 </script>
 <%@ include file="include/footer.jsp" %>
 

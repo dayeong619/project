@@ -1,0 +1,460 @@
+
+
+-- 제품
+CREATE TABLE project.goods (
+	g_no       INT         NOT NULL COMMENT '제품번호', -- 제품번호
+	g_day      DATE        NULL     COMMENT '제품등록일', -- 제품등록일
+	g_name     VARCHAR(50) NOT NULL COMMENT '제품명', -- 제품명
+	g_location VARCHAR(30) NULL     COMMENT '공급사', -- 공급사
+	g_client   VARCHAR(30) NULL     COMMENT '고객사', -- 고객사
+	g_del      BOOLEAN     NULL     DEFAULT true COMMENT '삭제여부' -- 삭제여부
+)
+COMMENT '제품';
+
+-- 제품
+ALTER TABLE project.goods
+	ADD CONSTRAINT PK_goods -- 제품 기본키
+		PRIMARY KEY (
+			g_no -- 제품번호
+		);
+
+ALTER TABLE project.goods
+	MODIFY COLUMN g_no INT NOT NULL AUTO_INCREMENT COMMENT '제품번호';
+
+
+-- 라인
+CREATE TABLE project.line (
+	l_no   INT         NOT NULL COMMENT '라인번호', -- 라인번호
+	l_line VARCHAR(10) NULL     COMMENT '라인명' -- 라인명
+)
+COMMENT '라인';
+
+-- 라인
+ALTER TABLE project.line
+	ADD CONSTRAINT PK_line -- 라인 기본키
+		PRIMARY KEY (
+			l_no -- 라인번호
+		);
+
+ALTER TABLE project.line
+	MODIFY COLUMN l_no INT NOT NULL AUTO_INCREMENT COMMENT '라인번호';
+
+-- 부서
+CREATE TABLE project.department (
+	d_no   INT         NOT NULL COMMENT '부서번호', -- 부서번호
+	d_name VARCHAR(20) NULL     COMMENT '부서명' -- 부서명
+)
+COMMENT '부서';
+
+-- 부서
+ALTER TABLE project.department
+	ADD CONSTRAINT PK_department -- 부서 기본키
+		PRIMARY KEY (
+			d_no -- 부서번호
+		);
+
+ALTER TABLE project.department
+	MODIFY COLUMN d_no INT NOT NULL AUTO_INCREMENT COMMENT '부서번호';
+
+-- 직책
+CREATE TABLE project.title (
+	t_no   INT         NOT NULL COMMENT '직책번호', -- 직책번호
+	t_name VARCHAR(20) NULL     COMMENT '직책명' -- 직책명
+)
+COMMENT '직책';
+
+-- 직책
+ALTER TABLE project.title
+	ADD CONSTRAINT PK_title -- 직책 기본키
+		PRIMARY KEY (
+			t_no -- 직책번호
+		);
+
+ALTER TABLE project.title
+	MODIFY COLUMN t_no INT NOT NULL AUTO_INCREMENT COMMENT '직책번호';
+
+-- 입고
+CREATE TABLE project.warehousing (
+	w_no     INT     NOT NULL COMMENT '입고번호', -- 입고번호
+	g_no     INT     NOT NULL COMMENT '제품번호', -- 제품번호
+	w_day    DATE    NOT NULL COMMENT '입고일', -- 입고일
+	w_qy     INT     NOT NULL COMMENT '입고수량', -- 입고수량
+	w_result BOOLEAN NULL     DEFAULT true COMMENT '검사결과', -- 검사결과
+	w_memo   TEXT    NULL     COMMENT '조치내용', -- 조치내용
+	w_note   TEXT    NULL     COMMENT '비고', -- 비고
+	w_del    BOOLEAN NULL     DEFAULT true COMMENT '삭제여부' -- 삭제여부
+)
+COMMENT '입고';
+
+-- 입고
+ALTER TABLE project.warehousing
+	ADD CONSTRAINT PK_warehousing -- 입고 기본키
+		PRIMARY KEY (
+			w_no -- 입고번호
+		);
+
+ALTER TABLE project.warehousing
+	MODIFY COLUMN w_no INT NOT NULL AUTO_INCREMENT COMMENT '입고번호';
+
+
+-- 생산
+CREATE TABLE project.product (
+	p_no       INT         NOT NULL COMMENT '생산번호', -- 생산번호
+	w_no       INT         NULL     COMMENT '입고번호', -- 입고번호
+	l_no       INT         NULL     COMMENT '라인번호', -- 라인번호
+	p_workday  DATE        NULL     COMMENT '작업일', -- 작업일
+	m_no       INT         NULL     COMMENT '인사번호', -- 인사번호
+	p_worktime VARCHAR(30) NULL     COMMENT '작업시간', -- 작업시간
+	p_qy       INT         NULL     COMMENT '생산수량', -- 생산수량
+	p_note     TEXT        NULL     COMMENT '비고', -- 비고
+	p_section  BOOLEAN     NULL     DEFAULT true COMMENT '구분', -- 구분
+	p_del      BOOLEAN     NULL     DEFAULT true COMMENT '삭제여부' -- 삭제여부
+)
+COMMENT '생산';
+
+-- 생산
+ALTER TABLE project.product
+	ADD CONSTRAINT PK_product -- 생산 기본키
+		PRIMARY KEY (
+			p_no -- 생산번호
+		);
+
+ALTER TABLE project.product
+	MODIFY COLUMN p_no INT NOT NULL AUTO_INCREMENT COMMENT '생산번호';
+
+-- 출고
+CREATE TABLE project.shipment (
+	p_no      INT      NULL     COMMENT '생산번호', -- 생산번호
+	s_no      INT      NOT NULL COMMENT '출고번호', -- 출고번호
+	s_qy      INT      NOT NULL COMMENT '출고수량', -- 출고수량
+	s_day     DATETIME NOT NULL COMMENT '출고일', -- 출고일
+	s_badness BOOLEAN  NULL     DEFAULT true COMMENT '출고이후불량', -- 출고이후불량
+	s_del     BOOLEAN  NULL     DEFAULT true COMMENT '삭제여부' -- 삭제여부
+)
+COMMENT '출고';
+
+-- 출고
+ALTER TABLE project.shipment
+	ADD CONSTRAINT PK_shipment -- 출고 기본키
+		PRIMARY KEY (
+			s_no -- 출고번호
+		);
+
+ALTER TABLE project.shipment
+	MODIFY COLUMN s_no INT NOT NULL AUTO_INCREMENT COMMENT '출고번호';
+
+
+-- 불량
+CREATE TABLE project.badness (
+	p_no       INT NULL COMMENT '생산번호', -- 생산번호
+	b_process  INT NULL COMMENT '가공불량', -- 가공불량
+	b_setup    INT NULL COMMENT '셋업불량', -- 셋업불량
+	b_material INT NULL COMMENT '소재불량', -- 소재불량
+	b_etc      INT NULL COMMENT '기타불량' -- 기타불량
+)
+COMMENT '불량';
+
+-- 인사관리
+CREATE TABLE project.management (
+	m_no       INT         NOT NULL COMMENT '인사번호', -- 인사번호
+	m_id       VARCHAR(20) NOT NULL COMMENT '아이디', -- 아이디
+	m_pw       VARCHAR(20) NULL     COMMENT '비밀번호', -- 비밀번호
+	m_name     VARCHAR(10) NOT NULL COMMENT '이름', -- 이름
+	m_birth    VARCHAR(20) NULL     COMMENT '생년월일', -- 생년월일
+	m_email    VARCHAR(50) NULL     COMMENT '이메일', -- 이메일
+	m_tel      VARCHAR(20) NULL     COMMENT '연락처', -- 연락처
+	m_addr     TEXT        NULL     COMMENT '주소', -- 주소
+	m_enterday DATE        NULL     COMMENT '입사일', -- 입사일
+	m_photo    TEXT        NULL     COMMENT '사진', -- 사진
+	m_confirm  DATE        NULL     COMMENT '작업자인증일', -- 작업자인증일
+	m_del      BOOLEAN     NULL     DEFAULT true COMMENT '퇴사여부', -- 퇴사여부
+	d_no       INT         NULL     COMMENT '부서번호', -- 부서번호
+	t_no       INT         NULL     COMMENT '직책번호' -- 직책번호
+)
+COMMENT '인사관리';
+
+-- 인사관리
+ALTER TABLE project.management
+	ADD CONSTRAINT PK_management -- 인사관리 기본키
+		PRIMARY KEY (
+			m_no -- 인사번호
+		);
+
+ALTER TABLE project.management
+	MODIFY COLUMN m_no INT NOT NULL AUTO_INCREMENT COMMENT '인사번호';
+
+ALTER TABLE project.management
+	AUTO_INCREMENT = 1;
+
+-- 출고
+ALTER TABLE project.shipment
+	ADD CONSTRAINT FK_product_TO_shipment -- 생산 -> 출고
+		FOREIGN KEY (
+			p_no -- 생산번호
+		)
+		REFERENCES project.product ( -- 생산
+			p_no -- 생산번호
+		);
+
+-- 생산
+ALTER TABLE project.product
+	ADD CONSTRAINT FK_warehousing_TO_product -- 입고 -> 생산
+		FOREIGN KEY (
+			w_no -- 입고번호
+		)
+		REFERENCES project.warehousing ( -- 입고
+			w_no -- 입고번호
+		);
+
+-- 생산
+ALTER TABLE project.product
+	ADD CONSTRAINT FK_line_TO_product -- 라인 -> 생산
+		FOREIGN KEY (
+			l_no -- 라인번호
+		)
+		REFERENCES project.line ( -- 라인
+			l_no -- 라인번호
+		);
+
+-- 생산
+ALTER TABLE project.product
+	ADD CONSTRAINT FK_management_TO_product -- 인사관리 -> 생산
+		FOREIGN KEY (
+			m_no -- 인사번호
+		)
+		REFERENCES project.management ( -- 인사관리
+			m_no -- 인사번호
+		);
+
+-- 입고
+ALTER TABLE project.warehousing
+	ADD CONSTRAINT FK_goods_TO_warehousing -- 제품 -> 입고
+		FOREIGN KEY (
+			g_no -- 제품번호
+		)
+		REFERENCES project.goods ( -- 제품
+			g_no -- 제품번호
+		);
+
+-- 불량
+ALTER TABLE project.badness
+	ADD CONSTRAINT FK_product_TO_badness -- 생산 -> 불량
+		FOREIGN KEY (
+			p_no -- 생산번호
+		)
+		REFERENCES project.product ( -- 생산
+			p_no -- 생산번호
+		);
+
+-- 인사관리
+ALTER TABLE project.management
+	ADD CONSTRAINT FK_department_TO_management -- 부서 -> 인사관리
+		FOREIGN KEY (
+			d_no -- 부서번호
+		)
+		REFERENCES project.department ( -- 부서
+			d_no -- 부서번호
+		);
+
+-- 인사관리
+ALTER TABLE project.management
+	ADD CONSTRAINT FK_title_TO_management -- 직책 -> 인사관리
+		FOREIGN KEY (
+			t_no -- 직책번호
+		)
+		REFERENCES project.title ( -- 직책
+			t_no -- 직책번호
+		);		
+	
+INSERT INTO project.line (l_line) values 
+('A'),
+('B'),
+('C'),
+('D'),
+('E'),
+('F'),
+('G'),
+('H'),
+('I');
+
+INSERT INTO project.goods (g_no, g_name, g_location, g_client) values
+(1,'PULLEY(RS18)', '민영산업', '신라공업'),
+(2,'PULLEY(RS15)A', '신라공업', '신라공업'),
+(3,'PULLEY(RS13)A', '신라공업', '신라공업'),
+(4,'PULLEY(RS11)', '민영산업', '신라공업'),
+(5,'PULLEY(EURS15)', '신라공업', '신라공업'),
+(6,'SLS', '건우금속', '신라공업'),
+(7,'PUILLEY(TA)', '민영산업', '신라공업'),
+(8,'IA5PK', '민영산업', '신라공업'),
+(9,'IA6PK', '민영산업', '신라공업'),
+(10,'C-211 NE14', '건우금속', '신라공업'),
+(11,'GDGAMMA(내부제어)', '건우금속', '신라공업'),
+(12,'J2', '건우금속', '신라공업'),
+(13,'T2', '건우금속', '신라공업'),
+(14,'A2', '건우금속', '신라공업'),
+(15,'LPI', '건우금속', '신라공업'),
+(16,'NL1','신라공업', '신라공업'),
+(17,'N800','신라공업', '신라공업'),
+(18,'BW-019', '건우금속', '신라공업'),
+(19,'LFC-GAMMA', '건우금속', '신라공업'),
+(20,'GB', '건우금속', '신라공업'),
+(21,'JD', '건우금속', '신라공업'),
+(22,'SO-U-ENG', '건우금속', '신라공업'),
+(23,'BH', '건우금속', '신라공업'),
+(24,'R-ENG', '민영산업', '신라공업'),
+(25,'THETA', '민영산업', '신라공업'),
+(26,'HITAU', '민영산업', '신라공업'),
+(27,'YGLAMDA', '민영산업', '신라공업'),
+(28,'TLE신U', '건우금속', '신라공업'),
+(29,'TLEGAMMA',  '건우금속', '신라공업'),
+(30,'TLE48V','신라공업', '신라공업'),
+(31,'CSP','동은단조', '신라공업'),
+(32,'BZ', '신라공업', '신라공업'),
+(33,'CR-V APD','신라공업', '신라공업'),
+(34,'CIVIC RS-13','신라공업', '신라공업'),
+(35,'CIVIC RS-15','신라공업', '신라공업'),
+(36, 'svda(6576644)', '문화메탈', 'YNT'),
+(37, '2876', '문화메탈', 'YNT'),
+(38, '2877', '문화메탈', 'YNT'),
+(39, '2771', '문화메탈', 'YNT'),
+(40, '249(RU)', '문화메탈', 'YNT'),
+(41, '2856(샘플)', '문화메탈', 'YNT'),
+(42, '6576574', '문화메탈', 'YNT'),
+(43, '519', '문화메탈', 'YNT'),
+(44, '산덴2735(2850)', '문화메탈', 'YNT'),
+(45, 'CIVIC252', '문화메탈', 'YNT'),
+(46, '2838', '문화메탈', 'YNT'),
+(47, '2840', '문화메탈', 'YNT'),
+(48, '2841', '문화메탈', 'YNT'),
+(49, '2837', '문화메탈', 'YNT'),
+(50, '926', '문화메탈', 'YNT'),
+(51, '2508', '대광단조', 'YNT'),
+(52, 'GEM', '문화메탈', 'YNT');
+
+INSERT INTO title(t_name) values ('사장'),('부장'),('대리'),('사원');
+INSERT INTO department(d_name) values ('품질관리팀'), ('생산관리팀'), ('자재관리팀');
+
+INSERT INTO warehousing(g_no, w_day, w_qy, w_result) values
+(28, '20180601', 3150, true),
+(28, '20180608', 238, true),
+(28, '20180609', 2700, true),
+(28, '20180625', 407, true),
+(28, '20180627', 3600, true),
+(28, '20180630', 1800, true),
+(28, '20180701', 3150, true),
+(49, '20190827', 7900, true),
+(49, '20190828', 8000, true),
+(49, '20190831', 3087, true),
+(49, '20190906', 8000, true),
+(49, '20190909', 2219, true),
+(50, '20190831', 6080, true),
+(50, '20190701', 6000, true);
+
+INSERT INTO management
+(m_id, m_pw, m_name, m_birth, m_email, m_tel, m_addr, m_enterday, m_photo, d_no, t_no)values
+('js0818', 'js0818', '김장식', '19590818', 'jangsik@naver.com', '01077447489', '대구광역시', '20150101', 'jungsw.jpg', 1, 1),
+('taechul22', 'taechul22', '김태철', '1989.2.12', 'taechul@naver.com', '01077407489', '대구광역시', '20150125', 'junghi.jpg', 2, 1),
+('gubr3', 'gubr3', '구병렬', '19730321', 'gugu@gmail.com', '01099999192', '대구광역시', '20180113', 'leejh.jpg', 2, 2),
+('takone615', 'takone615', '김택일', '1969.11.5', 'one@naver.com', '010-1128-7871', '대구광역시', '2016.5.4', 'parkjm.jpg', 3, 3),
+('gualjs8860', 'gualjs8860', '곽지성', '1980.6.6', 'jisung@gmail.com', '010-6564-9091', '대구광역시', '2016.2.15', 'ryusr.jpg', 2, 3);
+
+INSERT INTO product
+(w_no, p_workday, l_line, p_workname, m_no, p_worktime, p_qy, p_note, p_section)values
+(3, '20190911', 1, '구병렬', 3, '08:00-20:00', 400, '', 1);
+
+INSERT INTO badness
+(p_no, b_qy, b_material)
+VALUES(3, 1, 1);
+
+
+
+
+
+
+
+
+-- 이 위까찌만 하시오
+select * from line;
+select * from goods;
+select * from title;
+select * from department;
+
+select * from warehousing;
+select * from management;
+select * from product;
+select * from badness;
+
+
+-- 9/19 join
+-- 회원가입시 들어오는 정보
+select m.m_id, m.m_pw, m.m_name, m.m_birth, m.m_email, m.m_tel, m.m_enterday, m.m_photo, d.d_name, t.t_name
+from department d
+left join management m on d.d_no = m.d_no
+left join title t on d.d_no = t.t_no;
+
+
+-- 인사관리화면에서 보일 리스트항목 사원번호/이름/부서/직급/입사일
+select m.m_no, m.m_name, t.t_name, d.d_name, m.m_enterday 
+from department d
+left join management m on d.d_no = m.d_no
+left join title t on d.d_no = t.t_no;
+
+select m_id, m_pw
+from management 
+where m_id='gubr3' and m_pw ='gubr3';
+
+insert into management
+		(m_id, m_pw, m_name, m_birth, m_email, m_tel, m_enterday, d_no, t_no) values
+		('vvv', 'vvv', 'vvv', '21231', '21231', '21231', '2123-11-11', 2, 2);
+
+select * from department;
+
+
+-- 9/20 join
+-- 입고현황에서 보일 정보
+select w.w_no, w.w_day, g.g_no, g.g_name, w.w_qy, w.w_result, w.w_memo, w.w_note
+from warehousing w 
+left join goods g on w.g_no = g.g_no order by w.w_day desc;
+
+-- 나의정보 에서 보일 정보. id만 입력하면 보임.
+select *
+from department d
+left join management m on d.d_no = m.d_no
+left join title t on d.d_no = t.t_no
+where m.m_id = 'js0818';
+
+-- 생산현황 보일꺼야  (생산일지쓰면됨, 날짜 구분 포함되어있음)
+select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday
+from product p 
+left join line l on p.p_no = l.l_no
+left join management m on p.p_no = m.m_no
+left join warehousing w on p.p_no = w.w_no
+left join goods g on w.w_no = g.g_no
+left join badness b on p.p_no = b.b_no
+;
+
+select p.p_workname, g.g_name
+from product p 
+left join warehousing w on p.p_no = w.w_no
+left join goods g on w.w_no = g.g_no;
+
+-- 홈화면에서 생산화면 보일것
+-- g.g_name, p.p_qy, p.p_section, p.p_workday
+
+-- 출고 insert할때 생산번호 2개,3개 들어갈수있어야함  dto만들때 list로 만들것. 
+INSERT INTO shipment
+(s_qy, s_day, p_no, s_badness)
+VALUES(1000, '20190915', 2, 0);
+select * from shipment;
+
+-- 출고테이블에서 품명보이도록 쪼인 (출하일  출고번호  제품명  출하수량)
+select s.s_day, s.s_no, g.g_name, s.s_qy
+from shipment s
+left join product p on s.s_no = p.p_no
+left join warehousing w on p.p_no = w.w_no
+left join goods g on w.w_no = g.g_no;	
+	
+	
+	
+	
+	
