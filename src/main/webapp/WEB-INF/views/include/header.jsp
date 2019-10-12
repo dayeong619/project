@@ -110,13 +110,21 @@
 <script>
 $(function(){
 	$(".tip").hide();
+	$(".tip").click(function(){
+		/* if(${Auth == null}){
+			$(this).stop().slideUp(300);
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		} */
+	})
+	
 	$(".menu li")
 	.mouseenter(function(){ $(this).children(".tip").stop().slideDown(300);})
 	.mouseleave(function(){ $(this).children(".tip").stop().slideUp(300);})
 	$(".menu2 li").click(function(){ $(this).children(".tip").slideToggle(300);})
 	
+	
 })
-
 
 </script>
 </head>
@@ -138,10 +146,8 @@ $(function(){
 					<li>
 						제품관리
 						<ul class="tip">
-						<%-- <c:if test="${Auth!=null }"></c:if> 로그인 안했을때 막기 --%>
 							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품관리</a></li>
 							<li><a href="#"  class="aa">제품현황</a></li>
-						
 						</ul>
 					</li>
 					<li>

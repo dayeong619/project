@@ -534,7 +534,11 @@
 					//창 숨기기 
 					// repaint(res); 다시그림
 		})
-				
+
+		
+						
+						
+							
 </script>
 <%@ include file="include/footer.jsp" %>
 
