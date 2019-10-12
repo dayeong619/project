@@ -18,12 +18,16 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
-		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 82%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
 	tbody tr{
 		background-color: white;
@@ -37,78 +41,38 @@
     	font-size:20px;
     	height: 40px;
 	}
-	thead td:nth-child(1){ 
+	thead td:nth-child(1),tbody td:nth-child(1){ 
 		width: 100px;
 	}
-	thead td:nth-child(2){ 
+	thead td:nth-child(2), tbody td:nth-child(2){ 
 		width: 140px;
 	}
-	thead td:nth-child(3){ 
+	thead td:nth-child(3), tbody td:nth-child(3){ 
 		width: 146px;
 	}
-	thead td:nth-child(4){
+	thead td:nth-child(4), tbody td:nth-child(4){
 		width: 140px;
 	}
-	thead td:nth-child(5){ 
+	thead td:nth-child(5), tbody td:nth-child(5){ 
 		width: 140px;
 	}
-	thead td:nth-child(6){ 
+	thead td:nth-child(6), tbody td:nth-child(6){ 
 		width: 140px;
 	}
-	thead td:nth-child(7){ 
+	thead td:nth-child(7), tbody td:nth-child(7){ 
 		width: 140px;
 	}
-	thead td:nth-child(8){ 
+	thead td:nth-child(8), tbody td:nth-child(8){ 
 		width: 140px;
 	}
-	thead td:nth-child(9){ 
+	thead td:nth-child(9), tbody td:nth-child(9){ 
 		width: 140px;
 	}
-	thead td:nth-child(10){ 
+	thead td:nth-child(10), tbody td:nth-child(10){ 
 		width: 140px;
 	}
-	/* 추가될 라인에 대해서 */
-	thead td:nth-child(11){ 
-		width: 140px;
-	}
-	tbody td:nth-child(1) {                           /* 여기서부터 tbody */
-		width: 100px;
-		height: 70px
-	}
-	tbody td:nth-child(2){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(3){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(4){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(5){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(6){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(7){
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(8){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(9){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(10){ 
-		width: 140px;
+	
+	tbody td{ 
 		height: 70px;
 	}
 	.divTitle{ 
@@ -530,6 +494,7 @@
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
 		document.getElementById("nowDate").valueAsDate = new Date();
 		$("#insertView").fadeIn(300);
+		
 	})
 	$(document).on("click", "#insertViewReset", function(){ //작업일 등록할 창에서 취소 눌러
 		$("#insertView").fadeOut(300);

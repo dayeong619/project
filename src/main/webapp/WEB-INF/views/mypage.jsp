@@ -24,6 +24,88 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
+	#insertView{ /* 나의정보 나의정보 ,ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+		z-index:100;
+		position:fixed;
+		left:0;
+		top:80px;
+		width:100%;
+		height: 87%;
+		background: rgba(0,0,0,0.7);
+		padding:60px 500px;
+		display: none;
+		color:#D5D5D5;
+	}
+	#insertViewBackground{
+		width: 600px;
+		height: 650px;
+		background-color: white;
+		color:black;
+	}
+	#spaninsert{
+		font-size: 20px;
+		font-weight: bold;
+		margin-right: 250px;
+	}
+	#insertViewTitle{
+		height: 50px;
+		padding-left:10px;
+		padding-top:10px;
+	}
+	#insertView #insertViewModify2{
+		display: none;
+		width: 70px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
+	#insertView #insertViewModify{
+		width: 60px;
+		height: 30px;
+		color:white;
+		background-color: #365c89;
+		border:1px solid #ccc;
+	}
+	#insertView #insertViewReset{
+		width: 60px;
+		height: 30px;
+		color:black;
+		background-color:white;
+		border:1px solid #ccc;
+	}
+	#insertView label{
+		width: 200px;
+		height: 50px;
+		display:inline-block;
+		padding-left: 90px;	
+		font-weight: bold;
+	}
+	#insertView .insertViewInput{
+		width:200px; 
+		height: 30px;
+		border:none;
+		background-color: white;
+	}
+	#insertViewcontent{
+		width: 570px;
+		margin-left:10px;
+		padding-left:10px;	
+		border-top:2px solid #ccc;	
+		border-bottom:2px solid #ccc;	
+	}
+	#insertViewcontent select{
+		width: 204px;
+		height: 34px;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 </style>
 <body class="w3-theme-l5">
 
@@ -39,6 +121,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
        	 <c:forEach var="mlists" items="${mlist }">
 	         <h4 class="w3-center">${mlists.mId}님의 정보</h4>
 	         <p class="w3-center">
+	         
 	         	<c:if test="${mlists.mPhoto == null }">
 					사진없음			         	
 	         	</c:if>
@@ -57,15 +140,129 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       
       <!-- Accordion -->
       <div class="w3-card w3-round">
-        <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>나의 정보</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p><a href="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;정보수정</a></p>
-          </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>생산이력</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-          </div>
+        <div class="w3-white"><!--나의정보 누르면 내 정보 보이는 창 띄우기.  -->
+          <button id="MyinfoBtn" onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>나의 정보</button>
+          <div id="insertView"> <!-- 신규창  신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창 신규창-->
+			<div id="insertViewBackground">
+				<div id="insertViewTitle">
+					<span id="spaninsert">&nbsp;&nbsp;&nbsp;${Auth.userid}님의 정보</span>
+					<input type="submit" value="수정" id="insertViewModify">
+					<input type="submit" value="수정확인" id="insertViewModify2">
+					<input type="reset" value="닫기" id="insertViewReset">
+				</div>
+				<div id="insertViewcontent">
+					<c:forEach items="${mlist }" var="m">
+					<p>
+						<input type="hidden" name="mNo" value="${m.mNo }">
+						<label>이름</label>
+						<input type="text" name="mName" value="${m.mName }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>부서</label>
+						<input type="text" name="dNo" value="${m.dNo.dName }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>직책</label>
+						<input type="text" name="tNo" value="${m.tNo.tName }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>입사일</label>
+						<input type="date" name="mEnterday" value="${m.mEnterday }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>아이디</label>
+						<input type="text" name="mId" value="${m.mId }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>비밀번호</label>
+						<input type="password" name="mPw" value="${m.mPw}" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>연락처</label>
+						<input type="text" name="mTel" value="${m.mTel }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>이메일</label>
+						<input type="text" name="mEmail" value="${m.mEmail }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>생년월일</label>
+						<input type="text" name="mBirth" value="${m.mBirth }" class="insertViewInput" disabled="disabled">
+					</p>
+					<p>
+						<label>주소</label>
+						<input type="text" name="mAddr" value="${m.mAddr }" class="insertViewInput" disabled="disabled">
+					</p>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+          <button id="logOutBtn" onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>로그아웃</button>
+          <script>
+          	$("#logOutBtn").click(function(){
+          		if(confirm("로그아웃 하시겠습니까?")){
+          			location.href="auth/logout";
+          		}
+          	})
+          	
+          	$("#MyinfoBtn").click(function(){
+          		$("#insertView").fadeIn(300);
+          	})
+          	$(document).on("click", "#insertViewReset", function(){
+          		$("#insertView").fadeOut(300);
+          		
+          	})
+          	$(document).on("click", "#insertViewModify", function(){
+          		var $this = $(this);
+          		$this.next().css("display", "inline"); //수정확인버튼 보이긔
+          		$this.hide(); //수정버튼 숨기기
+          		
+          		//수정할 인풋만 활성화시키기 
+          		var mPW = $this.parent().next().find("input[name=mPw]").attr("disabled", false);
+          		mPW.css("border", "1px solid #ccc");
+          		var mTel = $this.parent().next().find("input[name=mTel]").attr("disabled", false);
+          		mTel.css("border", "1px solid #ccc");
+          		var mEmail = $this.parent().next().find("input[name=mEmail]").attr("disabled", false);
+          		mEmail.css("border", "1px solid #ccc");
+          		var mBirth = $this.parent().next().find("input[name=mBirth]").attr("disabled", false);
+          		mBirth.css("border", "1px solid #ccc");
+          		var mAddr = $this.parent().next().find("input[name=mAddr]").attr("disabled", false);
+          		mAddr.css("border", "1px solid #ccc");
+          	})
+          	$(document).on("click", "#insertViewModify2", function(){
+          		var $this = $(this);
+          		
+          		var mNo = $this.parent().next().find("input[name=mNo]").val();
+          		var mId = $this.parent().next().find("input[name=mId]").val();
+          		var mPW = $this.parent().next().find("input[name=mPw]").val();
+          		var mTel = $this.parent().next().find("input[name=mTel]").val();
+          		var mEmail = $this.parent().next().find("input[name=mEmail]").val();
+          		var mBirth = $this.parent().next().find("input[name=mBirth]").val();
+          		var mAddr = $this.parent().next().find("input[name=mAddr]").val();
+          		var json = {mPW:mPW, mTel:mTel, mEmail:mEmail, mBirth:mBirth, mAddr:mAddr};
+    			var data = JSON.stringify(json);
+    			
+          		$.ajax({
+    				url: "mypage/modify/"+mNo,
+    				/* url: "mypage/modify/"+mNo+"/"+mId, */
+    				type: "put",
+    				headers:{
+    					"Content-Type":"application/json"
+    				},
+    				data:data,
+    				dataType:"json",
+    				success:function(res){
+    					console.log(res);
+    					$this.hide();
+    					$("#insertView").hide();
+    					alert("정보가 수정되었습니다.");
+    					
+    					 //수정하고나서 창닫을껀지 아니면 창안닫고 수정된정보보여줄껀지
+    				}
+    			})	
+          		
+          	})
+          </script>
           <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">

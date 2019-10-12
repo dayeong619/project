@@ -25,6 +25,11 @@ public class ShipmentDaoImpl implements ShipmentDao {
 	public List<ShipmentVO> selectShipmentByAll() throws Exception {
 		return sqlSession.selectList(namespace+".selectShipmentByAll");
 	}
+
+	@Override
+	public List<ShipmentVO> selectShipment() throws Exception {
+		return sqlSession.selectList(namespace+".selectShipment");
+	}
 	
 
 

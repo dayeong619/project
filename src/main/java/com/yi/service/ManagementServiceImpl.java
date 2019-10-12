@@ -17,15 +17,11 @@ public class ManagementServiceImpl implements ManagementService {
 
 	@Autowired
 	ManagementDao dao;
-	
 	@Autowired
 	TitleDao tdao;
-	
 	@Autowired
 	DepartmentDao ddao;
 	
-	
-
 	@Override
 	public void insertManagement(ManagementVO vo) throws Exception {
 		dao.insertManagement(vo);
@@ -35,8 +31,6 @@ public class ManagementServiceImpl implements ManagementService {
 	public List<ManagementVO> selectByJoinInformation() throws Exception {
 		return dao.selectByJoinInformation();
 	}
-
-	
 
 	@Override
 	public List<ManagementVO> selectMyInformationById(String mId) throws Exception {
@@ -61,7 +55,6 @@ public class ManagementServiceImpl implements ManagementService {
 	@Override
 	public void deleteWorkerByMno(int mNo) throws Exception {
 		dao.deleteWorkerByMno(mNo);
-		
 	}
 
 	@Override
@@ -92,6 +85,16 @@ public class ManagementServiceImpl implements ManagementService {
 	@Override
 	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception {
 		return dao.selectThreeJoinByDname(dName);
+	}
+
+	@Override
+	public List<ManagementVO> selectMypageByMid(String mId) throws Exception {
+		return dao.selectMypageByMid(mId);
+	}
+
+	@Override
+	public void modifyManagementByMypage(ManagementVO vo) throws Exception {
+		dao.modifyManagementByMypage(vo);
 	}
 
 	

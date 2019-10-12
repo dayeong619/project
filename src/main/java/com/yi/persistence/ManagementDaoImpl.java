@@ -33,7 +33,6 @@ public class ManagementDaoImpl implements ManagementDao {
 		Map<String, String> map = new HashMap<>();
 		map.put("mId", mId);
 		map.put("mPw", mPw);
-		
 		return sqlSession.selectOne(namespace+".selectByIdAndPw", map);
 	}
 
@@ -81,6 +80,16 @@ public class ManagementDaoImpl implements ManagementDao {
 	@Override
 	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception {
 		return sqlSession.selectList(namespace+".selectThreeJoinByDname", dName);
+	}
+
+	@Override
+	public List<ManagementVO> selectMypageByMid(String mId) throws Exception {
+		return  sqlSession.selectList(namespace+".selectMypageByMid", mId);
+	}
+
+	@Override
+	public void modifyManagementByMypage(ManagementVO vo) throws Exception {
+		sqlSession.update(namespace+".modifyManagementByMypage", vo);
 	}
 
 

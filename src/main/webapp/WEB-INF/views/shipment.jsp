@@ -18,12 +18,16 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
-		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 90%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
 	tbody tr{
 		background-color: white;
@@ -32,25 +36,25 @@
 	table td{
 		border:1px solid black;
 	}
-	thead td:nth-child(1), tbody td:nth-child(1){ /* 이름 */
+	thead td:nth-child(1), tbody td:nth-child(1){ 
 		width: 80px;
 	}
-	thead td:nth-child(2), tbody td:nth-child(2){ /* 생년월일 */
+	thead td:nth-child(2), tbody td:nth-child(2){
 		width: 140px;
 	}
-	thead td:nth-child(3), tbody td:nth-child(3){ /* 연락처 */
+	thead td:nth-child(3), tbody td:nth-child(3){ 
 		width: 140px;
 	}
-	thead td:nth-child(4), tbody td:nth-child(4){ /* 주소 */
+	thead td:nth-child(4), tbody td:nth-child(4){ 
 		width: 400px;
 	}
-	thead td:nth-child(5), tbody td:nth-child(5){ /* 작업자등록일 */
+	thead td:nth-child(5), tbody td:nth-child(5){ 
 		width: 140px;
 	}
-	thead td:nth-child(6), tbody td:nth-child(6){ /* 작업자인증일 */
+	thead td:nth-child(6), tbody td:nth-child(6){
 		width: 140px;
 	}
-	thead td:nth-child(7), tbody td:nth-child(7){ /* 생산실적 */
+	thead td:nth-child(7), tbody td:nth-child(7){
 		width: 140px;
 	}
 	tbody .badnessInput{
@@ -226,10 +230,6 @@
 	#BtnInsertConfirm{
 		display: none;
 	}
-	#oneYear{
-		color: #E0FFFF;
-		font-size: 11px;
-	}
 	#insert{
 		width: 90px;
   	    height: 35px;
@@ -329,7 +329,7 @@
 		<div id="sectionOne">
 			<div id="divDate2">
 				<div id="left">
-					<input type="text" name="pName" id="searchName"> <button id="workerSearch">출하번호로 검색</button>
+					<input type="text" name="pName" id="searchName"> <button id="workerSearch"> 검색 </button>
 				</div> 
 				<button id="insert">전표등록</button>	
 			</div> 
@@ -348,12 +348,12 @@
 			</div>
 			<div id="insertViewcontent">
 				<div>
-					<label>이름</label>
-					<input type="text" name="mName" class="insertViewInput">
+					<label>출고일</label>
+					<input type="date" name="sDay" id="nowDate">
 				</div>
 				<div>
-					<label>생년월일</label>
-					<input type="text" name="mBirth" placeholder=" 8자리 ex) 19910619" class="insertViewInput">
+					<label>출고수량</label>
+					<input type="text" name="sQy" class="insertViewInput">
 				</div>
 				<div>
 					<label>연락처</label>
@@ -364,8 +364,7 @@
 					<input type="text" name="mAddr" placeholder=" 대구광역시 서구 국채보상로" class="insertViewInput">
 				</div>
 				<div>
-					<label>등록일</label>
-					<input type="date" name="mEnterday" id="nowDate" placeholder=" 8자리 ex) 20190918">
+					
 				</div>
 				<div>
 					<label>작업자인증일</label>
@@ -378,30 +377,30 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td>번호</td><!-- 번호매기기 -->
+						<td></td><!-- 번호매기기 -->
 						<td>출고번호</td>
 						<td>출고일</td>
 						<td>출고수량</td>
 						<td>생산번호</td>
-						<td>불량여부<br><span id="oneYear">(1년마다 갱신)</span></td>
+						<td>출고후불량여부</td>
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
-					<c:forEach var="lists" items="${list}">
+					<c:forEach var="s" items="${slist}">
 						<tr>
 							<c:set var="sum" value="${sum+1}"/><!-- 번호 매기기 -->
 								<td>
 									${sum}
 								</td>
 							<td>
-								<input type="hidden" name="mNo" value="${lists.mNo}">
-								<div class="mNameClass">${lists.mName}</div>
+							<div class="mNameClass">S0${s.sNo }</div>
+								
+								
 								
 		<div class="workerView"> <!-- 상세보기상세보기상세보기상세보기상세보기상세보기상세보기상세보기상세보기상세보기상세보기상세보기 -->
 		<div class="workerViewBackground">
 			<div class="workerViewTitle">
-			
-				<span id="spaninsert2">${lists.mName}님 상세보기</span>
+				<span id="spaninsert2">상세보기</span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -413,7 +412,7 @@
 			</div>
 			<div class="insertViewcontent">
 				<div>
-					<label>이름</label>
+					<label>출고일</label>
 					<input type="text" name="mName" value="${lists.mName }" disabled="disabled" class="insertViewInput">
 					<input type="hidden" name="mNo" value="${lists.mNo}">
 				</div>
@@ -443,22 +442,21 @@
 				
 							</td>
 							<td>
-								${lists.mBirth}
+								<fmt:formatDate value="${s.sDay }" pattern="yyyy-MM-dd"/>
 							</td>
 							<td>
-								${lists.mTel}
+								${s.sQy }
 							</td>
 							<td>
-								${lists.mAddr}
+								${s.pNo[0].pNo}
 							</td>
 							<td>
-								${lists.mEnterday}
-							</td>
-							<td>
-								${lists.mConfirm}
-							</td>
-							<td>
-								<button class="BtnProductResult">보기</button>
+								<c:if test="${s.sBadness == true}">
+									-
+								</c:if>
+								<c:if test="${s.sBadness == false}">
+									ㅇ
+								</c:if>
 							</td>
 						</tr>
 					</c:forEach>	
