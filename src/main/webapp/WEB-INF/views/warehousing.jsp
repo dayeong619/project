@@ -366,7 +366,7 @@
 			 /* 입고창에서 등록*/
 			$(document).on("click", "#insertViewinsert", function(){ 
 				var wDay = $('input[name=wDay]').val(); //입고일자
-				var gNo = $("#gNo").val(); //제품번호
+				var gNo = $("#gNo option:selected").val(); //제품번호
 				var wQy = $('input[name=wQy]').val(); //입고수량
 				var wResult = $('select[name=wResult]').val(); //true, false
 				var wMemo = $('textarea[name=wMemo]').val(); //조치내용

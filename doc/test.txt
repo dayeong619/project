@@ -157,7 +157,7 @@ COMMENT '불량';
 -- 인사관리
 CREATE TABLE project.management (
 	m_no       INT         NOT NULL COMMENT '인사번호', -- 인사번호
-	m_id       VARCHAR(20) NOT NULL COMMENT '아이디', -- 아이디
+	m_id       VARCHAR(20) NULL     COMMENT '아이디', -- 아이디
 	m_pw       VARCHAR(20) NULL     COMMENT '비밀번호', -- 비밀번호
 	m_name     VARCHAR(10) NOT NULL COMMENT '이름', -- 이름
 	m_birth    VARCHAR(20) NULL     COMMENT '생년월일', -- 생년월일

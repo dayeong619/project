@@ -72,7 +72,7 @@
 		width: 140px;
 	}
 	
-	tbody td{ 
+	#tableScroll td{ 
 		height: 70px;
 	}
 	.divTitle{ 
@@ -81,8 +81,9 @@
 		margin:0 auto;
 	}
 	.divTitle2 h3{
-		margin-left:160px;
+		margin-left:140px;
 		display: inline;
+		margin-right: 500px;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
@@ -95,14 +96,6 @@
 		width: 100%;
 		padding-top:15px;
 	}
-
-	
-	/* .dddd{ 인풋쓸꺼면 넣으면됨
-		height: 60px;
-		border:none;
-		background-color: white;
-		text-align: center;
-	} */
 		
 	#insertView{ /* 신규클릭시 나오는 입고등록 */
 		z-index:100;
@@ -195,12 +188,17 @@
 		background-color: #365c89;
 		border:1px solid #ccc;
 	}
+	#productInsert{
+		width: 100px;
+	    height: 30px;
+	    margin-top: 10px;
+	    margin-left:700px;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="left">
 		<h3>생산일지</h3>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button id="productInsert">등록</button>
+			<button id="productInsert">생산일지 등록</button>
 	</div>
 	<div class="divTitle">
 		<div id="insertView"> <!-- 신규창 -->

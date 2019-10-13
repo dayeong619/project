@@ -100,11 +100,15 @@
 	}
 	#sh{
 		font-size: 25px;
-		padding-left: 30px;
-		color:#ccc;
+		padding-left: 20px;
+		color:white;
+		font-family: sans-serif;
+		text-shadow:4px 2px 2px gray;
 	}
+	#logo{
+		padding-top:15px;
+	}	
 		
-	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
@@ -133,12 +137,12 @@ $(function(){
 			<div id="logo">
 			<c:if test="${Auth == null }">
 				<a href="${pageContext.request.contextPath}/auth/login">
-					<span id="sh">SH Company</span>
+					<span id="sh">MES SYSTEM<%-- <img src="${pageContext.request.contextPath}/resources/images/logo.PNG"> --%></span>
 				</a>
 			</c:if>
 			<c:if test="${Auth != null }">
 				<a href="${pageContext.request.contextPath}/mypage">
-					<span id="sh">SH Company</span>
+					<span id="sh">MES SYSTEM<img src="${pageContext.request.contextPath}/resources/images/logo.PNG"></span>
 				</a>
 			</c:if>
 			</div><!-- 맨 왼쪽에 위치. 회사로고-->
@@ -180,7 +184,7 @@ $(function(){
 					</li>
 				</ul>
 
-			<div id="mypage"><img src="${pageContext.request.contextPath}/resources/images/mypage.png"></div> <!-- 맨 오른쪽에 위치. 누르면 마이페이지, 등등 -->
+			<%-- <div id="mypage"><img src="${pageContext.request.contextPath}/resources/images/mypage.png"></div> --%> <!-- 맨 오른쪽에 위치. 누르면 마이페이지, 등등 -->
 		</div>
 	</header>
 	<div id="headerborder"></div>
