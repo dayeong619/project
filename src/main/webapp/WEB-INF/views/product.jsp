@@ -247,11 +247,11 @@
 					</select>
 				</p>
 				<p>
-					<label>제품명</label>
+					<label>입고번호</label>
 					<!-- <input type="text" name="gName" class="insertViewInput"> -->
 					<select class="insertViewInput" name="wNo" id="wNo">
 						<c:forEach var="w" items="${wList }">
-							<option value="${w.wNo}">${w.gNo.gName} (입고번호:W${w.wNo})</option>
+							<option value="${w.wNo}">W${w.wNo} (${w.gNo.gName})</option>
 						</c:forEach>
 					</select>
 				</p>

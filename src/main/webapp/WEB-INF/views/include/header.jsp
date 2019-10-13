@@ -146,8 +146,8 @@ $(function(){
 					<li>
 						제품관리
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품관리</a></li>
-							<li><a href="#"  class="aa">제품현황</a></li>
+							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품현황</a></li>
+							<!-- <li><a href="#"  class="aa">제품현황</a></li> -->
 						</ul>
 					</li>
 					<li>

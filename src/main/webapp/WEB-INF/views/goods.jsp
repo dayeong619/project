@@ -327,8 +327,8 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td></td>
-						<td> </td>
+						<td>순번</td>
+						<td><input type="radio" disabled="disabled"></td>
 						<td>제품명</td>
 						<td>공급사</td>
 						<td>고객사</td>
@@ -380,6 +380,7 @@
 			
 			for(var i=0; i<res.length; i++){
 				str+="<c:forEach items='"+res+"' var='g'><tr>";
+				str+= "<td>"+(i+1)+"</td>";
 				str+="<td><input type='radio' name='gNo' value='"+res[i].gNo+"'></td>";	
 				str+="<td>"+res[i].gName+"</td>";	
 				str+="<td>"+res[i].gLocation+"</td>";	

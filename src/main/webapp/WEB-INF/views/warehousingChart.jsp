@@ -23,10 +23,20 @@
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawChart); // 내가 쓸 함수의 이름
 	
-	function drawChart() {
+	function drawChart(res) {
+		
+		
 		
 		var data = google.visualization.arrayToDataTable([
-			
+			for(var i=0; i<res.length;i++){
+				[],
+				
+				res[i].gNo.gName 
+				res[i].wQy
+				var workDay = new Date(res[i].wDay);
+				var wDay = getFormatDate(workDay);
+				wDay
+			}
 	    	['2019', 'tle감마', 'GB내부제어', 'TLE신U', 'SLS'],
 	    	['2019/09', 2000, 1800, 600, 2300],
 	    	['2019/08', 2000, 1800, 200, 2000],
@@ -47,7 +57,14 @@
 	  chart.draw(data, options);
 	}
 	
-
+	function getFormatDate(date){ 
+		var year = date.getFullYear(); //yyyy 
+		var month = (1 + date.getMonth()); //M 
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d 
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
+		return year + '-' + month + '-' + day; 
+	}
 </script> 
 <section>
 	
