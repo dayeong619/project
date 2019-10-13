@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서흥정밀</title>
+<title>MES SYSTEM</title>
 <style>
 	body{
 		overflow: hidden;
@@ -115,11 +115,11 @@
 $(function(){
 	$(".tip").hide();
 	$(".tip").click(function(){
-		/* if(${Auth == null}){
+		if(${Auth == null}){
 			$(this).stop().slideUp(300);
 			alert("로그인 후 이용가능합니다.");
 			return false;
-		} */
+		} 
 	})
 	
 	$(".menu li")
@@ -142,7 +142,7 @@ $(function(){
 			</c:if>
 			<c:if test="${Auth != null }">
 				<a href="${pageContext.request.contextPath}/mypage">
-					<span id="sh">MES SYSTEM<img src="${pageContext.request.contextPath}/resources/images/logo.PNG"></span>
+					<span id="sh">MES SYSTEM</span>
 				</a>
 			</c:if>
 			</div><!-- 맨 왼쪽에 위치. 회사로고-->

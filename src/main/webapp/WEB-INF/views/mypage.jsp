@@ -119,15 +119,23 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
        	 <c:forEach var="mlists" items="${mlist }">
-	         <h4 class="w3-center">${mlists.mId}님의 정보</h4>
+	         <h4 class="w3-center">
+	         	<c:if test="${mlists.mId == 'js0818' }">
+	         		관리자님, 반갑습니다.
+	         	</c:if>
+	         	<c:if test="${mlists.mId != 'js0818' }">
+	         		${mlists.mId}님의 정보
+	         	</c:if>
+	         	
+	         </h4>
 	         <p class="w3-center">
-	         
-	         	<c:if test="${mlists.mPhoto == null }">
+	        	 <img src="${pageContext.request.contextPath}/resources/images/Man.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar">
+	         	<%-- <c:if test="${mlists.mPhoto == null }">
 					사진없음			         	
 	         	</c:if>
 	         	<c:if test="${mlists.mPhoto != null }">
 	         		<img src="${pageContext.request.contextPath}/resources/images/${mlists.mPhoto}" class="w3-circle" style="height:106px;width:106px" alt="Avatar">
-	         	</c:if>
+	         	</c:if> --%>
 	         </p>
 	         <hr>
 	         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ${mlists.mName}</p>
@@ -263,7 +271,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
           		
           	})
           </script>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+         <!--  <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button> -->
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
          <br>
@@ -340,7 +348,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       </div> -->
       
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <span class="w3-right w3-opacity">16 min</span>
+        <span class="w3-right w3-opacity"></span>
         <h4>생산현황</h4><br>
         <hr class="w3-clear">
         	<table>
@@ -358,9 +366,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> <a href="${pageContext.request.contextPath}/product"> 생산일지 등록하기</a></button> 
        <!--  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  전체보기</button>  -->
       </div>  
-
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <span class="w3-right w3-opacity">32 min</span>
+<!-- 생산라인 보이게 -->
+     <%--  <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <span class="w3-right w3-opacity"></span>
         <h4>생산라인별로 작업자 그리기 </h4><br>
         <hr class="w3-clear">
 			 <c:forEach var="slists" items="${slist }">
@@ -371,7 +379,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
           	</c:forEach>
         <!-- <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> --> 
-      </div> 
+      </div>  --%>
       
     <!-- End Middle Column -->
     </div>
