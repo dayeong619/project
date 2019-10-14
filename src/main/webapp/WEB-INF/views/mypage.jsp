@@ -317,7 +317,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif; color:#4d6
       <br>
       
       <!-- Interests --> 
-      <div class="w3-card w3-round w3-white w3-hide-small">
+      <!-- <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Interests</p>
           <p>
@@ -334,7 +334,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif; color:#4d6
             <span class="w3-tag w3-small w3-theme-l5">Photos</span>
           </p>
         </div>
-      </div>
+      </div> -->
       <br>
       
       <!-- Alert Box -->
