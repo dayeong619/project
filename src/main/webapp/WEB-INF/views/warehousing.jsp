@@ -84,7 +84,7 @@
 		margin:0 auto;
 	}
 	#sectionOne{
-		width:81%;
+		width:89%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;

@@ -24,7 +24,7 @@
 	<select id="selectByJoinInformation" resultMap="ManagementResultMap">
 		select * from management m
 		inner join department d on m.d_no = d.d_no
-		inner join title t on m.t_no = t.t_no where m_del=1 order by m.t_no desc
+		inner join title t on m.t_no = t.t_no where m_del=1 order by m.t_no
 	</select>
 	<!-- worker 생산팀만 나오도록 쪼로록  -->
 	<select id="selectByDno" resultMap="ManagementResultMap">
