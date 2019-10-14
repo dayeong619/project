@@ -33,9 +33,6 @@
 	table td{
 		border:1px solid black;
 	}
-	/* thead td:nth-child(1), tbody td:nth-child(1){ 
-		width: 50px;
-	} */
 	thead td:nth-child(1), tbody td:nth-child(1) input{ /* No */
 		width: 40px;
 	}
@@ -87,7 +84,7 @@
 		margin:0 auto;
 	}
 	#sectionOne{
-		width:86%;
+		width:81%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -277,9 +274,13 @@
 		<div id="left"><h3>수입검사관리</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button class="ClassButtonTop" id="insert">신규</button>
-			<button class="ClassButtonTop" id="delete">삭제</button>
-			<button class="ClassButtonTop" id="modify">수정</button>
+			<c:if test="${Auth.tNo != '1' }">
+				<button class="ClassButtonTop" id="insert">신규</button>
+				<c:if test="${Auth.tNo != '2' }">
+					<button class="ClassButtonTop" id="delete">삭제</button>
+					<button class="ClassButtonTop" id="modify">수정</button>
+				</c:if>
+			</c:if>
 				<!-- <button class="ClassButtonTop" id="delete">수정확인</button>
 				<button class="ClassButtonTop" id="delete">수정취소</button> -->
 	</div>

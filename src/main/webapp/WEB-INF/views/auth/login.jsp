@@ -9,6 +9,7 @@
 	}
 	section{
 		width: 100%;
+		height:600px;
 		margin-top:150px;
 	}
 	.divinp{
@@ -68,5 +69,4 @@
 	
 	
 </section>
-</body>
-</html>
+<%@ include file="../include/footer.jsp" %>

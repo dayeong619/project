@@ -46,7 +46,7 @@ public class LoginController {
 		logger.info("----- loginPOST, mvo는 "+mvo);
 		//그 아이디가 
 		
-		//여기서 직책 받아가지고 그 직책이 1이면 사장, 2면 부장 그래서 
+		//여기서 직책 받아가지고 그 직책이 1이면 사원, 2면 대리, 3이면 부장, 4이면 사장 
 		ManagementVO dbMember = loginservice.selectByIdAndPw(mvo.getmId(), mvo.getmPw()); //여기서 tNo 우에 받지?
 		logger.info("dbmember는"+dbMember);
 //		logger.info("id는"+dbMember.toString());
@@ -59,6 +59,7 @@ public class LoginController {
 		LoginDto dto = new LoginDto();
 		dto.setUserid(dbMember.getmId());
 		dto.setUsername(dbMember.getmPw());
+		dto.settNo(dbMember.gettNo().gettNo());
 		model.addAttribute("loginDto", dto);
 		
 		

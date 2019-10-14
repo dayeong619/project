@@ -41,7 +41,7 @@
 	<select id="selectMyInformationById" resultMap="ManagementResultMap" parameterType="String">
 		select * from department d
 		left join management m on d.d_no = m.d_no
-		left join title t on d.d_no = t.t_no
+		left join title t on m.t_no = t.t_no
 		where m.m_id = #{mId}
 	</select>
 	<!-- 회원가입 -->
@@ -51,7 +51,7 @@
 		(#{mId}, #{mPw}, #{mName}, #{mBirth}, #{mEmail}, #{mTel}, #{mEnterday}, #{dNo.dNo}, #{tNo.tNo})
 	</insert>
 	<!-- 로그인 -->
-	<select id="selectByIdAndPw" parameterType="map" resultMap="ManagementStandard">
+	<select id="selectByIdAndPw" parameterType="map" resultMap="ManagementResultMap">
 		select m_id, m_pw, t_no from management  
 		where m_id=#{mId} and m_pw=#{mPw}
 	</select>
@@ -74,6 +74,7 @@
 	</update>
 	<update id="modifyWorkerByMno">
 		UPDATE management
+		set m_name=#{mName}, m_birth=#{mBirth}, m_tel=#{mTel}, m_addr=#{mAddr}, m_enterday=#{mEnterday}, m_confirm=#{mConfirm}
 		WHERE m_no=#{mNo}
 	</update>
 	<update id="modifyEmployee">

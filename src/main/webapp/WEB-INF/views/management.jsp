@@ -80,7 +80,7 @@
 		
 	}
 	#sectionOne{
-		width:85%;
+		width:55%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -308,9 +308,11 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											&nbsp;&nbsp;&nbsp;&nbsp;
-											<button class="workerModify">수정</button>
-											<button class="worketModifyCF">수정확인</button>
-											<button class="workerDelete">삭제</button>
+											<c:if test="${Auth.tNo != '3' }">
+												<button class="workerModify">수정</button>
+												<button class="worketModifyCF">수정확인</button>
+												<button class="workerDelete">삭제</button>
+											</c:if>
 											<button class="workerClose">닫기</button>
 										</div>
 										<div class="insertViewcontent">

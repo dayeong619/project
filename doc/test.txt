@@ -1,4 +1,4 @@
-
+create database project;
 
 -- 제품
 CREATE TABLE project.goods (
@@ -352,11 +352,11 @@ INSERT INTO warehousing(g_no, w_day, w_qy, w_result) values
 
 INSERT INTO management
 (m_id, m_pw, m_name, m_birth, m_email, m_tel, m_addr, m_enterday, m_photo, d_no, t_no)values
-('js0818', 'js0818', '김장식', '19590818', 'jangsik@naver.com', '01077447489', '대구광역시', '20150101', 'jungsw.jpg', 1, 1),
-('taechul22', 'taechul22', '김태철', '1989.2.12', 'taechul@naver.com', '01077407489', '대구광역시', '20150125', 'junghi.jpg', 2, 1),
-('gubr3', 'gubr3', '구병렬', '19730321', 'gugu@gmail.com', '01099999192', '대구광역시', '20180113', 'leejh.jpg', 2, 2),
-('takone615', 'takone615', '김택일', '1969.11.5', 'one@naver.com', '010-1128-7871', '대구광역시', '2016.5.4', 'parkjm.jpg', 3, 3),
-('gualjs8860', 'gualjs8860', '곽지성', '1980.6.6', 'jisung@gmail.com', '010-6564-9091', '대구광역시', '2016.2.15', 'ryusr.jpg', 2, 3);
+('js0818', 'js0818', '김장식', '19590818', 'jangsik@naver.com', '01077447489', '대구광역시 달서구 성서동로62길 10', '20150101', 'jungsw.jpg', 1, 1),
+('taechul22', 'taechul22', '김태철', '19890212', 'taechul@naver.com', '01077407489', '대구광역시 달서구 성서동로66길 5', '20150125', 'junghi.jpg', 2, 1),
+('gubr3', 'gubr3', '구병렬', '19730321', 'gugu@gmail.com', '01099999192', '대구광역시 달서구 성서공단북로77길', '20180113', 'leejh.jpg', 2, 2),
+('takone615', 'takone615', '김택일', '19691105', 'one@naver.com', '010-1128-7871', '대구광역시 달서구 장동 123', '2016.5.4', 'parkjm.jpg', 3, 3),
+('gualjs8860', 'gualjs8860', '곽지성', '19800606', 'jisung@gmail.com', '010-6564-9091', '대구광역시 달서구 이공동 1256, 성서와룡타운 101/101', '2016.2.15', 'ryusr.jpg', 2, 3);
 
 INSERT INTO product
 (w_no, p_workday, l_no, m_no, p_worktime, p_qy, p_note, p_section)values

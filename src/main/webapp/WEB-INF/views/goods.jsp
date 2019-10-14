@@ -21,8 +21,10 @@
 	thead{
 		position: relative;
 	}
-	tbody{
+	tbody tr{
 		background-color: white;
+	}
+	tbody{
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
@@ -30,7 +32,6 @@
 		top:100;
 		left:50;
 	}
-	
 	table td{
 		border:1px solid black;
 	}
@@ -252,11 +253,19 @@
 		background-color:white;
 		border:1px solid #ccc;
 	}
+	#searchName{
+		height: 27px;
+	}
+	#workerSearch{
+		height: 30px;
+	}
 </style>
 <section>
 
 	<div class="divTitle2">
 		<div id="left"><h3>제품현황</h3></div>
+		<c:if test="${Auth.tNo != '1' }">
+		
 			<button class="ClassButtonTop" id="insert">신규</button>
 		<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
@@ -287,39 +296,19 @@
 					<label>고객사</label>
 					<input type="text" name="gClient" class="insertViewInput">
 				</p>
-				
 			</div>
 		</div>
 	</div>
+		<c:if test="${Auth.tNo != '2' }">
 			<button class="ClassButtonTop" id="delete">삭제</button>
 			<button class="ClassButtonTop" id="modify">수정</button>
+		</c:if>
+		</c:if>
 	</div>
 	<div class="divTitle">
 		<div id="sectionOne">
 			<div id="divDate2">
-			
-			<select id="gNoSearch" onchange="category(this)"><!-- 검색하는 셀렉트박스 -->
-				<option>검색</option>
-				<option value="1">입고일자</option>
-				<option value="2">제품명</option>
-			</select>
-			
-				&nbsp;&nbsp;<input type="date" id="searchInput" name="startday" placeholder="시작날짜"> 
-				<span id="spanMM">~</span> 
-				<input type="date" id="searchInput2" name="endday">
-				<button class="searchButton1" id="divDateSearchBtn">검색</button>
-		
-		
-				<select id="gNo">
-						<option value="0">ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ</option>
-						<c:forEach var="glists" items="${glist }">
-							<option value="${glists.gNo}">${glists.gName}</option>
-						</c:forEach>
-					</select>
-				<button class="searchButton">검색</button>	
-		
-					
-							
+				<input type="text" name="pName" id="searchName" placeholder="제품명 입력">&nbsp;&nbsp;<button id="workerSearch">&nbsp;&nbsp;검색&nbsp;&nbsp;</button>
 			</div> 
 		</div>
 	</div>
@@ -340,7 +329,7 @@
 					<c:set var="sum" value="${sum+1}"/>
 					<tr>
 						<td>
-								${sum}
+							${sum}
 						</td>
 						<td><input type="radio" name="gNo" value="${g.gNo }"></td>
 						<td>${g.gName }</td>
@@ -536,7 +525,28 @@
 					// repaint(res); 다시그림
 		})
 
+	//제품이름으로 검색
+	$(document).on("click", "#workerSearch", function(){ 
+		var gName = $("#searchName").val();
 		
+		if(gName == null){
+			alert("제품명을 입력하세요");	
+		}
+		
+		$.ajax({
+			url:"goods/gname/"+gName,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				if(res.length == 0){
+					alert("검색결과가 없습니다.");
+				}
+				repaint(res); 
+			}
+		})
+		
+	})
 						
 						
 							
