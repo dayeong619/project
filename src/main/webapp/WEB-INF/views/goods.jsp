@@ -18,31 +18,39 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
 		background-color: white;
-		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 44%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
 	
 	table td{
 		border:1px solid black;
 	}
+	
 	thead td:nth-child(1), tbody td:nth-child(1){ /* 선택 */
 		width: 40px;
 	}
 	thead td:nth-child(2), tbody td:nth-child(2){ /* No */
-		width: 240px;
+		width: 40px;
 	}
 	thead td:nth-child(3), tbody td:nth-child(3){ /* 입고일자 */
-		width: 120px;
+		width: 240px;
 	}
 	thead td:nth-child(4), tbody td:nth-child(4){ /* 품명 */
 		width: 120px;
 	}
 	thead td:nth-child(5), tbody td:nth-child(5){ /* 입고수량 */
+		width: 120px;
+	}
+	thead td:nth-child(6), tbody td:nth-child(6){ /* 번호 */
 		width: 140px;
 	}
 	tbody td{
@@ -246,6 +254,7 @@
 	}
 </style>
 <section>
+
 	<div class="divTitle2">
 		<div id="left"><h3>제품현황</h3></div>
 			<button class="ClassButtonTop" id="insert">신규</button>
@@ -318,7 +327,8 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
-						<td> </td>
+						<td>순번</td>
+						<td><input type="radio" disabled="disabled"></td>
 						<td>제품명</td>
 						<td>공급사</td>
 						<td>고객사</td>
@@ -327,7 +337,11 @@
 				</thead>
 				<tbody id="tableScroll">
 				<c:forEach items="${glist }" var="g">
+					<c:set var="sum" value="${sum+1}"/>
 					<tr>
+						<td>
+								${sum}
+						</td>
 						<td><input type="radio" name="gNo" value="${g.gNo }"></td>
 						<td>${g.gName }</td>
 						<td>${g.gLocation }</td>
@@ -366,6 +380,7 @@
 			
 			for(var i=0; i<res.length; i++){
 				str+="<c:forEach items='"+res+"' var='g'><tr>";
+				str+= "<td>"+(i+1)+"</td>";
 				str+="<td><input type='radio' name='gNo' value='"+res[i].gNo+"'></td>";	
 				str+="<td>"+res[i].gName+"</td>";	
 				str+="<td>"+res[i].gLocation+"</td>";	
@@ -520,7 +535,11 @@
 					//창 숨기기 
 					// repaint(res); 다시그림
 		})
-				
+
+		
+						
+						
+							
 </script>
 <%@ include file="include/footer.jsp" %>
 

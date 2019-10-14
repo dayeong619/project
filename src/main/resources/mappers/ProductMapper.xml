@@ -27,7 +27,7 @@
 		left join management m on p.p_no = m.m_no
 		left join warehousing w on p.p_no = w.w_no
 		left join goods g on w.w_no = g.g_no
-		left join badness b on p.p_no = b.b_no
+		left join badness b on p.p_no = b.p_no
 	</select>
 	
 	<select id="selectByGoodsName" resultMap="ProductResultMap">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서흥정밀</title>
+<title>MES SYSTEM</title>
 <style>
 	body{
 		overflow: hidden;
@@ -100,23 +100,35 @@
 	}
 	#sh{
 		font-size: 25px;
-		padding-left: 30px;
-		color:#ccc;
+		padding-left: 20px;
+		color:white;
+		font-family: sans-serif;
+		text-shadow:4px 2px 2px gray;
 	}
+	#logo{
+		padding-top:15px;
+	}	
 		
-	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
 	$(".tip").hide();
+	$(".tip").click(function(){
+		if(${Auth == null}){
+			$(this).stop().slideUp(300);
+			alert("로그인 후 이용가능합니다.");
+			return false;
+		} 
+	})
+	
 	$(".menu li")
 	.mouseenter(function(){ $(this).children(".tip").stop().slideDown(300);})
 	.mouseleave(function(){ $(this).children(".tip").stop().slideUp(300);})
 	$(".menu2 li").click(function(){ $(this).children(".tip").slideToggle(300);})
 	
+	
 })
-
 
 </script>
 </head>
@@ -125,12 +137,12 @@ $(function(){
 			<div id="logo">
 			<c:if test="${Auth == null }">
 				<a href="${pageContext.request.contextPath}/auth/login">
-					<span id="sh">SH Company</span>
+					<span id="sh">MES SYSTEM<%-- <img src="${pageContext.request.contextPath}/resources/images/logo.PNG"> --%></span>
 				</a>
 			</c:if>
 			<c:if test="${Auth != null }">
 				<a href="${pageContext.request.contextPath}/mypage">
-					<span id="sh">SH Company</span>
+					<span id="sh">MES SYSTEM</span>
 				</a>
 			</c:if>
 			</div><!-- 맨 왼쪽에 위치. 회사로고-->
@@ -138,10 +150,8 @@ $(function(){
 					<li>
 						제품관리
 						<ul class="tip">
-						<%-- <c:if test="${Auth!=null }"></c:if> 로그인 안했을때 막기 --%>
-							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품관리</a></li>
-							<li><a href="#"  class="aa">제품현황</a></li>
-						
+							<li><a href="${pageContext.request.contextPath}/goods" class="aa">제품현황</a></li>
+							<!-- <li><a href="#"  class="aa">제품현황</a></li> -->
 						</ul>
 					</li>
 					<li>
@@ -174,7 +184,7 @@ $(function(){
 					</li>
 				</ul>
 
-			<div id="mypage"><img src="${pageContext.request.contextPath}/resources/images/mypage.png"></div> <!-- 맨 오른쪽에 위치. 누르면 마이페이지, 등등 -->
+			<%-- <div id="mypage"><img src="${pageContext.request.contextPath}/resources/images/mypage.png"></div> --%> <!-- 맨 오른쪽에 위치. 누르면 마이페이지, 등등 -->
 		</div>
 	</header>
 	<div id="headerborder"></div>

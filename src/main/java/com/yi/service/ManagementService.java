@@ -24,4 +24,8 @@ public interface ManagementService {
 	public void modifyEmployee(ManagementVO vo) throws Exception;
 	public List<ManagementVO> selectThreeJoinByDno(int dNo) throws Exception;
 	public List<ManagementVO> selectThreeJoinByDname(String dName) throws Exception;
+	
+	public List<ManagementVO> selectMypageByMid(String mId) throws Exception; //마이페이지
+	public void modifyManagementByMypage(ManagementVO vo) throws Exception;
+
 }

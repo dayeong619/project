@@ -24,6 +24,11 @@ public class ShipmentServiceImpl implements ShipmentService {
 		return dao.selectShipmentByAll();
 	}
 
+	@Override
+	public List<ShipmentVO> selectShipment() throws Exception {
+		return dao.selectShipment();
+	}
+
 	
 	
 }

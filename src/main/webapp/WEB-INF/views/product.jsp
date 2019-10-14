@@ -18,12 +18,16 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
-		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 82%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
 	tbody tr{
 		background-color: white;
@@ -37,78 +41,38 @@
     	font-size:20px;
     	height: 40px;
 	}
-	thead td:nth-child(1){ 
+	thead td:nth-child(1),tbody td:nth-child(1){ 
 		width: 100px;
 	}
-	thead td:nth-child(2){ 
+	thead td:nth-child(2), tbody td:nth-child(2){ 
 		width: 140px;
 	}
-	thead td:nth-child(3){ 
+	thead td:nth-child(3), tbody td:nth-child(3){ 
 		width: 146px;
 	}
-	thead td:nth-child(4){
+	thead td:nth-child(4), tbody td:nth-child(4){
 		width: 140px;
 	}
-	thead td:nth-child(5){ 
+	thead td:nth-child(5), tbody td:nth-child(5){ 
 		width: 140px;
 	}
-	thead td:nth-child(6){ 
+	thead td:nth-child(6), tbody td:nth-child(6){ 
 		width: 140px;
 	}
-	thead td:nth-child(7){ 
+	thead td:nth-child(7), tbody td:nth-child(7){ 
 		width: 140px;
 	}
-	thead td:nth-child(8){ 
+	thead td:nth-child(8), tbody td:nth-child(8){ 
 		width: 140px;
 	}
-	thead td:nth-child(9){ 
+	thead td:nth-child(9), tbody td:nth-child(9){ 
 		width: 140px;
 	}
-	thead td:nth-child(10){ 
+	thead td:nth-child(10), tbody td:nth-child(10){ 
 		width: 140px;
 	}
-	/* 추가될 라인에 대해서 */
-	thead td:nth-child(11){ 
-		width: 140px;
-	}
-	tbody td:nth-child(1) {                           /* 여기서부터 tbody */
-		width: 100px;
-		height: 70px
-	}
-	tbody td:nth-child(2){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(3){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(4){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(5){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(6){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(7){
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(8){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(9){ 
-		width: 140px;
-		height: 70px;
-	}
-	tbody td:nth-child(10){ 
-		width: 140px;
+	
+	#tableScroll td{ 
 		height: 70px;
 	}
 	.divTitle{ 
@@ -117,8 +81,9 @@
 		margin:0 auto;
 	}
 	.divTitle2 h3{
-		margin-left:160px;
+		margin-left:140px;
 		display: inline;
+		margin-right: 500px;
 	}
 	.divTitle2{ /*중앙정렬하는 div클래스 */
 		width: 85%;
@@ -131,14 +96,6 @@
 		width: 100%;
 		padding-top:15px;
 	}
-
-	
-	/* .dddd{ 인풋쓸꺼면 넣으면됨
-		height: 60px;
-		border:none;
-		background-color: white;
-		text-align: center;
-	} */
 		
 	#insertView{ /* 신규클릭시 나오는 입고등록 */
 		z-index:100;
@@ -231,12 +188,17 @@
 		background-color: #365c89;
 		border:1px solid #ccc;
 	}
+	#productInsert{
+		width: 100px;
+	    height: 30px;
+	    margin-top: 10px;
+	    margin-left:700px;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="left">
 		<h3>생산일지</h3>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button id="productInsert">등록</button>
+			<button id="productInsert">생산일지 등록</button>
 	</div>
 	<div class="divTitle">
 		<div id="insertView"> <!-- 신규창 -->
@@ -283,11 +245,11 @@
 					</select>
 				</p>
 				<p>
-					<label>제품명</label>
+					<label>입고번호</label>
 					<!-- <input type="text" name="gName" class="insertViewInput"> -->
 					<select class="insertViewInput" name="wNo" id="wNo">
 						<c:forEach var="w" items="${wList }">
-							<option value="${w.wNo}">${w.gNo.gName} (입고번호:W${w.wNo})</option>
+							<option value="${w.wNo}">W${w.wNo} (${w.gNo.gName})</option>
 						</c:forEach>
 					</select>
 				</p>
@@ -530,6 +492,7 @@
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
 		document.getElementById("nowDate").valueAsDate = new Date();
 		$("#insertView").fadeIn(300);
+		
 	})
 	$(document).on("click", "#insertViewReset", function(){ //작업일 등록할 창에서 취소 눌러
 		$("#insertView").fadeOut(300);

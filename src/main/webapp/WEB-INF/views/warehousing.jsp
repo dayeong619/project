@@ -18,90 +18,73 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
-		display: block;
+		ackground-color: white;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 90%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
-	
 	table td{
 		border:1px solid black;
 	}
-	
-	thead td:nth-child(1){ /* No */
-		width: 26px;
+	/* thead td:nth-child(1), tbody td:nth-child(1){ 
+		width: 50px;
+	} */
+	thead td:nth-child(1), tbody td:nth-child(1) input{ /* No */
+		width: 40px;
 	}
-	thead td:nth-child(2){ /* 입고일자 */
+	thead td:nth-child(2), tbody td:nth-child(2) { /* 입고번호 */
+		width: 100px;
+	}
+	tbody td:nth-child(2){
+		font-size: 14px;
+	}
+	thead td:nth-child(3), tbody td:nth-child(3) input{ /* 입고일자 */
 		width: 169px;
 	}
-	thead td:nth-child(3){ /* 품명 */
+	thead td:nth-child(4), tbody td:nth-child(4) input{ /* 품명 */
 		width: 159px;
 	}
-	thead td:nth-child(4){ /* 입고수량 */
-		width: 170px;
+	thead td:nth-child(5), tbody td:nth-child(5) input{ /* 입고수량 */
+		width: 130px;
 	}
-	thead td:nth-child(5){ /* 검사결과 */
+	thead td:nth-child(6){ /* 검사결과 */
 		width: 160px;
 	}
-	thead td:nth-child(6){
-		width: 338px;
-	}
-	thead td:nth-child(7){
-		width: 347px;
-	}
-	thead #success, .tableTrs #success2{
-		width: 80px;
-	}
-															 /*여기서부터 tbody */
-	/* tbody td:nth-child(1) #input2css{                
-		width: 32px;
-	} */
-	tbody td:nth-child(1) input{ /* No */
-		width: 26px;
-	}
-	.tableTbody2{
-		background-color: white;
-	}
-	tbody td:nth-child(2) input{ /* 입고일자 */
-		width: 169px;
-	}
-	tbody td:nth-child(3) select{ /* 품명 */
-		width: 159px;
-		padding-left:30px;
-	}
-	tbody td:nth-child(4) input{ /* 입고수량 */
-		width: 170px;
-	}
-	tbody td:nth-child(5) input{ /* 검사결과:합격 */
-		width: 80px;
-	}
-	tbody td:nth-child(6) input{ /* 검사결과:불합격 */
-		width: 80px;
-	}
-	tbody td:nth-child(7) input{ /* 조치내용*/
-		width: 338px;
-	}
-	tbody td:nth-child(8) input{ /* 비고 */
-		width: 346px;
-	}
-	
-	tbody #success, .tableTrs #success2{
-		width: 80px;
-	}
-	
-	
 	#tableScroll #result1, table #result2{/* 합격,불합격 인풋태그  */
 		width: 80px;
 		text-align: center;
+	}
+	tbody td:nth-child(6) input{ /* 검사결과:합격 */
+		width: 80px;
+	}
+	tbody td:nth-child(7) input{ /* 검사결과:불합격 */
+		width: 80px;
+	}
+	thead td:nth-child(7), tbody td:nth-child(8) input{
+		width: 330px;
+	}
+	thead td:nth-child(8), tbody td:nth-child(9) input{
+		width: 317px;
+	}	
+	.tableTbody2{
+		background-color: white;
+	}
+	
+	thead #success, .tableTrs #success2{
+		width: 80px;
 	}
 	
 	.divTitle{ 
 		width:85%;
 		height: 50px;
 		margin:0 auto;
-		
 	}
 	#sectionOne{
 		width:86%;
@@ -290,7 +273,7 @@
 	}
 </style>
 <section>
-	<div class="divTitle2" id="">
+	<div class="divTitle2">
 		<div id="left"><h3>수입검사관리</h3></div>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -301,17 +284,10 @@
 				<button class="ClassButtonTop" id="delete">수정취소</button> -->
 	</div>
 		<script>
-		
-			$(document).on("click", "button#modify", function(){ /* 수정 클릭시 인풋창 활성화 */
-				/* var radioBtn = $('input:radio[name=wNo]:checked');
-				radioBtn.parent().parent().find(".dddd").attr("disabled", false);
-				//수정확인 버튼 생기게?
-				
-				var $input = $('input:radio[name=wNo]:checked').val(); */
+		 	/* 수정 클릭시 인풋창 활성화 */
+			$(document).on("click", "button#modify", function(){
 				$("#modifyView").fadeIn(300);
-			
 			})	
-			
 			
 			
 			/* 라뒤오버튼 눌렀을때 배경색 잡는거 */
@@ -329,14 +305,13 @@
 				radioBtn.parent().parent().find(".tableTbody2").addClass("classInputColor");
 			})
 			
-			 
-			 
-			$("#insert").click(function(){ /* 신규 클릭시 입력창 나옴  */
+			/* 신규 클릭시 입력창 나옴  */
+			$("#insert").click(function(){ 
 				document.getElementById("nowDate").valueAsDate = new Date();
 				$("#insertView").fadeIn(300);
 			})
 
-			
+			/* 신규 클릭시 입력창 닫기취소버튼 누르면 */
 			$(document).on("click", "#insertViewReset", function(){
 				$(this).parents().find("#insertView").fadeOut(300);
 			})
@@ -344,22 +319,18 @@
 			
 			function repaint(obj){
 				$("#tableBackGround table tbody").empty();
-				
 				$(obj.list).each(function(i,res){
-					
 					var str="";
 					var date = new Date(res.wDay);
 					
 					res.wDay = date.getFullYear()+"-"+("0"+(1+date.getMonth())).slice(-2)+"-"+("0"+date.getDate()).slice(-2);
 					
+					str+= "<tr>";
 					str+= "<td class='tableTbody2'><input type='radio' id='input1css' name='wNo' value='"+res.wNo+"'></td>"; //입고번호
+					str+= "<td class='tableTbody2'>"+"W"+(res.wNo)+"</td>"
 					str+= "<td><input type='text' value='"+res.wDay+"'disabled='disabled' class='dddd'></td>"; //입고일
-					str+= "<td><select id='gNo' class='dddd' disabled>"; 
-					$(obj.glist).each(function(i, res){
-						
-						str+= "<option value='"+res.gNo+"'>"+res.gName+"</option>";
-					})					
-					str+= "</select>";
+					
+					str+= "<td><input type='hidden' name='gNo' value='"+res.gNo.gNo+"'><input type='text' name='gName' class='dddd' disabled value='"+res.gNo.gName+"'></td>";
 					str+= "<td><input type='text' class='dddd' value='"+res.wQy+"'disabled='disabled'></td>"; //입고수량
 					/* 삼항연산자 사용 사요요ㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛㅛ */
 					var r1 = (res.wResult == 1) ? 'o':''; 
@@ -377,11 +348,10 @@
 						
 					$("#tableBackGround table tbody").append(str);
 				})
-				
 			}
 			
-			
-			 function ListAll(){ /* 리스트만 불러오는 녀석 */
+			/* 리스트만 불러오는 녀석 */
+			 function ListAll(){ 
 				$.ajax({
 					url:"warehousing/do",
 					type:"get",
@@ -389,14 +359,14 @@
 					success:function(res){
 						console.log(res);
 						repaint(res);
-						
 					}
 				})
 			} 
 			
-			$(document).on("click", "#insertViewinsert", function(){ /* 입고창에서 등록*/
+			 /* 입고창에서 등록*/
+			$(document).on("click", "#insertViewinsert", function(){ 
 				var wDay = $('input[name=wDay]').val(); //입고일자
-				var gNo = $('#gNo option:selected').val(); //제품번호
+				var gNo = $("#gNo option:selected").val(); //제품번호
 				var wQy = $('input[name=wQy]').val(); //입고수량
 				var wResult = $('select[name=wResult]').val(); //true, false
 				var wMemo = $('textarea[name=wMemo]').val(); //조치내용
@@ -424,8 +394,8 @@
 				})
 			})
 			
-			
-			 $(document).on("click", "button#delete", function(){ /* 입고정보삭제 */
+			/* 입고정보삭제 */
+			 $(document).on("click", "button#delete", function(){ 
 					
 					var wNo = $('input:radio[name=wNo]:checked').val();
 			 
@@ -437,11 +407,11 @@
 						alert("삭제할 정보를 체크하세요.");	
 						return;
 				 	}
+				 	
 				 	var confi = confirm("삭제하시겠습니까"); 
 				 	if(confi == false){ //취소 누르면 원래 화면으로 돌아감
 				 		return;
 				 	}
-				 	
 				 	
 					 $.ajax({
 						url:"warehousing/"+wNo,
@@ -459,8 +429,8 @@
 					})
 				}) 
 			
-				
-				$(document).on("click", "button#modify", function(){ /* 입고클릭해서 수정 */ 
+				/* 입고클릭해서 수정 */ 
+				$(document).on("click", "button#modify", function(){ 
 				
 					var wNo = $('input:radio[name=wNo]:checked').val(); //68
 					var wDay = $('input[name=wDay]').val(); //입고일자
@@ -482,9 +452,6 @@
 					
 					// repaint(res); 다시그림
 				})
-			
-			
-			
 		</script>
 	<div id="insertView"> <!-- 신규창 -->
 		<div id="insertViewBackground">
@@ -611,6 +578,7 @@
 				<thead>
 					<tr class="tableTrs">
 						<td rowspan="2"><input type="radio" disabled="disabled"></td>
+						<td rowspan="2">입고번호</td>
 						<td rowspan="2">입고 일자</td>
 						<td rowspan="2">품명</td>
 						<td rowspan="2">입고 수량</td>
@@ -629,16 +597,16 @@
 							<td class="tableTbody2"><!-- 체크박스 -->
 								<input type="radio" id="input1css" name="wNo" value="${wlists.wNo}">
 							</td>
+							<td class="tableTbody2">
+								W${wlists.wNo }
+							</td>
 							<td><!-- wDay 입고일자 -->
 								<fmt:formatDate value="${wlists.wDay}" var="wDay" pattern="yyyy-MM-dd"/>	
 								<input type="text" value="${wDay}" disabled="disabled" class="dddd">
 							</td>
 							<td><!-- 품명 -->
-								<select id="gNo" class="dddd" disabled>
-									<c:forEach var="glists" items="${glist }">
-										<option value="${glists.gNo}">${glists.gName}</option>
-									</c:forEach>
-								</select>
+								<input type="hidden" name="gNo" value="${wlists.gNo.gNo}">
+								<input type="text" name="gName" class="dddd" disabled value="${wlists.gNo.gName}">
 							</td>
 							<td><!-- 입고수량 -->
 								<input type="text" class="dddd" value="${wlists.wQy }" disabled="disabled">
@@ -663,7 +631,7 @@
 </section>
 <script>
 
-	
+	/* 검색 셀렉트 박스 누를때마다 이벤트함수 */
 	function category(e){
 		if(e.value == 1){
 			$("input[name=startday]").css("display", "inline");
@@ -689,9 +657,7 @@
 			$("#divDateSearchBtn").css("display", "none");
 			$("#divDate2 #gNo").css("display", "none");
 			$(".searchButton").css("display", "none");
-			
 		}
-		
 	}
 
 	function paint(res){
@@ -707,15 +673,15 @@
 			day = day >= 10 ? day : '0' + day; //day 두자리로 저장 
 			return year + '-' + month + '-' + day; 
 		}
-		
 		for(var i=0; i<res.length; i++){
+			
+			str+= "<tr>";
 			str+= "<td class='tableTbody2'><input type='radio' id='input1css' name='wNo' value='"+res[i].wNo+"'></td>"; //입고번호
+			str+= "<td class='tableTbody2'>"+"W"+(res[i].wNo)+"</td>";
 			var date = new Date(res[i].wDay);
 			var wDay = getFormatDate(date);
 			str+= "<td><input type='text' value='"+wDay+"'disabled='disabled' class='dddd'></td>";  //입고일
-			str+= "<td><select id='gNo' class='dddd' disabled>"; 
-			str+= "<option value='"+res[i].gNo.gNo+"'>"+res[i].gNo.gName+"</option>";
-			str+= "</select>";
+			str+= "<td><input type='hidden' name='gNo' value='"+res[i].gNo.gNo+"'><input type='text' name='gName' class='dddd' disabled value='"+res[i].gNo.gName+"'></td>";
 			str+= "<td><input type='text' class='dddd' value='"+res[i].wQy+"'disabled='disabled'></td>"; //입고수량
 			var r1 = (res[i].wResult == 1) ? 'o':''; 
 			str+= "<td><input type='text' id='result1' class='dddd' value='"+r1+"'disabled='disabled'></td>"; //합격

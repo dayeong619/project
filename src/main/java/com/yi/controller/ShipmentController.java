@@ -1,6 +1,6 @@
 package com.yi.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,23 +10,31 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yi.service.GoodsService;
+import com.yi.domain.ShipmentVO;
+import com.yi.service.ShipmentService;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class ShipmentController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ShipmentController.class);
 	
 	@Autowired
-	GoodsService gservice;
+	ShipmentService service;
 	
 	@RequestMapping(value = "shipment", method = RequestMethod.GET)
-	public void shipmentGET(Model model, HttpServletRequest request) throws Exception {
+	public void shipmentGET(Model model) throws Exception {
 		logger.info("goods");
 		
+		List<ShipmentVO> slist = service.selectShipment();
+		logger.info("slist는->" +slist);
+		model.addAttribute("slist", slist);
+		
+		
 	}
+	
+	
+	
+	
 	
 }

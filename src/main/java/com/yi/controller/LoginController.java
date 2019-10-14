@@ -2,6 +2,8 @@ package com.yi.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +32,30 @@ public class LoginController {
 		logger.info("----- loginGET");
 	}
 	
+	
+	@RequestMapping(value="logout", method=RequestMethod.GET) //로그아웃! 
+	public String  logoutGET(HttpServletRequest req) {
+		logger.info("----- logoutGET"); 
+		req.getSession().invalidate();
+		return "redirect:/auth/login";
+	}
+	 
+	
 	@RequestMapping(value="loginPost", method=RequestMethod.POST)
 	public void loginPOST(ManagementVO mvo, Model model) throws Exception { //로그인 POST
 		logger.info("----- loginPOST, mvo는 "+mvo);
+		//그 아이디가 
 		
-		ManagementVO dbMember = loginservice.selectByIdAndPw(mvo.getmId(), mvo.getmPw());
+		//여기서 직책 받아가지고 그 직책이 1이면 사장, 2면 부장 그래서 
+		ManagementVO dbMember = loginservice.selectByIdAndPw(mvo.getmId(), mvo.getmPw()); //여기서 tNo 우에 받지?
+		logger.info("dbmember는"+dbMember);
+//		logger.info("id는"+dbMember.toString());
 		
 		if(dbMember == null) {//회원이 없으면 dto 안 만든당.
 			logger.info("loginPost -> login fail, not member");
 			return ;
 		}
+		
 		LoginDto dto = new LoginDto();
 		dto.setUserid(dbMember.getmId());
 		dto.setUsername(dbMember.getmPw());

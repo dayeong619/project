@@ -52,7 +52,8 @@
 	</insert>
 	<!-- 로그인 -->
 	<select id="selectByIdAndPw" parameterType="map" resultMap="ManagementStandard">
-		select m_id, m_pw from management where m_id=#{mId} and m_pw=#{mPw}
+		select m_id, m_pw, t_no from management  
+		where m_id=#{mId} and m_pw=#{mPw}
 	</select>
 	
 	<!-- 작업자관리 에서 작업자등록 -->
@@ -92,6 +93,12 @@
 		inner join department d on m.d_no = d.d_no 
 		inner join title t on m.t_no = t.t_no where m_del=1 and m_name like concat('%', #{mName}, '%')
 	</select>
+	<!-- mypage 나의정보 -->
+	<update id="modifyManagementByMypage">
+		UPDATE management
+		SET m_pw=#{mPw}, m_birth=#{mBirth}, m_email=#{mEmail}, m_tel=#{mTel}, m_addr=#{mAddr}
+		WHERE m_no=#{mNo}
+	</update>
 	
 </mapper>
 

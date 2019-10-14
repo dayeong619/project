@@ -18,12 +18,16 @@
 		text-align: center;
 		display: block;
 	}
+	thead{
+		position: relative;
+	}
 	tbody{
-		display: block;
 		overflow-y:auto; /* 세로축만 스크롤 나와랏 */
 		overflow-x:hidden;
 		height: 605px;
-		width: 90%;
+		position:absolute;
+		top:100;
+		left:50;
 	}
 	tbody tr{
 		background-color: white;

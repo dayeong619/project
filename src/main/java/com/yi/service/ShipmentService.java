@@ -8,5 +8,5 @@ public interface ShipmentService {
 	
 	public void insertShipment(ShipmentVO vo) throws Exception;
 	public List<ShipmentVO> selectShipmentByAll() throws Exception;
-	
+	public List<ShipmentVO> selectShipment() throws Exception;
 }

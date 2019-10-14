@@ -8,11 +8,17 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yi.domain.GoodsVO;
 import com.yi.domain.LoginDto;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.ProductVO;
@@ -83,8 +89,27 @@ public class HomeController {
 		logger.info("출고리스트 나가신다 길을 비켜랏"+slist.toString());
 		System.out.println(slist.toString());
 		model.addAttribute("slist", slist);
+		
+		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="mypage/modify/{mNo}", method=RequestMethod.PUT) 
+	public ResponseEntity<List<ManagementVO>> modifyByMnoPUT(@PathVariable("mNo") int mNo,@RequestBody ManagementVO vo) { 
+		ResponseEntity<List<ManagementVO>> entity = null;
+		logger.info("----- ManagementVO는"+vo);
+		logger.info("--- mNo는 "+mNo );
+		vo.setmNo(mNo);
+		try {
+			mservice.modifyManagementByMypage(vo);
+			List<ManagementVO> mlist = mservice.selectByJoinInformation();
+			entity = new ResponseEntity<>(mlist, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
 	
 	

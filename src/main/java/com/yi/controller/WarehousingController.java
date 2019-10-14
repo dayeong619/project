@@ -43,11 +43,11 @@ public class WarehousingController {
 	public void warehousing(Model model) throws Exception {
 		logger.info("warehousingGET---");
 		List<WarehousingVO> wlist = wservice.selectWarehousingByAll(); //입고리스트
-		logger.info(wlist.toString());
+		logger.info("입리->"+wlist);
 		model.addAttribute("wlist", wlist);
 		
 		List<GoodsVO> glist = gservice.selectByGoods();      //제품리스트
-		logger.info("제품리스트 야 -> "+glist);
+//		logger.info("제품리스트 야 -> "+glist);
 		model.addAttribute("glist", glist);
 		
 	}

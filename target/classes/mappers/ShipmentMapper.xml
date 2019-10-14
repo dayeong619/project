@@ -22,7 +22,9 @@
 		left join goods g on w.w_no = g.g_no where s.s_del=1 order by s.s_day desc <!-- limit 10 -->
 	</select>
 
-
+	<select id="selectShipment" resultMap="ShipmentExtendsMap">
+		select * from shipment where s_del=1
+	</select>
 
 
 
