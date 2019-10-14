@@ -1,6 +1,10 @@
 package com.yi.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yi.domain.GoodsVO;
 import com.yi.domain.LoginDto;
 import com.yi.domain.ManagementVO;
 import com.yi.domain.ProductVO;
@@ -84,6 +87,19 @@ public class HomeController {
 		List<ProductVO> plist = pservice.selectProductByAll();
 		logger.info("생산리스트다 자 봐라~~~~"+plist);
 		model.addAttribute("plist", plist);                              //생산리스트 보낸다
+		
+		Set<Date> gubun = new TreeSet<>();
+		for(ProductVO p : plist) {
+			gubun.add(p.getpWorkday());
+		}
+		
+		List<Date> gu = new ArrayList<Date>(gubun);
+		Date gugu = gu.get(gu.size() -1);
+		logger.info("gugu는 ->"+gugu);
+		model.addAttribute("gugu", gugu);
+		for(Date d: gu) {
+			System.out.printf("%tF%n", d);
+		}
 		
 		List<ShipmentVO> slist = sservice.selectShipmentByAll();
 		logger.info("출고리스트 나가신다 길을 비켜랏"+slist.toString());

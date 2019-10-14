@@ -21,12 +21,12 @@
 		<collection property="mNo" resultMap="com.yi.mapper.ManagementMapper.ManagementResultMap"/>
 	</resultMap>
 	<select id="selectProductByAll" resultMap="ProductResultMap">
-		select l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday, p.p_no
+		select l.l_no, l.l_line, m.m_name, g.g_name, p.p_worktime, p.p_qy, b.b_process, b.b_setup, b.b_material, b.b_etc, p.p_section, p.p_workday, p.p_no
 		from product p 
-		left join line l on p.p_no = l.l_no
-		left join management m on p.p_no = m.m_no
-		left join warehousing w on p.p_no = w.w_no
-		left join goods g on w.w_no = g.g_no
+		left join line l on p.l_no = l.l_no
+		left join management m on p.m_no = m.m_no
+		left join warehousing w on p.w_no = w.w_no
+		left join goods g on w.g_no = g.g_no
 		left join badness b on p.p_no = b.p_no
 	</select>
 	

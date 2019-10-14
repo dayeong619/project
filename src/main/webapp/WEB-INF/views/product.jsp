@@ -194,11 +194,17 @@
 	    margin-top: 10px;
 	    margin-left:700px;
 	}
+	.ppp{
+		background-color:AliceBlue;
+		display: inline;
+	}
 </style>
 <section>
 	<div class="divTitle2" id="left">
 		<h3>생산일지</h3>
+		<c:if test="${Auth.tNo != '1' }">
 			<button id="productInsert">생산일지 등록</button>
+		</c:if>
 	</div>
 	<div class="divTitle">
 		<div id="insertView"> <!-- 신규창 -->
@@ -211,9 +217,13 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
 				<input type="submit" value="등록" id="insertViewinsert">
-				<input type="submit" value="수정" id="insertViewModify">
-				<input type="submit" value="수정확인" id="insertViewModiCon">
-				<input type="submit" value="삭제" id="insertViewDelete">
+				<c:if test="${Auth.tNo != '1' }">
+					<c:if test="${Auth.tNo != '2' }">
+						<input type="submit" value="수정" id="insertViewModify">
+						<input type="submit" value="수정확인" id="insertViewModiCon">
+						<input type="submit" value="삭제" id="insertViewDelete">
+					</c:if>
+				</c:if>
 				<input type="reset" value="취소" id="insertViewReset">
 			</div>
 			<div id="insertViewcontent">
@@ -318,8 +328,13 @@
 		$("#insertView").find("#insertViewModify").css("display", "inline");
 		$("#insertView").find("#insertViewDelete").css("display", "inline");
 		$("#insertView").find("#spaninsert").text("상세보기");
-		var $this =$(this).parents().find("#insertView").find("#insertViewcontent");
- 		var pNo= $(this).parent().find("#hiddenPNO").val(); //span에 있는 value값
+		$("#insertView").find(".insertViewInput").css("border", "none");
+		$("#insertView").find(".insertViewInput").css("background-color", "white");
+		$("#insertView").find(".insertViewInput").prop("disabled", true);
+		$("#insertView").find("#insertViewcontent select").css("-webkit-appearance", "none");
+		var ti = $(this);
+		var $this = ti.parents().find("#insertView").find("#insertViewcontent");
+ 		var pNo= ti.parent().find("#hiddenPNO").val(); //span에 있는 value값
 		/* $("#insertView").find("#hiddenPno").val(pno); //띄운창에 spanV값 넣어라 */
 		
 
@@ -465,7 +480,7 @@
 					var $target = $tr.find("td:eq("+obj.lNo.lNo+")");
 					var $input = "<input type='hidden' name='pNo' id='hiddenPNO' value='"+obj.pNo+"'>";
 					var $span = "<div>";
-					$target.append($input+$span+obj.wNo.gNo.gName+obj.pQy+"<br>");
+					$target.append($input+$span+"<p class='ppp'>"+obj.wNo.gNo.gName+"</p>"+" "+obj.pQy+"<br>");
 					//pNo 가 있어서 클릭하면 상세보기로 
 				
 				})
@@ -478,7 +493,7 @@
 
 
 	$(document).on("mouseenter", "#tableScroll td div", function(){
-		$(this).parent().css("background-color", "AliceBlue");
+		$(this).parent().css("background-color", "#ADD8E6");
 		$(this).parent().find("td:nth-child(1)").css("background-color", "white");
 		$(this).css("cursor", "pointer");
 		$(this).css("text-decoration", "underline");

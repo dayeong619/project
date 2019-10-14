@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="include/header.jsp" %>
 <style>
 	section{
@@ -37,24 +38,27 @@
 		border:1px solid black;
 	}
 	thead td:nth-child(1), tbody td:nth-child(1){ /* 이름 */
+		width: 40px;
+	}
+	thead td:nth-child(2), tbody td:nth-child(2){ /* 이름 */
 		width: 80px;
 	}
-	thead td:nth-child(2), tbody td:nth-child(2){ /* 생년월일 */
+	thead td:nth-child(3), tbody td:nth-child(3){ /* 생년월일 */
 		width: 140px;
 	}
-	thead td:nth-child(3), tbody td:nth-child(3){ /* 연락처 */
+	thead td:nth-child(4), tbody td:nth-child(4){ /* 연락처 */
 		width: 140px;
 	}
-	thead td:nth-child(4), tbody td:nth-child(4){ /* 주소 */
+	thead td:nth-child(5), tbody td:nth-child(5){ /* 주소 */
 		width: 400px;
 	}
-	thead td:nth-child(5), tbody td:nth-child(5){ /* 작업자등록일 */
+	thead td:nth-child(6), tbody td:nth-child(6){ /* 작업자등록일 */
 		width: 140px;
 	}
-	thead td:nth-child(6), tbody td:nth-child(6){ /* 작업자인증일 */
+	thead td:nth-child(7), tbody td:nth-child(7){ /* 작업자인증일 */
 		width: 140px;
 	}
-	thead td:nth-child(7), tbody td:nth-child(7){ /* 생산실적 */
+	thead td:nth-child(8), tbody td:nth-child(8){ /* 생산실적 */
 		width: 140px;
 	}
 	tbody .badnessInput{
@@ -79,7 +83,7 @@
 		
 	}
 	#sectionOne{
-		width:85%;
+		width:69%;
 		border-top:2px solid #ccc;
 		border-bottom:2px solid #ccc;
 		background-color: white;
@@ -93,6 +97,7 @@
 		overflow:hidden;
 		float: left;
 		width: 900px;
+		margin-right: 140px;
 	}
 	#divDate2{
 		width: 100%;
@@ -320,8 +325,12 @@
 	.divTitle2 h3{
 		padding-top:15px;
 	}
-	
-	
+	#searchName{
+		height: 27px;
+	}
+	#workerSearch{
+		height: 30px;
+	}
 </style>
 <section>
 	<div class="divTitle2">
@@ -333,7 +342,7 @@
 		<div id="sectionOne">
 			<div id="divDate2">
 				<div id="left">
-					이름검색 <input type="text" name="pName" id="searchName"><button id="workerSearch">검색</button>
+					<input type="text" name="pName" id="searchName" placeholder="작업자이름 입력">&nbsp;&nbsp;<button id="workerSearch">&nbsp;&nbsp;검색&nbsp;&nbsp;</button>
 				</div> 
 				<button id="insert">작업자등록</button>	
 			</div> 
@@ -382,6 +391,7 @@
 			<table>
 				<thead>
 					<tr class="tableTrs">
+						<td>순번</td>
 						<td rowspan="2">이름</td>
 						<td rowspan="2">생년월일</td>
 						<td rowspan="2">연락처</td>
@@ -394,6 +404,10 @@
 				<tbody id="tableScroll">
 					<c:forEach var="lists" items="${list}">
 						<tr>
+							<c:set var="sum" value="${sum+1}"/><!-- 번호 매기기 -->
+							<td>
+								${sum}
+							</td>
 							<td>
 								<input type="hidden" name="mNo" value="${lists.mNo}">
 								<div class="mNameClass">${lists.mName}</div>
@@ -407,9 +421,11 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button class="workerModify">수정</button>
-				<button class="worketModifyCF">수정확인</button>
-				<button class="workerDelete">삭제</button>
+					<button class="workerModify">수정</button>
+					<button class="worketModifyCF">수정확인</button>
+				<c:if test="${Auth.tNo != '3' }">
+					<button class="workerDelete">삭제</button>
+				</c:if>
 				<button class="workerClose">닫기</button>
 			</div>
 			<div class="insertViewcontent">
@@ -444,10 +460,10 @@
 				
 							</td>
 							<td>
-								${lists.mBirth}
+								${fn:substring(lists.mBirth, 0, 4) }-${fn:substring(lists.mBirth, 4, 6) }-${fn:substring(lists.mBirth, 6, 8) }
 							</td>
 							<td>
-								${lists.mTel}
+								${fn:substring(lists.mTel, 0, 3) }-${fn:substring(lists.mTel, 3, 7) }-${fn:substring(lists.mTel, 7, 11) }
 							</td>
 							<td>
 								${lists.mAddr}
@@ -497,7 +513,7 @@
 		
 		
 		for(var i=0; i<res.length; i++){
-			str+= "<tr><td><input type='hidden' name='mNo' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
+			str+= "<tr><td>"+(i+1)+"</td><td><input type='hidden' name='mNo' value'"+res[i].mNo+"'><div class='mNameClass'>"+res[i].mName+"</div>";
 			str+= "<div class='workerView'><div class='workerViewBackground'><div class='workerViewTitle'>";
 			str+= "<span id='spaninsert'>"+res[i].mName+"님 상세보기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
 			"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -513,9 +529,14 @@
 			str+= "<div><label>작업자인증일</label><input type='date' name='mConfirm' id='nowDate2' value='"+res[i].mConfirm+"' disabled='disabled' class='insertViewInput'></div>";
 			str+= "</div></div></div>";
 			str+= "</td>"; //이름
-			str+= "<td>"+res[i].mBirth+"</td>";  //생년월일
-			str+= "<td>"+res[i].mTel+"</td>"; //연락처
-			str+= "<td>"+res[i].mAddr+"</td>"; //주소
+			
+			var Birth = (res[i].mBirth).substring(0, 4)+"-"+(res[i].mBirth).substring(4, 6)+"-"+(res[i].mBirth).substring(6, 8);
+			str+= "<td>"+Birth+"</td>";  //생년월일
+			
+			var Tel = (res[i].mTel).substring(0, 3)+"-"+(res[i].mTel).substring(3, 7)+"-"+(res[i].mTel).substring(7, 11);
+			str+= "<td>"+Tel+"</td>"; //연락처
+			
+			str+= "<td>"+res[i].mAddr+"</td>";  //주소
 			str+= "<td>"+res[i].mEnterday+"</td>"; //작업자등록일
 			str+= "<td>"+res[i].mConfirm+"</td>"; //작업자인증일
 			str+= "<td><button class='tnProductResult'>보기</td></tr>"; //생산실적
@@ -614,7 +635,8 @@
 			success:function(res){
 				console.log(res);
 				$(".workerView").fadeOut(300);
-				$tr.remove(); 	//테이블에서 지우기					
+				paint(res);
+				//$tr.remove(); 	//테이블에서 지우기					
 			}
 		})
 	})

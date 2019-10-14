@@ -44,6 +44,11 @@ public class GoodsServiceImpl implements GoodsService {
 		dao.modifyByGno(vo);
 	}
 
+	@Override
+	public List<GoodsVO> selectByGname(String gName) throws Exception {
+		return dao.selectByGname(gName);
+	}
+
 	
 
 	

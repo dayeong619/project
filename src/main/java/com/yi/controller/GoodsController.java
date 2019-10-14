@@ -112,4 +112,23 @@ public class GoodsController {
 		return entity;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="goods/gname/{gName}", method=RequestMethod.GET)
+	public ResponseEntity<List<GoodsVO>> selectByGName(@PathVariable("gName") String gName){ 
+		logger.info("selectByGName--> 입력한 이름은 "+gName);
+		
+		ResponseEntity<List<GoodsVO>> entity = null;
+		
+		try {
+			List<GoodsVO> list = gservice.selectByGname(gName);
+			entity = new ResponseEntity<>(list, HttpStatus.OK); //200
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST); //400 error
+		}
+		return entity;
+	}
+	
+	
+	
 }

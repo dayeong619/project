@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<select id="selectByGoods" resultMap="GoodsResultMap">
-		select * from goods where g_del=1
+		select * from goods where g_del=1 order by g_no desc
 	</select>
 	
 	<select id="selectAll" parameterType="GoodsVO" resultMap="GoodsResultMap">
@@ -39,8 +39,10 @@
 		SET g_name=#{gName}, g_location=#{gLocation}, g_client=#{gClient}, g_day=#{gDay}
 		WHERE g_no=#{gNo}
 	</update>
-	 
-	
+	<!-- 제품명으로 검색 --> 
+	<select id="selectByGname" resultMap="GoodsResultMap" parameterType="string">
+		select * from goods where g_name like concat('%', #{gName}, '%');
+	</select>
 	
 	
 	

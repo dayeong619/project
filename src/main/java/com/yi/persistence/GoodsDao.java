@@ -12,4 +12,7 @@ public interface GoodsDao {
 	public void insertGood (GoodsVO vo) throws Exception;
 	public List<GoodsVO> selectByGno(int gNo) throws Exception;
 	public void modifyByGno (GoodsVO vo) throws Exception;
+	
+	public List<GoodsVO> selectByGname(String gName) throws Exception;
+	
 }

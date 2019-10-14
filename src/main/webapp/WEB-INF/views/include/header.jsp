@@ -178,8 +178,12 @@ $(function(){
 					<li>
 						인사관리 
 						<ul class="tip">
-							<li><a href="${pageContext.request.contextPath}/management" class="aa">사원관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자관리</a></li>
+							<c:if test="${Auth.tNo != '1' }">
+								<c:if test="${Auth.tNo != '2' }">
+									<li><a href="${pageContext.request.contextPath}/management" class="aa">사원관리</a></li>
+									<li><a href="${pageContext.request.contextPath}/worker" class="aa">작업자관리</a></li>
+								</c:if>
+							</c:if>
 						</ul>
 					</li>
 				</ul>

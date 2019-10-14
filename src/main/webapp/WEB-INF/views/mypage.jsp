@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif; color:#4d636f;}
 	#warehousingTable, #shipmentTable{
 		width:200px;
 		height:200px;
@@ -100,9 +100,24 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 		
 	}
 	
-	
-	
-	
+	.divDIV{
+		width: 120px;
+		height: 80px;
+		float: left;
+		border: 1px solid #ccc;
+		margin-right: 10px;
+		margin-bottom:10px;
+		text-align: center;
+	}
+	#wawawa{
+		overflow: hidden;
+	}
+	.divDIV .p{
+		background-color: #becbd2;
+		height: 30px;
+		font-size: 17px;
+		line-height: 30px;
+	}
 	
 	
 	
@@ -120,10 +135,10 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
         <div class="w3-container">
        	 <c:forEach var="mlists" items="${mlist }">
 	         <h4 class="w3-center">
-	         	<c:if test="${mlists.mId == 'js0818' }">
+	         	<c:if test="${Auth.tNo == '4' }">
 	         		관리자님, 반갑습니다.
 	         	</c:if>
-	         	<c:if test="${mlists.mId != 'js0818' }">
+	         	<c:if test="${Auth.tNo != '4' }">
 	         		${mlists.mId}님의 정보
 	         	</c:if>
 	         	
@@ -139,7 +154,9 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
 	         </p>
 	         <hr>
 	         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> ${mlists.mName}</p>
-	         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> ${mlists.dNo.dName} | ${mlists.tNo.tName}</p>
+	         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> 
+	        	 ${mlists.dNo.dName} | ${mlists.tNo.tName}
+	         </p>
 	         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> ${mlists.mEnterday }</p>
        	 </c:forEach>
         </div>
@@ -300,7 +317,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       <br>
       
       <!-- Interests --> 
-      <!-- <div class="w3-card w3-round w3-white w3-hide-small">
+      <div class="w3-card w3-round w3-white w3-hide-small">
         <div class="w3-container">
           <p>Interests</p>
           <p>
@@ -317,7 +334,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
             <span class="w3-tag w3-small w3-theme-l5">Photos</span>
           </p>
         </div>
-      </div> -->
+      </div>
       <br>
       
       <!-- Alert Box -->
@@ -348,22 +365,22 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif;}
       </div> -->
       
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <span class="w3-right w3-opacity"></span>
-        <h4>생산현황</h4><br>
+        <span class="w3-right w3-opacity"><fmt:formatDate value="${gugu }" pattern="yyyy-MM-dd" var="gubun"/>${gubun}기준</span>
+        <h4><strong>생산 라인 현황</strong></h4><br>
         <hr class="w3-clear">
-        	<table>
-       			<c:forEach var="plists" items="${plist }">
-       				<tr>
-       					<td><fmt:formatDate value="${plists.pWorkday}" pattern="yyyy-MM-dd"/> </td>
-       					<td>
-       						${plists.pSection == true ? '주간':'야간'}
-       					</td>
-       					<td>${plists.wNo.gNo.gName}</td>
-       					<td>${plists.pQy}</td>
-       				</tr>
-        		</c:forEach>
-        	</table>
-        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> <a href="${pageContext.request.contextPath}/product"> 생산일지 등록하기</a></button> 
+        <div  id="wawawa">
+	        <c:forEach var="plists" items="${plist }">
+		        <fmt:formatDate value="${plists.pWorkday}" pattern="yyyy-MM-dd" var="pWorkday"/>
+		       		<c:if test="${pWorkday == gubun}">
+		       			<div class="divDIV">
+			        		<p class="p">${plists.lNo.lLine } 라인</p>
+			        		<p>${plists.mNo.mName}</p>
+			        		<p>${plists.wNo.gNo.gName}</p>
+		        		</div>
+		       		</c:if>
+	        </c:forEach>
+        </div>
+        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> <a href="${pageContext.request.contextPath}/product"> 생산관리 바로가기</a></button> 
        <!--  <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  전체보기</button>  -->
       </div>  
 <!-- 생산라인 보이게 -->

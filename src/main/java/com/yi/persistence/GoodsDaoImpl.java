@@ -46,6 +46,11 @@ public class GoodsDaoImpl implements GoodsDao {
 		sqlSession.update(namespace+".modifyByGno", vo);
 	}
 
+	@Override
+	public List<GoodsVO> selectByGname(String gName) throws Exception {
+		return sqlSession.selectList(namespace+".selectByGname", gName);
+	}
+
 	
 	
 	
