@@ -306,10 +306,12 @@
 					</tr>
 				</thead>
 				<tbody id="tableScroll">
-					<c:forEach items="${gu }" var="g">
+				
+				
+					<c:forEach items="${gu }" var="g" varStatus="status">
 						<tr>
 							<td>
-								<fmt:formatDate value="${g }" pattern="yyyy-MM-dd" var="gubun"/>
+								<fmt:formatDate value="${gu[gu.size()-status.index-1] }" pattern="yyyy-MM-dd" var="gubun"/>
 									${gubun }
 							</td>
 							<c:forEach var="i" begin="1" end="${Llist.size() }">
@@ -473,6 +475,7 @@
 			dataType:"json",
 			success:function(res){
 				console.log(res);
+				console.log("여기요");
 				
 				$(res).each(function(i, obj) {
 					var workDay = new Date(obj.pWorkday);

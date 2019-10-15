@@ -92,9 +92,9 @@ public class ProductController {
 		List<Date> gu = new ArrayList<Date>(gubun);
 		
 		model.addAttribute("gu", gu);
-//		for(Date d: gu) {
-//			System.out.printf("%tF%n", d);
-//		}
+		for(Date d: gu) {
+			System.out.printf("%tF%n", d);
+		}
 
 	}
 	
