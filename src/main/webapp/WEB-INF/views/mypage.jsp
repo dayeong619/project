@@ -429,7 +429,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif; color:#4d6
           <br>
          <p>
          	<button class="w3-button w3-block w3-theme-l4">
-         		<a href="${pageContext.request.contextPath}/warehousing">입고현황 페이지 가기</a>
+         		<a href="${pageContext.request.contextPath}/warehousing">입고현황 바로가기</a>
          	</button>
          </p>
          <br>
@@ -462,7 +462,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif; color:#4d6
           <br>	
       	 	<p>
       	 		<button class="w3-button w3-block w3-theme-l4">
-      	 			<a href="${pageContext.request.contextPath}/shipment">출고현황 페이지 가기</a>
+      	 			<a href="${pageContext.request.contextPath}/shipment">출고현황 바로가기</a>
       	 		</button>
       	 	</p>
       	  <br>

@@ -77,7 +77,7 @@ public class ProductController {
 		model.addAttribute("wList", wList);                    //입고번호리스트
 		
 		List<ManagementVO> mlist = pservice.selectByJoinInformation();
-		//logger.info("사람이름만 가져올꺼야"+mlist);
+		logger.info("사람이름만 가져올꺼야"+mlist);
 		model.addAttribute("mlist", mlist);						//사람이름 보여줄 리스트
 		
 		List<ProductVO> plist = pservice.selectMnoWnoPqyByProduct();

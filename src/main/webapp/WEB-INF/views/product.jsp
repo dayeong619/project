@@ -197,6 +197,7 @@
 	.ppp{
 		background-color:AliceBlue;
 		display: inline;
+		font-size: 13px;
 	}
 </style>
 <section>
@@ -506,6 +507,10 @@
 
 	$(document).on("click", "#productInsert", function(){ // 작업일지 등록할 창 뜨게 해줄께
 		document.getElementById("nowDate").valueAsDate = new Date();
+		$("#insertView").find("#insertViewinsert").css("display", "inline");
+		$("#insertView").find("#insertViewModify").css("display", "none");
+		$("#insertView").find("#insertViewDelete").css("display", "none");
+		$("#insertView").find("#spaninsert").text("생산일지 등록");
 		$("#insertView").fadeIn(300);
 		
 	})
